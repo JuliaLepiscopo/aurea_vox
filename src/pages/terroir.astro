@@ -1,0 +1,293 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import SectionHeader from '~/components/SectionHeader.astro';
+import Reveal from '~/components/Reveal.astro';
+import Button from '~/components/Button.astro';
+
+
+
+const timeline = [
+  { year: '1947', event: 'Fundação', body: 'Luigi Voss planta as primeiras videiras em 0.8ha de xisto puro. O primeiro vinho só virá 8 anos depois.' },
+  { year: '1961', event: 'Primeira Vindima Ícone', body: 'A safra 1961 recebe a primeira menção internacional. Nenhuma garrafa será vendida sem 24 meses de descanso.' },
+  { year: '1990', event: 'Biodinâmica', body: 'Aurea Vox converte todos os vinhedos à viticultura biodinâmica — 15 anos antes da tendência.' },
+  { year: '2012', event: 'Ânforas de Barro', body: 'Inauguração da adega de ânforas. Técnica serve à voz do vinho, nunca o contrário.' },
+  { year: '2024', event: 'Schist Archive', body: 'Lançamento da coleção "Schist Archive": microvinificações de parcelas únicas, produção limitada a 88 garrafas.' },
+];
+
+const processos = [
+  { n: '01', t: 'Poda Seletiva', b: 'Inverno. A videira é esculpida à mão, cacho por cacho, para produzir menos e dizer mais.' },
+  { n: '02', t: 'Vindima Noturna', b: 'Setembro. A uva é colhida antes do nascer do sol, preservando a acidez cortante do frio.' },
+  { n: '03', t: 'Fermentação Lenta', b: 'Leveduras indígenas. 40 dias de fermentação em tanques de concreto ovoide.' },
+  { n: '04', t: 'Repouso Subterrâneo', b: 'Barricas de carvalho francês em adega de xisto natural. 12°C constantes o ano inteiro.' },
+];
+---
+
+<BaseLayout current="terroir" title="Terroir · Aurea Vox">
+  <!-- Hero — sem folhas, só imagem + tipografia -->
+  <section class="relative min-h-screen overflow-hidden bg-ink">
+    <div class="absolute inset-0 pointer-events-none opacity-[0.12]">
+      <img src="/piramide_vinho.jpeg" alt="" class="w-full h-full object-cover grayscale-[0.45]" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink"></div>
+    <div class="absolute inset-0 bg-ink/20"></div>
+
+    <div class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 pt-32 sm:pt-36 md:pt-40 pb-20 md:pb-24 min-h-screen flex items-center">
+      <div class="relative z-20 max-w-2xl">
+        <div class="flex items-center gap-4">
+          <span class="divider-gold"></span>
+          <span class="label-luxury">Nossa Essência</span>
+        </div>
+        <h1 class="mt-8 md:mt-10 font-display font-light text-[2.7rem] sm:text-5xl md:text-7xl lg:text-[5.2rem] text-pearl leading-[1.02] md:leading-[0.98] tracking-[-0.02em]" data-split>
+          Um vinho<br/>nasce <em class="text-gold not-italic">antes</em><br/>da uva.
+        </h1>
+        <p class="mt-8 md:mt-10 text-[0.95rem] md:text-[1.05rem] text-[var(--pearl-muted)] leading-[1.7] md:leading-[1.75] max-w-md">
+          Mais do que uma safra, um legado. Aurea Vox é uma obra-prima líquida, forjada pela paciência dos séculos e por um cuidado artesanal incomparável.
+        </p>
+        <div class="mt-10 md:mt-14 flex items-center gap-4 md:gap-6 flex-wrap">
+          <Button href="#vinhedos" variant="primary">Descobrir Vinhedos</Button>
+          <Button href="#timeline" variant="ghost" icon="none">79 anos de história</Button>
+        </div>
+      </div>
+    </div>
+
+    <a href="#vinhedos" aria-label="Rolar" class="absolute bottom-[12vh] left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 text-pearl/65 hover:text-gold transition-colors z-20">
+      <span class="w-px h-14 bg-gradient-to-b from-transparent to-gold/80"></span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="scroll-hint-arrow">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- Vinhedos — editorial, sem cards de 6px border -->
+  <section id="vinhedos" class="max-w-[1480px] mx-auto px-6 lg:px-10 py-20 lg:py-24">
+    <Reveal>
+      <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-16 items-stretch">
+        <!-- Imagem PNG flutuando + stats sobrepostos -->
+        <div class="relative lg:min-h-[480px] flex flex-col">
+          <!-- Eyebrow -->
+          <div class="flex items-center justify-center gap-4">
+            <span class="divider-gold"></span>
+            <span class="text-[0.62rem] tracking-label uppercase text-gold">Três vinhedos <span class="text-[1.4rem] leading-none align-middle mx-1.5">·</span> Três vozes</span>
+            <span class="divider-gold"></span>
+          </div>
+
+          <!-- Imagem PNG com flutuação sutil e glow dourado atrás -->
+          <div class="relative flex-1 grid place-items-center py-4">
+            <div class="absolute inset-0 grid place-items-center pointer-events-none">
+              <div class="w-[70%] h-[70%] rounded-full bg-gold/8 blur-[120px]"></div>
+            </div>
+            <img
+              src="/piramide_vinho.jpeg"
+              alt="Vinhedo Aurea Vox"
+              class="relative z-10 w-full max-w-[520px] h-auto object-cover floaty drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+            />
+          </div>
+
+          <!-- Stats hairline editoriais -->
+          <div class="grid grid-cols-3 gap-4 lg:gap-8 pt-6 border-t border-[var(--line)]">
+            <div>
+              <div class="font-display font-light text-[2rem] lg:text-[2.4rem] text-gold leading-none">34</div>
+              <div class="mt-2 text-[0.55rem] tracking-label uppercase text-pearl/60">Hectares</div>
+            </div>
+            <div class="border-l border-[var(--line)] pl-4 lg:pl-8">
+              <div class="font-display font-light text-[2rem] lg:text-[2.4rem] text-gold leading-none">12</div>
+              <div class="mt-2 text-[0.55rem] tracking-label uppercase text-pearl/60">Castas</div>
+            </div>
+            <div class="border-l border-[var(--line)] pl-4 lg:pl-8">
+              <div class="font-display font-light text-[2rem] lg:text-[2.4rem] text-gold leading-none">415<span class="text-[1rem]">m</span></div>
+              <div class="mt-2 text-[0.55rem] tracking-label uppercase text-pearl/60">Altitude</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto editorial -->
+        <div class="flex flex-col justify-center lg:py-4">
+          <h2 class="font-display font-light text-4xl md:text-5xl lg:text-[3.4rem] text-pearl leading-[1.02] tracking-[-0.015em]">
+            Do xisto<br/>à <em class="text-gold not-italic">taça</em>.
+          </h2>
+          <div class="mt-6 w-12 h-px bg-gold"></div>
+          <p class="mt-6 text-[var(--pearl-muted)] leading-[1.75] text-[1rem] max-w-md">
+            Cada vinhedo tem a sua personalidade. Nossas parcelas não competem — se complementam, oferecendo vinhos com identidade única e elegância.
+          </p>
+          <p class="mt-5 text-[var(--pearl-muted)] leading-[1.75] max-w-md">
+            Solo mineral, altitude ideal e brisa do vale. A natureza assina cada safra, a videira traduz essa assinatura em sabor.
+          </p>
+        </div>
+      </div>
+    </Reveal>
+
+  </section>
+
+  <!-- Timeline — horizontal, marcadores escalonados, card de detalhe que troca -->
+  <section id="timeline" class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 pt-6 md:pt-8 pb-16 md:pb-20">
+    <Reveal>
+      <SectionHeader
+        eyebrow="Linha do Tempo"
+        title="79 anos de <em class='text-gold not-italic'>paciência</em>."
+        align="center"
+      />
+    </Reveal>
+
+    <div class="mt-10 timeline-root">
+      <!-- Card de detalhe da marca ativa -->
+      <div class="timeline-detail relative min-h-[140px] lg:min-h-[160px] mb-6 lg:mb-8 px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <div class="timeline-detail-year font-display font-light text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] text-gold/85 leading-none tracking-[-0.02em] transition-all duration-700">{timeline[0].year}</div>
+          <div class="timeline-detail-event mt-2 font-display font-light text-[1.4rem] md:text-[1.75rem] text-pearl tracking-[-0.01em] transition-all duration-500">{timeline[0].event}</div>
+          <div class="mt-4 w-10 h-px bg-gold/60 mx-auto"></div>
+          <p class="timeline-detail-body mt-4 text-[var(--pearl-muted)] leading-[1.65] text-[0.9rem] max-w-xl mx-auto transition-all duration-500">{timeline[0].body}</p>
+        </div>
+      </div>
+
+      <!-- Trilha com marcadores escalonados -->
+      <div class="timeline-track relative">
+        <!-- Linha dourada hairline contínua -->
+        <div class="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
+
+        <!-- Marcadores -->
+        <ol class="relative grid" style={`grid-template-columns: repeat(${timeline.length}, 1fr);`}>
+          {timeline.map((item, i) => {
+            const up = i % 2 === 0;
+            return (
+              <li class="relative flex justify-center">
+                <button
+                  type="button"
+                  data-timeline-idx={i}
+                  class:list={[
+                    'timeline-mark group relative flex flex-col items-center w-full py-10 transition-all duration-500',
+                    up ? 'timeline-mark-up' : 'timeline-mark-down',
+                  ]}
+                  aria-label={`${item.year} · ${item.event}`}
+                >
+                  <!-- Label que fica acima OU abaixo, alternando -->
+                  {up && (
+                    <div class="absolute bottom-[calc(50%+14px)] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 whitespace-nowrap pointer-events-none">
+                      <span class="timeline-year font-display font-light text-[1.4rem] lg:text-[1.7rem] text-pearl/55 leading-none transition-all duration-500">{item.year}</span>
+                      <span class="timeline-event text-[0.58rem] tracking-label uppercase text-pearl/40 transition-colors duration-500">{item.event}</span>
+                      <span class="w-px h-4 bg-[var(--line-strong)]"></span>
+                    </div>
+                  )}
+
+                  <!-- Bullet -->
+                  <span class="timeline-bullet relative w-[11px] h-[11px] rounded-full bg-ink border border-[var(--line-strong)] transition-all duration-500 z-10">
+                    <span class="timeline-bullet-ring absolute inset-0 rounded-full border border-gold opacity-0 scale-100 transition-all duration-500"></span>
+                  </span>
+
+                  {!up && (
+                    <div class="absolute top-[calc(50%+14px)] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 whitespace-nowrap pointer-events-none">
+                      <span class="w-px h-4 bg-[var(--line-strong)]"></span>
+                      <span class="timeline-year font-display font-light text-[1.4rem] lg:text-[1.7rem] text-pearl/55 leading-none transition-all duration-500">{item.year}</span>
+                      <span class="timeline-event text-[0.58rem] tracking-label uppercase text-pearl/40 transition-colors duration-500">{item.event}</span>
+                    </div>
+                  )}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </div>
+
+    <style>
+      .timeline-detail-year,
+      .timeline-detail-event,
+      .timeline-detail-body {
+        will-change: opacity, transform;
+      }
+      .timeline-detail-year.is-swap,
+      .timeline-detail-event.is-swap,
+      .timeline-detail-body.is-swap {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      .timeline-mark:hover .timeline-year,
+      .timeline-mark.active .timeline-year {
+        color: var(--gold);
+        font-weight: 400;
+      }
+      .timeline-mark:hover .timeline-event,
+      .timeline-mark.active .timeline-event {
+        color: var(--pearl);
+      }
+      .timeline-mark:hover .timeline-bullet,
+      .timeline-mark.active .timeline-bullet {
+        background: var(--gold);
+        border-color: var(--gold);
+        transform: scale(1.3);
+      }
+      .timeline-mark.active .timeline-bullet-ring {
+        opacity: 1;
+        transform: scale(2.4);
+      }
+      .timeline-mark.active .timeline-bullet {
+        box-shadow: 0 0 0 4px rgba(191, 155, 93, 0.12), 0 0 22px rgba(191, 155, 93, 0.5);
+      }
+    </style>
+
+    <script define:vars={{ timeline }}>
+      const root = document.querySelector('.timeline-root');
+      if (root) {
+        const marks = Array.from(root.querySelectorAll('[data-timeline-idx]'));
+        const yearEl = root.querySelector('.timeline-detail-year');
+        const eventEl = root.querySelector('.timeline-detail-event');
+        const bodyEl = root.querySelector('.timeline-detail-body');
+
+        let current = 0;
+        let hoverTimer = 0;
+
+        const render = (i) => {
+          if (i === current) return;
+          current = i;
+          marks.forEach((m, idx) => m.classList.toggle('active', idx === i));
+
+          // Crossfade
+          [yearEl, eventEl, bodyEl].forEach((el) => el && el.classList.add('is-swap'));
+
+          window.setTimeout(() => {
+            if (yearEl) yearEl.textContent = timeline[i].year;
+            if (eventEl) eventEl.textContent = timeline[i].event;
+            if (bodyEl) bodyEl.textContent = timeline[i].body;
+            [yearEl, eventEl, bodyEl].forEach((el) => el && el.classList.remove('is-swap'));
+          }, 260);
+        };
+
+        marks.forEach((m, i) => {
+          m.addEventListener('click', () => render(i));
+          m.addEventListener('mouseenter', () => {
+            window.clearTimeout(hoverTimer);
+            hoverTimer = window.setTimeout(() => render(i), 80);
+          });
+        });
+
+        // Ativa o primeiro marcador no boot
+        marks[0]?.classList.add('active');
+      }
+    </script>
+  </section>
+
+  <!-- Processo — 4 colunas limpas -->
+  <section class="relative py-16 lg:py-20">
+    <div class="max-w-[1480px] mx-auto px-6 lg:px-10">
+      <Reveal>
+        <SectionHeader
+          eyebrow="A Alquimia"
+          title="Do solo à taça — 10 anos de precisão."
+          align="center"
+        />
+      </Reveal>
+
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-12">
+        {processos.map((p, i) => (
+          <Reveal delay={i * 100}>
+            <div class="py-8 border-t border-[var(--line)]">
+              <div class="font-display font-light text-[2.4rem] text-gold/80 leading-none">{p.n}</div>
+              <h3 class="mt-6 font-display font-light text-[1.5rem] text-pearl tracking-[-0.01em]">{p.t}</h3>
+              <p class="mt-5 text-sm text-[var(--pearl-muted)] leading-[1.75]">{p.b}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

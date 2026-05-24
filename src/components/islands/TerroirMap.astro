@@ -1,0 +1,182 @@
+---
+import { vineyards } from '~/data/vineyards';
+---
+
+<section id="terroir-map" class="relative max-w-7xl mx-auto px-6 lg:px-10 py-24">
+  <div class="grid lg:grid-cols-[1.4fr_1fr] gap-12">
+    <div class="relative aspect-[4/3] border border-dourado/20 bg-gradient-to-br from-antracite via-gunmetal to-nero-profundo overflow-hidden rounded-[2rem]">
+      <div class="noise-overlay"></div>
+
+      <svg
+        id="terroir-svg"
+        viewBox="0 0 100 75"
+        class="absolute inset-0 w-full h-full"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <radialGradient id="glow" cx="0.5" cy="0.5">
+            <stop offset="0" stop-color="#e9c176" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#e9c176" stop-opacity="0"/>
+          </radialGradient>
+          <pattern id="topography" width="4" height="4" patternUnits="userSpaceOnUse">
+            <path d="M 0 2 Q 1 0, 2 2 T 4 2" stroke="#d4af37" stroke-width="0.15" fill="none" opacity="0.25"/>
+          </pattern>
+        </defs>
+
+        <rect width="100" height="75" fill="url(#topography)"/>
+
+        <path d="M10 50 Q 25 30, 40 45 T 80 35 T 95 50" stroke="#d4af37" stroke-width="0.25" fill="none" opacity="0.4"/>
+        <path d="M5 60 Q 30 45, 50 55 T 95 60" stroke="#d4af37" stroke-width="0.2" fill="none" opacity="0.3"/>
+        <path d="M15 40 Q 40 25, 60 35 T 90 30" stroke="#d4af37" stroke-width="0.2" fill="none" opacity="0.3"/>
+
+        <path d="M 10 65 Q 30 58, 48 68 T 90 66 L 90 75 L 10 75 Z" fill="#1a3a2a" opacity="0.3"/>
+
+        {vineyards.map((v) => (
+          <g class="terroir-hotspot cursor-pointer" data-vineyard={v.id}>
+            <circle cx={v.coords.x} cy={v.coords.y} r="8" fill="url(#glow)" class="hotspot-glow"/>
+            <circle cx={v.coords.x} cy={v.coords.y} r="1.8" fill="#e9c176" class="hotspot-dot transition-all duration-500"/>
+            <circle cx={v.coords.x} cy={v.coords.y} r="3" fill="none" stroke="#e9c176" stroke-width="0.3" class="hotspot-ring"/>
+            <text
+              x={v.coords.x}
+              y={v.coords.y - 5}
+              text-anchor="middle"
+              font-size="2.2"
+              font-family="'Cormorant Garamond', serif"
+              fill="#e9c176"
+              class="hotspot-label opacity-70"
+            >{v.name}</text>
+          </g>
+        ))}
+      </svg>
+
+      <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[0.6rem] tracking-label uppercase text-creme/50">
+        <span>Escala aproximada</span>
+        <button id="geology-toggle" class="text-dourado-quente hover:text-dourado transition-colors">
+          Camadas geológicas →
+        </button>
+      </div>
+    </div>
+
+    <div id="terroir-panel" class="bg-gunmetal/60 border border-dourado/20 p-8 min-h-[420px] rounded-[2rem]">
+      <div id="panel-empty" class="h-full flex flex-col items-center justify-center text-center gap-4">
+        <div class="divider-gold"></div>
+        <p class="label-luxury">Selecione uma parcela</p>
+        <p class="text-sm text-creme/50 max-w-xs">Clique em qualquer ponto dourado do mapa para revelar a geologia, o microclima e as castas que ali encontram expressão.</p>
+      </div>
+
+      <div id="panel-content" class="hidden h-full flex-col gap-5">
+        <div>
+          <span class="label-luxury" id="panel-eyebrow">Parcela</span>
+          <h3 id="panel-name" class="mt-2 font-display text-4xl text-gold-gradient"></h3>
+          <div class="divider-gold mt-4"></div>
+        </div>
+
+        <p id="panel-description" class="text-sm text-creme/75 leading-relaxed"></p>
+
+        <dl class="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <dt class="text-[0.6rem] tracking-label uppercase text-creme/50">Altitude</dt>
+            <dd id="panel-altitude" class="mt-1 font-display text-xl text-creme"></dd>
+          </div>
+          <div>
+            <dt class="text-[0.6rem] tracking-label uppercase text-creme/50">Área</dt>
+            <dd id="panel-area" class="mt-1 font-display text-xl text-creme"></dd>
+          </div>
+          <div class="col-span-2">
+            <dt class="text-[0.6rem] tracking-label uppercase text-creme/50">Clima</dt>
+            <dd id="panel-climate" class="mt-1 text-sm text-creme/80"></dd>
+          </div>
+        </dl>
+
+        <div>
+          <span class="text-[0.6rem] tracking-label uppercase text-creme/50">Castas</span>
+          <div id="panel-grapes" class="mt-2 flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <div id="geology-stack" class="hidden mt-2 border-t border-dourado/10 pt-5 space-y-3">
+          <span class="label-luxury">Estratos geológicos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { vineyards } from '~/data/vineyards';
+
+  const panelEmpty = document.getElementById('panel-empty');
+  const panelContent = document.getElementById('panel-content');
+  const geologyStack = document.getElementById('geology-stack');
+  let geologyOpen = false;
+
+  document.querySelectorAll<SVGGElement>('.terroir-hotspot').forEach((g) => {
+    g.addEventListener('click', () => {
+      const id = g.dataset.vineyard;
+      const v = vineyards.find((x) => x.id === id);
+      if (!v) return;
+
+      panelEmpty?.classList.add('hidden');
+      panelContent?.classList.remove('hidden');
+      panelContent?.classList.add('flex');
+
+      document.getElementById('panel-eyebrow')!.textContent = v.soil[0];
+      document.getElementById('panel-name')!.textContent = v.name;
+      document.getElementById('panel-description')!.textContent = v.description;
+      document.getElementById('panel-altitude')!.textContent = v.altitude;
+      document.getElementById('panel-area')!.textContent = v.area;
+      document.getElementById('panel-climate')!.textContent = v.climate;
+
+      const grapesEl = document.getElementById('panel-grapes')!;
+      grapesEl.innerHTML = v.grapes
+        .map((g) => `<span class="text-[0.65rem] tracking-luxury uppercase text-creme/70 border border-dourado/20 px-2 py-0.5">${g}</span>`)
+        .join('');
+
+      if (geologyStack) {
+        geologyStack.innerHTML = '<span class="label-luxury">Estratos geológicos</span>' + v.geology
+          .map((layer, i) => `
+            <div class="flex items-start gap-3 text-sm">
+              <span class="font-display text-2xl text-gold-gradient leading-none w-8">0${i + 1}</span>
+              <div>
+                <div class="text-creme">${layer.layer} <span class="text-creme/40">· ${layer.depth}</span></div>
+                <div class="text-xs text-creme/60">${layer.composition}</div>
+              </div>
+            </div>
+          `).join('');
+      }
+
+      document.querySelectorAll<SVGCircleElement>('.hotspot-dot').forEach((d) => {
+        d.setAttribute('r', '1.8');
+      });
+      g.querySelector<SVGCircleElement>('.hotspot-dot')?.setAttribute('r', '2.8');
+    });
+  });
+
+  document.getElementById('geology-toggle')?.addEventListener('click', () => {
+    geologyOpen = !geologyOpen;
+    geologyStack?.classList.toggle('hidden', !geologyOpen);
+  });
+</script>
+
+<style>
+  .hotspot-ring {
+    animation: pulse-ring 2.4s ease-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .terroir-hotspot:nth-child(2) .hotspot-ring { animation-delay: 0.6s; }
+  .terroir-hotspot:nth-child(3) .hotspot-ring { animation-delay: 1.2s; }
+
+  @keyframes pulse-ring {
+    0% { r: 2; opacity: 0.9; }
+    100% { r: 7; opacity: 0; }
+  }
+
+  .terroir-hotspot:hover .hotspot-dot {
+    r: 2.6;
+    filter: drop-shadow(0 0 3px #e9c176);
+  }
+
+  .terroir-hotspot:hover .hotspot-label {
+    opacity: 1;
+  }
+</style>

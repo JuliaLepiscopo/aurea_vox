@@ -1,0 +1,65 @@
+---
+interface Props {
+  variant?: 'fullscreen' | 'half' | 'asymmetric';
+  image: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  accent?: string;
+}
+
+const { variant = 'fullscreen', image, eyebrow, title, subtitle, accent } = Astro.props;
+
+const heights = {
+  fullscreen: 'h-screen',
+  half: 'h-[70vh]',
+  asymmetric: 'h-[85vh]',
+};
+---
+
+<section class:list={['relative w-full overflow-hidden bg-ink', heights[variant]]}>
+  <div class="absolute inset-0 pointer-events-none opacity-[0.12]" data-parallax="0.12">
+    <img src={image} alt="" class="w-full h-[108%] object-cover grayscale-[0.45]" />
+  </div>
+  <!-- Escurecimento alinhado com as outras páginas -->
+  <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink"></div>
+  <div class="absolute inset-0 bg-ink/20"></div>
+
+  <div class="relative z-10 h-full max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 flex flex-col justify-end pb-24 sm:pb-28 lg:pb-36">
+    {eyebrow && (
+      <div class="flex items-center gap-4">
+        <span class="divider-gold"></span>
+        <span class="label-luxury">{eyebrow}</span>
+      </div>
+    )}
+
+    {accent && (
+      <p class="mt-6 sm:mt-8 text-[0.7rem] md:text-[0.72rem] tracking-label uppercase text-gold reveal">{accent}</p>
+    )}
+
+    <h1
+      class="mt-5 sm:mt-6 font-display font-light text-[2.7rem] sm:text-5xl md:text-7xl lg:text-[5.8rem] text-pearl leading-[1.02] md:leading-[0.98] max-w-4xl"
+      data-split
+      set:html={title}
+    />
+
+    {subtitle && (
+      <p class="mt-7 sm:mt-10 text-[0.95rem] md:text-[1.05rem] text-[var(--pearl-muted)] max-w-lg leading-[1.7] reveal" data-direction="up" data-delay="250">
+        {subtitle}
+      </p>
+    )}
+
+    <div class="mt-8 sm:mt-12 flex items-center gap-4 sm:gap-6 flex-wrap">
+      <slot />
+    </div>
+  </div>
+
+  {variant === 'fullscreen' && (
+    <div class="absolute bottom-[12vh] left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 text-pearl/65 z-20">
+      <span class="w-px h-14 bg-gradient-to-b from-transparent to-gold/80"></span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="scroll-hint-arrow">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </div>
+  )}
+</section>

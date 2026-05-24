@@ -1,0 +1,210 @@
+---
+import type { Wine } from '~/data/wines';
+
+interface Props {
+  wines: Wine[];
+  eyebrow?: string;
+  title?: string;
+  autoplay?: number;
+}
+
+const { wines, eyebrow = 'Em destaque', title = 'Ícones em rotação', autoplay = 5000 } = Astro.props;
+const id = `carousel-${Math.random().toString(36).slice(2, 8)}`;
+
+const bottlePalette: Record<string, { bodyTop: string; bodyBottom: string; capsule: string }> = {
+  tinto:     { bodyTop: '#3a0f14', bodyBottom: '#0f0405', capsule: '#1a0a0d' },
+  branco:    { bodyTop: '#3a5a32', bodyBottom: '#152818', capsule: '#1a2814' },
+  rose:      { bodyTop: '#e8d8c4', bodyBottom: '#9a6a60', capsule: '#3a1a20' },
+  espumante: { bodyTop: '#2a4028', bodyBottom: '#0f1a10', capsule: '#e9c176' },
+};
+---
+
+<section class="relative overflow-hidden py-24" data-carousel-id={id} data-autoplay={autoplay}>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-end justify-between gap-6 flex-wrap">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="divider-gold"></span>
+        <span class="label-luxury">{eyebrow}</span>
+      </div>
+      <h2 class="mt-4 font-display text-4xl md:text-5xl text-creme" set:html={title}/>
+    </div>
+    <div class="flex items-center gap-3">
+      <button data-carousel-prev class="w-12 h-12 rounded-full border border-dourado/30 hover:border-dourado-quente hover:bg-dourado-quente/5 grid place-items-center text-creme hover:text-dourado-quente transition-all duration-500" aria-label="Anterior">
+        <svg width="16" height="14" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 8H1M8 1 1 8l7 7" stroke-linecap="round"/></svg>
+      </button>
+      <button data-carousel-next class="w-12 h-12 rounded-full border border-dourado-quente bg-dourado-quente/10 grid place-items-center text-dourado-quente hover:bg-dourado-quente hover:text-nero-profundo transition-all duration-500" aria-label="Próximo">
+        <svg width="16" height="14" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8h22M16 1l7 7-7 7" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-20 relative">
+    <div
+      data-carousel-track
+      class="flex gap-6 lg:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pl-6 lg:pl-10 pr-6 lg:pr-10 pt-12 pb-20 scrollbar-hide"
+      style="scrollbar-width: none;"
+    >
+      {wines.map((w) => (
+        <div class="carousel-slide flex-shrink-0 w-[80%] sm:w-[46%] lg:w-[30%] snap-start" data-wine-type={w.type} data-wine-vintage={w.vintage} data-wine-collection={w.collection}>
+          <a href={`/vinhos/${w.slug}`} class="wine-card group relative flex flex-col items-center bg-[#efe3cc] rounded-[1.75rem] pt-20 pb-14 px-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] hover:-translate-y-2 transition-transform duration-500">
+            {w.limitedEdition && (
+              <span class="absolute top-4 left-4 bg-nero-profundo text-dourado-quente text-[0.55rem] tracking-label uppercase px-3 py-1 rounded-full z-10">Limitada</span>
+            )}
+
+            <button type="button" aria-label="Favoritar" onclick="event.preventDefault();event.stopPropagation();" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/5 hover:bg-black/10 text-black/50 hover:text-[#8a1a1a] grid place-items-center transition-colors duration-300 z-10">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+            </button>
+
+            <!-- Disco com a garrafa SVG -->
+            <div class="absolute -top-14 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full bg-gradient-to-br from-[#fdf6e3] to-[#d8c9a8] shadow-[0_12px_25px_-10px_rgba(0,0,0,0.5)] grid place-items-center p-3 group-hover:scale-105 transition-transform duration-500">
+              {(() => {
+                const p = bottlePalette[w.type] ?? bottlePalette.tinto;
+                const isSparkling = w.type === 'espumante';
+                return (
+                  <svg viewBox="0 0 60 96" class="h-full w-auto drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)]" aria-hidden="true">
+                    <defs>
+                      <linearGradient id={`wc-body-${id}-${w.slug}`} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color={p.bodyTop}/>
+                        <stop offset="1" stop-color={p.bodyBottom}/>
+                      </linearGradient>
+                      <linearGradient id={`wc-label-${id}-${w.slug}`} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#f5e4b5"/>
+                        <stop offset="0.5" stop-color="#d4af37"/>
+                        <stop offset="1" stop-color="#8c6a3b"/>
+                      </linearGradient>
+                      <linearGradient id={`wc-shine-${id}-${w.slug}`} x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                        <stop offset="0.25" stop-color="#ffffff" stop-opacity="0.25"/>
+                        <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="25" y="3" width="10" height="3" fill="#d4af37"/>
+                    <path d="M 24 6 L 36 6 L 35 16 L 25 16 Z" fill={p.capsule}/>
+                    {isSparkling && <circle cx="30" cy="4.5" r="1.5" fill="#f5e4b5"/>}
+                    <rect x="26" y="16" width="8" height={isSparkling ? 12 : 16} fill={`url(#wc-body-${id}-${w.slug})`}/>
+                    {isSparkling
+                      ? <path d="M 26 28 Q 14 36, 14 50 L 14 88 Q 14 92, 18 92 L 42 92 Q 46 92, 46 88 L 46 50 Q 46 36, 34 28 Z" fill={`url(#wc-body-${id}-${w.slug})`}/>
+                      : <path d="M 26 32 Q 16 40, 15 52 L 15 88 Q 15 92, 19 92 L 41 92 Q 45 92, 45 88 L 45 52 Q 44 40, 34 32 Z" fill={`url(#wc-body-${id}-${w.slug})`}/>
+                    }
+                    <rect x="17" y="40" width="4" height="48" fill={`url(#wc-shine-${id}-${w.slug})`} opacity="0.9"/>
+                    <rect x="18" y="55" width="24" height="28" fill={`url(#wc-label-${id}-${w.slug})`}/>
+                    <rect x="18" y="55" width="24" height="28" fill="none" stroke="#0a0604" stroke-width="0.3" opacity="0.4"/>
+                    <text x="30" y="62" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="3.2" font-weight="700" fill="#0a0604" letter-spacing="0.3">AUREA</text>
+                    <text x="30" y="66.5" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="2.6" fill="#0a0604" letter-spacing="0.2">VOX</text>
+                    <line x1="22" y1="70" x2="38" y2="70" stroke="#0a0604" stroke-width="0.3"/>
+                    <text x="30" y="75.5" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="4.2" font-weight="700" fill="#0a0604">{w.vintage}</text>
+                    <text x="30" y="80.5" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="1.8" font-weight="600" fill="#0a0604" letter-spacing="0.3">{w.collection.toUpperCase()}</text>
+                    <ellipse cx="30" cy="94" rx="16" ry="1.3" fill="#000" opacity="0.5"/>
+                  </svg>
+                );
+              })()}
+            </div>
+
+            <!-- Coleção / eyebrow -->
+            <span class="text-[0.55rem] tracking-label uppercase text-[#8c6a3b]">{w.collection}</span>
+            <!-- Nome -->
+            <h3 class="mt-1 font-display text-2xl text-[#1a0a08] text-center leading-tight">{w.name}</h3>
+            <!-- Meta -->
+            <p class="mt-2 text-[0.7rem] text-[#4a3a30] text-center">{w.region} · {w.vintage}</p>
+
+            <!-- Ações pequenas -->
+            <div class="mt-4 flex items-center gap-3 text-[#4a3a30]">
+              <span class="w-8 h-8 rounded-full bg-black/5 grid place-items-center">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </span>
+              {w.score && <span class="text-[0.65rem] tracking-label uppercase font-display text-[#8c6a3b]">{w.score}/100</span>}
+            </div>
+
+            <!-- Preço -->
+            <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#1a0a08] text-[#e9c176] font-display text-lg px-6 py-1.5 rounded-full whitespace-nowrap shadow-[0_8px_20px_-8px_rgba(0,0,0,0.7)]">R$ {w.price.toLocaleString('pt-BR')}</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-4 flex items-center gap-2 px-6 lg:px-10">
+      {wines.map((_, i) => (
+        <button data-dot={i} class="carousel-dot h-[3px] flex-1 max-w-[64px] rounded-full bg-dourado/15 overflow-hidden relative">
+          <span class="carousel-dot-fill absolute inset-y-0 left-0 w-0 bg-gradient-to-r from-dourado-quente to-dourado rounded-full"></span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+</style>
+
+<script define:vars={{ id, autoplay }}>
+  const root = document.querySelector(`[data-carousel-id="${id}"]`);
+  if (root) {
+    const track = root.querySelector('[data-carousel-track]');
+    const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(root.querySelectorAll('.carousel-dot'));
+    const fills = dots.map((d) => d.querySelector('.carousel-dot-fill'));
+    let current = 0;
+    let timer = 0;
+    let paused = false;
+
+    const scrollTo = (i) => {
+      const slide = slides[i];
+      if (!slide || !track) return;
+      current = i;
+      track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      updateDots();
+    };
+
+    const updateDots = () => {
+      dots.forEach((d, i) => {
+        const fill = fills[i];
+        if (!fill) return;
+        if (i === current) {
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          requestAnimationFrame(() => {
+            fill.style.transition = `width ${autoplay}ms linear`;
+            fill.style.width = '100%';
+          });
+        } else {
+          fill.style.transition = 'none';
+          fill.style.width = i < current ? '100%' : '0%';
+        }
+      });
+    };
+
+    const next = () => scrollTo((current + 1) % slides.length);
+    const prev = () => scrollTo((current - 1 + slides.length) % slides.length);
+
+    root.querySelector('[data-carousel-next]')?.addEventListener('click', () => { paused = false; next(); restart(); });
+    root.querySelector('[data-carousel-prev]')?.addEventListener('click', () => { paused = false; prev(); restart(); });
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { scrollTo(i); restart(); }));
+
+    const restart = () => {
+      clearInterval(timer);
+      timer = window.setInterval(() => { if (!paused) next(); }, autoplay);
+    };
+
+    root.addEventListener('mouseenter', () => { paused = true; });
+    root.addEventListener('mouseleave', () => { paused = false; });
+
+    let scrollTO;
+    track?.addEventListener('scroll', () => {
+      clearTimeout(scrollTO);
+      scrollTO = window.setTimeout(() => {
+        const x = track.scrollLeft;
+        let closest = 0;
+        let minDist = Infinity;
+        slides.forEach((s, i) => {
+          const d = Math.abs(s.offsetLeft - track.offsetLeft - x);
+          if (d < minDist) { minDist = d; closest = i; }
+        });
+        if (closest !== current) { current = closest; updateDots(); }
+      }, 120);
+    });
+
+    updateDots();
+    restart();
+  }
+</script>

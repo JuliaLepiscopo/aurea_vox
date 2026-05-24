@@ -1,0 +1,35 @@
+---
+interface Props {
+  variant?: 'primary' | 'ghost' | 'link';
+  href?: string;
+  type?: 'button' | 'submit';
+  icon?: 'arrow' | 'plus' | 'none';
+  class?: string;
+}
+
+const { variant = 'primary', href, type = 'button', icon = 'arrow', class: className = '' } = Astro.props;
+
+const cls = {
+  primary: 'btn-primary group',
+  ghost: 'btn-ghost group',
+  link: 'group inline-flex items-center gap-2 text-[0.7rem] tracking-label uppercase text-gold hover:text-pearl transition-colors',
+}[variant];
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  class:list={[cls, className]}
+>
+  <span><slot /></span>
+  {icon === 'arrow' && (
+    <svg class="transition-transform duration-500 group-hover:translate-x-1" width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M1 8h22M16 1l7 7-7 7" stroke-linecap="square"/>
+    </svg>
+  )}
+  {icon === 'plus' && (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 5v14M5 12h14"/></svg>
+  )}
+</Tag>

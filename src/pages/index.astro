@@ -1,0 +1,150 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+import SectionHeader from '~/components/SectionHeader.astro';
+import Button from '~/components/Button.astro';
+import Reveal from '~/components/Reveal.astro';
+import FeatureCard from '~/components/FeatureCard.astro';
+import WineWheel from '~/components/islands/WineWheel.astro';
+import { wines } from '~/data/wines';
+
+const featured = wines.filter((w) => w.score && w.score >= 93);
+
+const pillars = [
+  { t: 'Artesanato', b: 'Colheita manual ao amanhecer. Fermentação em pequenos lotes. Cada decisão passa pela mão do mestre.' },
+  { t: 'Terroir', b: 'Nossos vinhos são a voz da terra. Pureza geológica, sem aditivos que mascarem a origem.' },
+  { t: 'Visão', b: 'Ânforas de barro ao lado de concreto ovoide. A tradição serve à expressão, nunca o contrário.' },
+  { t: 'Biodinâmica', b: 'Viticultura biodinâmica certificada. A terra será devolvida mais viva do que foi recebida.' },
+  { t: 'Raridade', b: 'Alocações limitadas. Nunca mais que 30.000 garrafas por safra.' },
+  { t: 'Presença', b: 'Vinho é presença. Convites para vindimas privadas e jantares íntimos na adega.' },
+];
+---
+
+<BaseLayout current="home" title="Aurea Vox · A Voz Dourada">
+  <Hero
+    variant="fullscreen"
+    image="/download%20(13).jpg"
+    eyebrow="Est. MCMXLVII"
+    title="Eco do tempo,<br/><span class='text-gold italic font-light'>silêncio</span> da terra."
+    subtitle="Vinhos artesanais nascidos de vinhedos milenares. Cada garrafa é um manifesto de paciência, terroir e voz própria."
+  >
+    <Button href="/vinhos" variant="primary">Explorar a Coleção</Button>
+    <Button href="/clube" variant="ghost" icon="none">Clube Privado</Button>
+  </Hero>
+
+  <!-- Manifesto -->
+  <section id="manifesto" class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 py-20 md:py-28 lg:py-40">
+    <div class="grid lg:grid-cols-[1fr_1.15fr] gap-10 md:gap-14 lg:gap-24 items-center">
+      <Reveal direction="left">
+        <div class="relative aspect-[3/4] overflow-hidden max-w-md mx-auto lg:max-w-none">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=90" alt="Adega envelhecida" class="w-full h-full object-cover grayscale-[0.15]"/>
+          <div class="absolute inset-0 bg-gradient-to-tr from-ink/55 via-transparent to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5 sm:bottom-8 sm:left-8 sm:right-8 flex items-end justify-between text-pearl">
+            <div>
+              <div class="text-[0.6rem] sm:text-[0.62rem] tracking-label uppercase text-gold">Colheita 1947</div>
+              <div class="mt-2 text-xs text-pearl/60">Parcela fundadora</div>
+            </div>
+            <div class="font-display font-light text-[3.2rem] sm:text-[4rem] lg:text-[4.5rem] text-gold leading-none">
+              <span data-counter="79">0</span>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal direction="right" delay={120}>
+        <SectionHeader
+          eyebrow="O Manifesto"
+          title="Nascemos do <em class='not-italic text-gold font-light'>silêncio</em>, crescemos na paciência."
+        />
+        <div class="mt-8 md:mt-10 space-y-5 md:space-y-6 text-[var(--pearl-muted)] text-[0.95rem] md:text-base leading-[1.75] md:leading-[1.8] max-w-lg">
+          <p>Aurea Vox não é uma vinícola. É um ritual de escuta. Ouvimos o que a terra diz nas noites frias, o que a uva sussurra no amadurecimento lento, o que a adega guarda em seu silêncio de rocha.</p>
+          <p>Cada garrafa carrega o tempo que lhe foi dado — e recusa o tempo que não lhe pertence. Quando o vinho está pronto, ele fala.</p>
+        </div>
+        <div class="mt-10 md:mt-14 grid grid-cols-3 gap-5 sm:gap-8 pt-8 md:pt-10 border-t border-[var(--line)]">
+          <div>
+            <div class="font-display font-light text-3xl sm:text-4xl md:text-5xl text-gold leading-none"><span data-counter="34">0</span></div>
+            <div class="mt-3 text-[0.58rem] sm:text-[0.62rem] tracking-label uppercase text-pearl/55">Hectares</div>
+          </div>
+          <div>
+            <div class="font-display font-light text-3xl sm:text-4xl md:text-5xl text-gold leading-none"><span data-counter="12">0</span></div>
+            <div class="mt-3 text-[0.58rem] sm:text-[0.62rem] tracking-label uppercase text-pearl/55">Castas</div>
+          </div>
+          <div>
+            <div class="font-display font-light text-3xl sm:text-4xl md:text-5xl text-gold leading-none"><span data-counter="1947">0</span></div>
+            <div class="mt-3 text-[0.58rem] sm:text-[0.62rem] tracking-label uppercase text-pearl/55">Ano zero</div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Roda de vinhos -->
+  <Reveal>
+    <WineWheel
+      wines={featured}
+      eyebrow="Coleção em rotação"
+      title={`A roda das <em class="text-gold not-italic font-light">vozes</em>`}
+    />
+  </Reveal>
+
+  <div class="text-center pb-16 md:pb-20 px-5">
+    <Button href="/vinhos" variant="ghost">Ver Coleção Completa</Button>
+  </div>
+
+  <!-- Quote — tipografia pura, sem aspas gigantes -->
+  <section class="relative max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 py-20 md:py-28 lg:py-40 text-center">
+    <Reveal>
+      <blockquote class="font-display font-light text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] text-pearl leading-[1.3] md:leading-[1.25] tracking-[-0.01em]">
+        O vinho não se bebe com a boca. Bebe-se com a <em class="text-gold not-italic">memória</em> —
+        e Aurea Vox deixa memórias que não se apagam.
+      </blockquote>
+      <div class="mt-8 md:mt-12 flex items-center justify-center gap-3 md:gap-4 text-pearl/55 flex-wrap">
+        <span class="divider-gold"></span>
+        <span class="text-[0.6rem] md:text-[0.65rem] tracking-label uppercase text-center">Jean-Pierre Larousse · MS, 2024</span>
+        <span class="divider-gold"></span>
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- Pilares — lista editorial, não cards -->
+  <section class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 py-16 md:py-24">
+    <Reveal>
+      <SectionHeader
+        eyebrow="Pilares"
+        title="Seis compromissos,<br/>uma só voz."
+        align="center"
+      />
+    </Reveal>
+
+    <div class="mt-14 md:mt-20 lg:mt-24 grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-12 lg:gap-x-16">
+      {pillars.map((p, i) => (
+        <Reveal delay={i * 80}>
+          <FeatureCard title={p.t} body={p.b}/>
+        </Reveal>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Clube -->
+  <section class="relative py-24 md:py-32 lg:py-40 overflow-hidden mt-10 md:mt-20">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=2400&q=85" alt="" class="w-full h-full object-cover opacity-25 grayscale-[0.3]" data-parallax="0.1"/>
+      <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/75 to-ink"></div>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
+      <Reveal>
+        <span class="label-luxury">Un cercle privé</span>
+        <h2 class="mt-6 md:mt-8 font-display font-light text-[2.2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] text-pearl leading-[1.08] tracking-[-0.015em]">
+          Um círculo <em class="text-gold not-italic">restrito</em>.
+        </h2>
+        <p class="mt-8 md:mt-10 text-[var(--pearl-muted)] text-[0.95rem] md:text-[1.05rem] max-w-lg mx-auto leading-[1.75]">
+          Membros recebem acesso prioritário a edições limitadas, jantares privados na adega e cópias numeradas de safras raras.
+        </p>
+        <div class="mt-10 md:mt-14 flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+          <Button href="/clube" variant="primary">Entrar no Clube</Button>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</BaseLayout>

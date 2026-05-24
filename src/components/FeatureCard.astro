@@ -1,0 +1,18 @@
+---
+interface Props {
+  icon?: string;
+  title: string;
+  body: string;
+  image?: string;
+  tone?: 'dark' | 'gold';
+}
+
+const { title, body } = Astro.props;
+---
+
+<article class="relative py-6 md:py-8 border-t border-[var(--line)] group">
+  <h3 class="font-display font-light text-[1.4rem] sm:text-2xl md:text-[1.7rem] text-pearl leading-[1.15] tracking-[-0.01em] group-hover:text-gold transition-colors duration-700">
+    {title}
+  </h3>
+  <p class="mt-4 md:mt-5 text-[0.85rem] md:text-sm leading-[1.7] md:leading-[1.75] text-[var(--pearl-muted)] max-w-md">{body}</p>
+</article>

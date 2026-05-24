@@ -1,0 +1,64 @@
+---
+import type { Wine } from '~/data/wines';
+
+interface Props {
+  wine: Wine;
+  size?: 'sm' | 'md' | 'lg';
+  featured?: boolean;
+}
+
+const { wine, size = 'md' } = Astro.props;
+
+const heights = {
+  sm: 'aspect-[3/4]',
+  md: 'aspect-[3/4]',
+  lg: 'aspect-[3/4.3]',
+};
+---
+
+<a
+  href={`/vinhos/${wine.slug}`}
+  class:list={[
+    'group relative block overflow-hidden bg-ink-raised',
+    heights[size],
+  ]}
+>
+  <!-- Imagem -->
+  <div class="absolute inset-0 overflow-hidden">
+    <img
+      src={wine.image}
+      alt={wine.name}
+      loading="lazy"
+      class="w-full h-full object-cover grayscale-[0.15] group-hover:grayscale-0 group-hover:scale-[1.04] transition-all duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)]"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"></div>
+  </div>
+
+  <!-- Coleção (topo) -->
+  <div class="absolute top-6 left-6 right-6 flex items-center justify-between">
+    <span class="text-[0.62rem] tracking-label uppercase text-gold">{wine.collection}</span>
+    {wine.limitedEdition && (
+      <span class="text-[0.6rem] tracking-label uppercase text-pearl/60">Limitada</span>
+    )}
+  </div>
+
+  <!-- Info (base) -->
+  <div class="absolute inset-x-0 bottom-0 p-7">
+    <div class="flex items-baseline justify-between gap-4 mb-4">
+      <span class="font-display text-[3.2rem] font-light text-gold leading-none">{wine.vintage}</span>
+      <span class="text-[0.65rem] tracking-luxury text-pearl/55 uppercase">{wine.region}</span>
+    </div>
+
+    <h3 class="font-display text-[1.65rem] font-light text-pearl leading-tight tracking-[-0.01em]">{wine.name}</h3>
+
+    <div class="mt-6 pt-5 border-t border-[var(--line)] flex items-center justify-between">
+      <span class="text-sm text-pearl/75 font-light">R$ {wine.price.toLocaleString('pt-BR')}</span>
+      <span class="inline-flex items-center gap-2 text-[0.65rem] tracking-label uppercase text-gold">
+        Descobrir
+        <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path class="transition-transform duration-500 group-hover:translate-x-1" d="M1 8h22M16 1l7 7-7 7" stroke-linecap="square"/>
+        </svg>
+      </span>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,64 @@
+---
+interface Props {
+  current?: 'home' | 'terroir' | 'vinhos' | 'clube' | 'shop';
+}
+
+const { current } = Astro.props;
+
+const items = [
+  { label: 'Origem', href: '/terroir', key: 'terroir' },
+  { label: 'Coleção', href: '/vinhos', key: 'vinhos' },
+  { label: 'Clube', href: '/clube', key: 'clube' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="absolute inset-0 bg-ink/80 backdrop-blur-xl"></div>
+
+  <nav class="relative w-full max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 h-16 sm:h-20 flex items-center justify-between gap-4">
+    <a
+      href="/"
+      aria-label="Aurea Vox"
+      class="font-display text-xl tracking-[-0.015em] text-pearl hover:text-gold transition-colors duration-500"
+    >
+      Aurea Vox
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+      {items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'relative inline-flex items-center text-[0.74rem] tracking-label uppercase font-light transition-colors duration-500',
+              current === item.key ? 'text-gold' : 'text-pearl/75 hover:text-gold'
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center gap-6">
+      <a href="/clube" class="hidden md:inline-flex items-center text-[0.74rem] tracking-label uppercase font-light text-pearl/85 hover:text-gold transition-colors duration-500">
+        Reservar
+      </a>
+
+      <button
+        aria-label="Menu"
+        class="lg:hidden grid place-items-center w-10 h-10 text-pearl/85 hover:text-gold transition-colors"
+        id="mobile-menu-toggle"
+      >
+        <svg width="20" height="14" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M2 2h20M2 12h20"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-toggle');
+  btn?.addEventListener('click', () => {
+    document.getElementById('mobile-drawer')?.classList.toggle('translate-x-full');
+  });
+</script>

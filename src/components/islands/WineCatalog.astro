@@ -1,0 +1,783 @@
+---
+import { wines, collections, types, allNoseNotes } from '~/data/wines';
+import { vineyards } from '~/data/vineyards';
+---
+
+<section class="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-32">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-8 sm:gap-10 lg:gap-24">
+    <!-- Filtros -->
+    <aside id="filters-aside" class="lg:sticky lg:top-32 self-start">
+      <!-- Cabeçalho -->
+      <button
+        id="filters-toggle"
+        type="button"
+        class="w-full flex items-baseline justify-between pb-6 lg:cursor-default"
+        aria-expanded="false"
+      >
+        <span class="flex items-baseline gap-3">
+          <span class="font-display text-[1.4rem] font-light text-pearl tracking-[-0.01em]">Filtros</span>
+          <span id="filters-count" class="text-[0.58rem] tracking-label uppercase text-gold/70 lg:hidden"></span>
+        </span>
+        <span class="flex items-center gap-4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" class="text-gold/80">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M21 21l-4.3-4.3"/>
+          </svg>
+          <span
+            role="button"
+            tabindex="0"
+            id="clear-filters"
+            class="text-[0.58rem] tracking-label uppercase text-pearl/40 hover:text-gold transition-colors duration-500"
+          >Limpar</span>
+          <svg
+            id="filters-caret"
+            width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-pearl/50 transition-transform duration-500 lg:hidden"
+          >
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </span>
+      </button>
+      <div class="h-px bg-gradient-to-r from-gold/30 via-[var(--line)] to-transparent"></div>
+
+      <!-- Corpo dos filtros: colapsa em mobile, fica aberto em lg -->
+      <div id="filters-body" class="filters-body lg:!max-h-none lg:!opacity-100 lg:!mt-0 overflow-hidden">
+
+        <!-- Busca (hidden — mantida para o script) -->
+        <input type="search" id="f-query" class="hidden"/>
+
+        <!-- Tipo (sempre aberto) -->
+        <details class="filter-group" open>
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Tipo</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="flex flex-wrap gap-x-5 gap-y-3">
+              {types.map((t) => (
+                <button data-filter="type" data-value={t.value} class="filter-text">{t.label}</button>
+              ))}
+            </div>
+          </div>
+        </details>
+
+        <!-- Coleção -->
+        <details class="filter-group">
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Coleção</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="flex flex-col gap-4">
+              {collections.map((c) => (
+                <button data-filter="collection" data-value={c} class="filter-check">
+                  <span class="filter-check-mark"></span>
+                  <span class="filter-check-label">{c}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </details>
+
+        <!-- Vinhedo -->
+        <details class="filter-group">
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Vinhedo</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="flex flex-col gap-4">
+              {vineyards.map((v) => (
+                <button data-filter="region" data-value={v.name} class="filter-check">
+                  <span class="filter-check-mark"></span>
+                  <span class="filter-check-label">{v.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </details>
+
+        <!-- Notas sensoriais -->
+        <details class="filter-group">
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Notas sensoriais</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="flex flex-wrap gap-x-4 gap-y-3">
+              {allNoseNotes.slice(0, 14).map((n) => (
+                <button data-filter="notes" data-value={n} class="filter-text !text-[0.56rem]">{n}</button>
+              ))}
+            </div>
+          </div>
+        </details>
+
+        <!-- Safra -->
+        <details class="filter-group">
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Safra</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="grid grid-cols-2 gap-5">
+              <input type="number" id="f-vmin" placeholder="mín" class="filter-num"/>
+              <input type="number" id="f-vmax" placeholder="máx" class="filter-num"/>
+            </div>
+          </div>
+        </details>
+
+        <!-- Preço -->
+        <details class="filter-group">
+          <summary class="filter-summary">
+            <span class="filter-summary-label">Preço (R$)</span>
+            <span class="filter-summary-icon"></span>
+          </summary>
+          <div class="filter-group-body">
+            <div class="grid grid-cols-2 gap-5">
+              <input type="number" id="f-pmin" placeholder="mín" class="filter-num"/>
+              <input type="number" id="f-pmax" placeholder="máx" class="filter-num"/>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </aside>
+
+    <div>
+      <div class="flex flex-wrap items-baseline justify-between gap-4 pb-6 border-b border-[var(--line-strong)]">
+        <div class="flex items-baseline gap-3">
+          <span id="result-count" class="font-display font-light text-[2.4rem] text-gold leading-none">{wines.length}</span>
+          <span class="text-sm text-pearl/55">rótulos</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <label class="text-[0.6rem] tracking-label uppercase text-pearl/55">Ordenar</label>
+          <select id="f-sort" class="filter-select">
+            <option value="score">Pontuação</option>
+            <option value="price-asc">Preço ↑</option>
+            <option value="price-desc">Preço ↓</option>
+            <option value="vintage-desc">Safra ↓</option>
+            <option value="vintage-asc">Safra ↑</option>
+            <option value="name">Nome</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="wine-grid" class="mt-14 sm:mt-20 lg:mt-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-20 sm:gap-y-24 pt-6 sm:pt-8"></div>
+
+      <!-- Ver mais — aparece se houver vinhos colapsados -->
+      <div id="show-more-wrap" class="mt-20 text-center hidden">
+        <div class="w-px h-10 bg-gradient-to-b from-transparent to-gold/60 mx-auto mb-6"></div>
+        <button id="show-more" type="button" class="group inline-flex flex-col items-center gap-3 text-[0.68rem] tracking-label uppercase text-gold hover:text-pearl transition-colors duration-500">
+          <span id="show-more-label">Ver mais rótulos</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-500 group-hover:translate-y-1">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="empty-state" class="hidden text-center py-24 border-t border-b border-[var(--line)]">
+        <div class="label-luxury">Silêncio</div>
+        <p class="mt-4 text-sm text-pearl/55">Nenhum rótulo corresponde a este critério.</p>
+        <button id="clear-filters-2" class="btn-ghost mt-8">Limpar Filtros</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Filtros — accordion colapsável em mobile */
+  .filters-body {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.55s var(--ease-silk), opacity 0.4s var(--ease-silk), margin-top 0.4s var(--ease-silk);
+  }
+  .filters-body.is-open {
+    max-height: 3200px;
+    opacity: 1;
+    margin-top: 0;
+  }
+  #filters-toggle[aria-expanded="true"] #filters-caret {
+    transform: rotate(180deg);
+  }
+  @media (min-width: 1024px) {
+    .filters-body {
+      max-height: none !important;
+      opacity: 1 !important;
+      overflow: visible !important;
+    }
+  }
+
+  /* Busca — sem linhas */
+  .filter-search {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0.35rem 0 0.7rem;
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--pearl);
+    letter-spacing: 0.01em;
+    outline: none;
+  }
+  .filter-search::placeholder {
+    color: var(--pearl-faint);
+    font-style: italic;
+    letter-spacing: 0.015em;
+  }
+  .filter-search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 11px;
+    width: 11px;
+    background-color: var(--gold);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><line x1='4' y1='4' x2='20' y2='20'/><line x1='20' y1='4' x2='4' y2='20'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><line x1='4' y1='4' x2='20' y2='20'/><line x1='20' y1='4' x2='4' y2='20'/></svg>");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .filter-search::-webkit-search-cancel-button:hover { opacity: 1; }
+
+  /* Accordion — seções colapsáveis */
+  .filter-group {
+    border-bottom: 1px solid var(--line);
+  }
+  .filter-group > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .filter-group > summary::-webkit-details-marker { display: none; }
+
+  .filter-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.35rem 0;
+    transition: color 0.4s var(--ease-silk);
+  }
+  .filter-summary:hover .filter-summary-label { color: var(--gold); }
+
+  .filter-summary-label {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pearl);
+    transition: color 0.4s var(--ease-silk);
+  }
+  .filter-summary-icon {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+  }
+  .filter-summary-icon::before,
+  .filter-summary-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    transition: transform 0.45s var(--ease-silk), opacity 0.4s var(--ease-silk);
+  }
+  .filter-summary-icon::before {
+    top: 4px; left: 0;
+    width: 9px; height: 1px;
+  }
+  .filter-summary-icon::after {
+    top: 0; left: 4px;
+    width: 1px; height: 9px;
+  }
+  .filter-group[open] .filter-summary-icon::after { transform: scaleY(0); }
+
+  .filter-group-body {
+    padding: 0 0 1.7rem;
+    animation: filterFade 0.55s var(--ease-silk);
+  }
+  @keyframes filterFade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Texto — Tipo e Notas (linha sutil no ativo) */
+  .filter-text {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pearl-muted);
+    background: transparent;
+    border: none;
+    padding: 0.1rem 0;
+    position: relative;
+    transition: color 0.4s var(--ease-silk);
+    cursor: pointer;
+  }
+  .filter-text::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: -2px;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.5s var(--ease-silk);
+  }
+  .filter-text:hover { color: var(--pearl); }
+  .filter-text:hover::after { right: 30%; }
+  .filter-text.active { color: var(--gold); }
+  .filter-text.active::after { right: 0; }
+
+  /* Lista com marker circular (Coleção, Vinhedo) */
+  .filter-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+  }
+  .filter-check-mark {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--pearl-faint);
+    border-radius: 9999px;
+    flex-shrink: 0;
+    transition: border-color 0.4s var(--ease-silk), background 0.4s var(--ease-silk);
+  }
+  .filter-check-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--pearl-muted);
+    letter-spacing: 0.005em;
+    transition: color 0.4s var(--ease-silk);
+  }
+  .filter-check:hover .filter-check-mark { border-color: var(--gold); }
+  .filter-check:hover .filter-check-label { color: var(--pearl); }
+  .filter-check.active .filter-check-mark {
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(191, 155, 93, 0.12);
+  }
+  .filter-check.active .filter-check-label { color: var(--gold); }
+
+  .filter-num {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 0.5rem 0;
+    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--pearl);
+    outline: none;
+    transition: border-color 0.4s var(--ease-silk);
+  }
+  .filter-num::placeholder {
+    color: var(--pearl-faint);
+    font-style: italic;
+  }
+  .filter-num:focus { border-bottom-color: var(--gold); }
+
+  .filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23bf9b5d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    background-size: 10px 10px;
+    border: none;
+    padding: 0.35rem 1.6rem 0.35rem 0;
+    font-size: 0.74rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--pearl);
+    letter-spacing: var(--tracking-luxury);
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: color 0.4s var(--ease-silk);
+  }
+  .filter-select:focus { color: var(--gold); }
+  .filter-select option {
+    background: var(--ink);
+    color: var(--pearl);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* Card de vinho — garrafa real como elemento principal */
+  .wine-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem 2.5rem;
+    background: var(--ink-raised);
+    border: 1px solid var(--line);
+    transition: border-color 0.6s var(--ease-silk), transform 0.6s var(--ease-silk);
+  }
+  .wine-card:hover {
+    border-color: rgba(191, 155, 93, 0.45);
+    transform: translateY(-6px);
+  }
+  .wine-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(191, 155, 93, 0.08) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-silk);
+    pointer-events: none;
+  }
+  .wine-card:hover::before { opacity: 1; }
+
+  /* Container da imagem da garrafa — grande e centralizado */
+  .wine-card-bottle {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 1.5rem;
+    z-index: 1;
+  }
+  .wine-card-bottle::before {
+    content: '';
+    position: absolute;
+    inset: 20% 25%;
+    background: radial-gradient(ellipse at center, rgba(191, 155, 93, 0.12) 0%, transparent 65%);
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-silk);
+    pointer-events: none;
+  }
+  .wine-card:hover .wine-card-bottle::before {
+    opacity: 1;
+  }
+  .wine-card-bottle img {
+    position: relative;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
+    transition: transform 0.7s var(--ease-silk);
+  }
+  .wine-card:hover .wine-card-bottle img {
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  .wine-card-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.55rem;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+    z-index: 5;
+  }
+  .wine-card-badge::before {
+    content: '';
+    width: 0.75rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .wine-card-wishlist {
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1.25rem !important;
+    left: auto !important;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    color: var(--pearl-faint);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 9999px;
+    transition: color 0.4s, border-color 0.4s;
+    z-index: 5;
+  }
+  .wine-card-wishlist:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .wine-card-collection {
+    font-size: 0.55rem;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .wine-card-name {
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.55rem;
+    color: var(--pearl);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-align: center;
+    transition: color 0.5s var(--ease-silk);
+  }
+  .wine-card:hover .wine-card-name { color: var(--gold); }
+  .wine-card-meta {
+    margin-top: 0.75rem;
+    font-size: 0.68rem;
+    color: var(--pearl-muted);
+    text-align: center;
+  }
+  .wine-card-score {
+    margin-top: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: var(--font-display);
+  }
+
+  /* Preço como pílula no rodapé, cortando a borda */
+  .wine-card-price-pill {
+    position: absolute;
+    bottom: -1.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.05rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--gold);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    transition: background 0.5s var(--ease-silk), color 0.5s var(--ease-silk);
+  }
+  .wine-card:hover .wine-card-price-pill {
+    background: var(--gold);
+    color: var(--ink);
+  }
+</style>
+
+<script>
+  import { wines } from '~/data/wines';
+  import { filterWines, defaultCriteria, criteriaToURL, criteriaFromURL, type FilterCriteria } from '~/scripts/filters';
+
+  const grid = document.getElementById('wine-grid')!;
+  const emptyState = document.getElementById('empty-state')!;
+  const count = document.getElementById('result-count')!;
+  const showMoreWrap = document.getElementById('show-more-wrap')!;
+  const showMoreBtn = document.getElementById('show-more')!;
+  const showMoreLabel = document.getElementById('show-more-label')!;
+
+  const INITIAL_LIMIT = 5;
+  let expanded = false;
+
+  let criteria: FilterCriteria = { ...defaultCriteria, ...criteriaFromURL(window.location.search) };
+
+  // 5 imagens reais de garrafa — ciclam pelos vinhos
+  const bottleImages = [
+    '/vinho1.svg',
+    '/vinho2.svg',
+    '/vinho3.svg',
+    '/vinho4.svg',
+    '/vinho5.svg',
+  ];
+
+  const bottleSrc = (index: number) => bottleImages[index % bottleImages.length];
+
+  function cardHTML(w: typeof wines[number], i: number) {
+    const score = w.score ? `<div class="wine-card-score">${w.score} / 100</div>` : '';
+    return `
+      <a href="/vinhos/${w.slug}" class="wine-card group">
+        <button type="button" aria-label="Favoritar" data-wishlist="${w.slug}" onclick="event.preventDefault();event.stopPropagation();" class="wine-card-wishlist" style="position:absolute;top:1rem;right:1.25rem;left:auto;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        </button>
+
+        <div class="wine-card-bottle">
+          <img src="${bottleSrc(i)}" alt="${w.name}" loading="lazy"/>
+        </div>
+
+        <span class="wine-card-collection">${w.collection}</span>
+        <h3 class="wine-card-name">${w.name}</h3>
+        <p class="wine-card-meta">${w.region} · ${w.vintage}</p>
+        ${score}
+
+        <span class="wine-card-price-pill">R$ ${w.price.toLocaleString('pt-BR')}</span>
+      </a>
+    `;
+  }
+
+  function render() {
+    const results = filterWines(wines, criteria);
+    count.textContent = String(results.length);
+
+    if (!results.length) {
+      grid.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      showMoreWrap.classList.add('hidden');
+    } else {
+      emptyState.classList.add('hidden');
+
+      const visible = expanded ? results : results.slice(0, INITIAL_LIMIT);
+      grid.innerHTML = visible.map((w, i) => cardHTML(w, i)).join('');
+
+      const hasMore = results.length > INITIAL_LIMIT;
+      if (hasMore) {
+        showMoreWrap.classList.remove('hidden');
+        const remaining = results.length - INITIAL_LIMIT;
+        showMoreLabel.textContent = expanded
+          ? 'Mostrar menos'
+          : `Ver mais ${remaining} rótulo${remaining > 1 ? 's' : ''}`;
+      } else {
+        showMoreWrap.classList.add('hidden');
+      }
+    }
+
+    const qs = criteriaToURL(criteria);
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, '', url);
+
+    updateChipStates();
+  }
+
+  function updateChipStates() {
+    document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) => {
+      const filter = b.dataset.filter!;
+      const value = b.dataset.value!;
+      const arr = (criteria as any)[filter === 'type' ? 'types' : filter === 'collection' ? 'collections' : filter === 'region' ? 'regions' : 'notes'] as string[];
+      b.classList.toggle('active', arr.includes(value));
+    });
+  }
+
+  function toggleFilter(filter: string, value: string) {
+    const key = filter === 'type' ? 'types' : filter === 'collection' ? 'collections' : filter === 'region' ? 'regions' : 'notes';
+    const arr = (criteria as any)[key] as string[];
+    const i = arr.indexOf(value);
+    if (i >= 0) arr.splice(i, 1); else arr.push(value);
+    expanded = false;
+    render();
+  }
+
+  showMoreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    render();
+    if (!expanded) {
+      // volta ao topo do grid quando colapsa
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) => {
+    b.addEventListener('click', () => toggleFilter(b.dataset.filter!, b.dataset.value!));
+  });
+
+  let debounceTimer: number;
+  (document.getElementById('f-query') as HTMLInputElement).addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = window.setTimeout(() => {
+      criteria.query = (e.target as HTMLInputElement).value;
+      expanded = false;
+      render();
+    }, 180);
+  });
+
+  (document.getElementById('f-sort') as HTMLSelectElement).addEventListener('change', (e) => {
+    criteria.sort = (e.target as HTMLSelectElement).value as FilterCriteria['sort'];
+    render();
+  });
+
+  (['vmin', 'vmax', 'pmin', 'pmax'] as const).forEach((id) => {
+    const el = document.getElementById(`f-${id}`) as HTMLInputElement;
+    el.addEventListener('change', () => {
+      const key = id === 'vmin' ? 'vintageMin' : id === 'vmax' ? 'vintageMax' : id === 'pmin' ? 'priceMin' : 'priceMax';
+      (criteria as any)[key] = el.value ? Number(el.value) : undefined;
+      expanded = false;
+      render();
+    });
+  });
+
+  const clear = () => {
+    criteria = { ...defaultCriteria };
+    (document.getElementById('f-query') as HTMLInputElement).value = '';
+    (document.getElementById('f-sort') as HTMLSelectElement).value = 'score';
+    ['vmin', 'vmax', 'pmin', 'pmax'].forEach((id) => ((document.getElementById(`f-${id}`) as HTMLInputElement).value = ''));
+    expanded = false;
+    render();
+  };
+  document.getElementById('clear-filters')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    clear();
+  });
+  document.getElementById('clear-filters-2')?.addEventListener('click', clear);
+
+  if (criteria.query) (document.getElementById('f-query') as HTMLInputElement).value = criteria.query;
+  if (criteria.sort) (document.getElementById('f-sort') as HTMLSelectElement).value = criteria.sort;
+  render();
+
+  // --- Toggle do drawer de filtros (mobile) ---
+  const filtersToggle = document.getElementById('filters-toggle') as HTMLButtonElement | null;
+  const filtersBody = document.getElementById('filters-body') as HTMLElement | null;
+  const filtersCount = document.getElementById('filters-count') as HTMLElement | null;
+
+  const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+
+  const setOpen = (open: boolean) => {
+    if (!filtersBody || !filtersToggle) return;
+    filtersBody.classList.toggle('is-open', open);
+    filtersToggle.setAttribute('aria-expanded', String(open));
+  };
+
+  filtersToggle?.addEventListener('click', (e) => {
+    if (isDesktop()) return;
+    // Só alterna se o click não veio do Limpar
+    const target = e.target as HTMLElement;
+    if (target.closest('#clear-filters')) return;
+    const open = filtersBody?.classList.contains('is-open');
+    setOpen(!open);
+  });
+
+  // Conta filtros ativos pra mostrar no título em mobile
+  const updateFiltersCount = () => {
+    const active =
+      criteria.types.length +
+      criteria.collections.length +
+      criteria.regions.length +
+      criteria.notes.length +
+      (criteria.query ? 1 : 0) +
+      (criteria.vintageMin ? 1 : 0) +
+      (criteria.vintageMax ? 1 : 0) +
+      (criteria.priceMin ? 1 : 0) +
+      (criteria.priceMax ? 1 : 0);
+    if (filtersCount) {
+      filtersCount.textContent = active > 0 ? `· ${active} ativo${active > 1 ? 's' : ''}` : '';
+    }
+  };
+
+  updateFiltersCount();
+
+  // Observa cliques em filtros e inputs pra re-contar
+  document.querySelectorAll('[data-filter], #f-query, #f-sort, #f-vmin, #f-vmax, #f-pmin, #f-pmax')
+    .forEach((el) => {
+      el.addEventListener('input', () => setTimeout(updateFiltersCount, 200));
+      el.addEventListener('change', () => setTimeout(updateFiltersCount, 200));
+      el.addEventListener('click', () => setTimeout(updateFiltersCount, 200));
+    });
+</script>

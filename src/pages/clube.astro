@@ -1,0 +1,410 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import SectionHeader from '~/components/SectionHeader.astro';
+import Reveal from '~/components/Reveal.astro';
+import Button from '~/components/Button.astro';
+
+const tiers = [
+  {
+    name: 'Cercle Debut',
+    price: '3 garrafas · trimestre',
+    features: [
+      '3 rótulos selecionados pelo sommelier',
+      'Ficha de prova completa',
+      'Acesso a jantares regionais',
+      'Desconto de 10% em garrafas adicionais',
+    ],
+  },
+  {
+    name: 'Cercle Privé',
+    price: '6 garrafas · trimestre',
+    recommended: true,
+    features: [
+      '6 rótulos, incluindo 1 Ícone por ano',
+      'Acesso antecipado a edições limitadas',
+      'Visita anual à adega com pernoite',
+      'Sommelier privado por telefone',
+      'Desconto de 15% em garrafas adicionais',
+    ],
+  },
+  {
+    name: 'Cercle Vault',
+    price: 'Custodizado · safras antigas',
+    features: [
+      'Alocação de Schist Archive e Eco do Tempo',
+      'Armazenamento em adega-cofre climatizada',
+      'Jantares privados com o mestre vinhateiro',
+      'Direito a vindima privada (2 convidados)',
+      'Cópia numerada de toda edição limitada',
+    ],
+  },
+];
+
+const experiences = [
+  { t: 'Vindima Privada', b: 'Participe da colheita ao amanhecer. Almoço no vinhedo. Vinho fermentando nas suas próprias mãos.', img: '/colheita.jpeg' },
+  { t: 'Jantar na Adega', b: 'Menu de 7 tempos servido entre as barricas. Chef com estrela Michelin. Harmonização em primeira mão.', img: '/garçom.png' },
+  { t: 'Prova Vertical', b: 'Sete safras consecutivas do mesmo rótulo. Aprenda a ler o tempo na taça, guiado pelo enólogo-chefe.', img: '/jantar_vinho.jpeg' },
+];
+---
+
+<BaseLayout current="clube" title="Clube Privado · Aurea Vox">
+  <!-- Hero — limpo, sem folhas -->
+  <section class="relative min-h-screen overflow-hidden bg-ink">
+    <div class="absolute inset-0 pointer-events-none opacity-[0.12]">
+      <img src="/download%20(9).jpg" alt="" class="w-full h-full object-cover grayscale-[0.45]" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink"></div>
+    <div class="absolute inset-0 bg-ink/20"></div>
+
+    <div class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 pt-32 sm:pt-36 md:pt-40 pb-20 md:pb-24 min-h-screen flex items-center">
+      <div class="relative z-20 max-w-2xl">
+        <div class="flex items-center gap-4">
+          <span class="divider-gold"></span>
+          <span class="label-luxury">Un cercle privé</span>
+        </div>
+        <h1 class="mt-8 md:mt-10 font-display font-light text-[2.7rem] sm:text-5xl md:text-7xl lg:text-[5.2rem] text-pearl leading-[1.02] md:leading-[0.98] tracking-[-0.02em]" data-split>
+          Membros<br/>que <span class="text-gold">ouvem</span>.
+        </h1>
+        <p class="mt-8 md:mt-10 text-[0.95rem] md:text-[1.05rem] text-[var(--pearl-muted)] leading-[1.7] md:leading-[1.75] max-w-md">
+          Um círculo restrito de conhecedores com acesso às safras que nunca chegam ao mercado. Alocações exclusivas, jantares íntimos, vindimas privadas.
+        </p>
+        <div class="mt-10 md:mt-14 flex items-center gap-4 md:gap-6 flex-wrap">
+          <Button href="#aplicar" variant="primary">Candidatar-se</Button>
+          <Button href="#visitas" variant="ghost" icon="none">Experiências</Button>
+        </div>
+      </div>
+    </div>
+
+    <a href="#intro" aria-label="Rolar" class="absolute bottom-[12vh] left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 text-pearl/65 hover:text-gold transition-colors z-20">
+      <span class="w-px h-14 bg-gradient-to-b from-transparent to-gold/80"></span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="scroll-hint-arrow">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- Intro -->
+  <section id="intro" class="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 py-20 sm:py-28 md:py-40">
+    <Reveal>
+      <div class="text-center">
+        <div class="flex items-center gap-4 justify-center">
+          <span class="divider-gold"></span>
+          <span class="label-luxury">Filosofia do Clube</span>
+          <span class="divider-gold"></span>
+        </div>
+        <h2 class="mt-10 font-display font-light text-4xl md:text-5xl lg:text-[3.6rem] text-pearl leading-[1.15] tracking-[-0.015em]">
+          Não vendemos garrafas.<br/><em class="text-gold not-italic">Compartilhamos memórias.</em>
+        </h2>
+        <p class="mt-10 text-[1.05rem] text-[var(--pearl-muted)] leading-[1.8]">
+          O Clube Aurea é mais estrito que qualquer clube de vinho do mundo — não pela exclusividade per se, mas pela profundidade do relacionamento. Membros são amigos da casa. Recebem ligações do enólogo sobre decisões de vindima. Provam barris antes de serem engarrafados.
+        </p>
+      </div>
+    </Reveal>
+  </section>
+
+  <!-- Níveis — editorial, sem pricing SaaS -->
+  <section class="max-w-[1480px] mx-auto px-6 lg:px-10 py-24">
+    <Reveal>
+      <SectionHeader
+        eyebrow="Três Círculos"
+        title="Encontre o seu <em class='text-gold not-italic'>ritmo</em>."
+        align="center"
+      />
+    </Reveal>
+
+    <div class="mt-24 grid md:grid-cols-3 gap-6 lg:gap-8">
+      {tiers.map((tier, i) => (
+        <Reveal delay={i * 120}>
+          <article class:list={[
+            'tier-card relative h-full p-10 lg:p-12 flex flex-col transition-all duration-700',
+            tier.recommended ? 'tier-card-featured' : ''
+          ]}>
+            {tier.recommended && (
+              <span class="tier-badge">Recomendado</span>
+            )}
+
+            <div>
+              <div class="text-[0.58rem] tracking-label uppercase text-gold">Nível 0{i + 1}</div>
+              <h3 class="mt-4 font-display font-light text-[2.2rem] text-pearl tracking-[-0.01em] leading-[1.1]">{tier.name}</h3>
+              <div class="mt-4 text-sm text-[var(--pearl-muted)]">{tier.price}</div>
+            </div>
+
+            <div class="mt-8 mb-8 w-10 h-px bg-gold/50"></div>
+
+            <ul class="space-y-4 flex-1">
+              {tier.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-pearl/85 leading-[1.7]">
+                  <span class="text-gold mt-1 text-[0.55rem] flex-shrink-0">◆</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-12">
+              <Button variant={tier.recommended ? 'primary' : 'ghost'} href="#aplicar">
+                Candidatar-se
+              </Button>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+
+    <style>
+      .tier-card {
+        background: var(--ink-raised);
+        border: 1px solid var(--line);
+      }
+      .tier-card:hover {
+        border-color: rgba(191, 155, 93, 0.35);
+        transform: translateY(-4px);
+      }
+      .tier-card-featured {
+        background: linear-gradient(to bottom, rgba(191, 155, 93, 0.08) 0%, var(--ink-raised) 70%);
+        border: 1px solid var(--gold);
+        box-shadow: 0 30px 60px -25px rgba(191, 155, 93, 0.18);
+      }
+      .tier-card-featured:hover {
+        border-color: var(--gold);
+        box-shadow: 0 35px 70px -25px rgba(191, 155, 93, 0.28);
+      }
+      .tier-badge {
+        position: absolute;
+        top: -0.85rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.35rem 1.2rem;
+        background: var(--ink);
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        font-size: 0.55rem;
+        letter-spacing: var(--tracking-label);
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+    </style>
+  </section>
+
+  <!-- Experiências -->
+  <section id="visitas" class="max-w-[1480px] mx-auto px-6 lg:px-10 pt-40 pb-20">
+    <Reveal>
+      <SectionHeader
+        eyebrow="Experiências"
+        title="Momentos que não cabem<br/>em uma garrafa."
+      />
+    </Reveal>
+
+    <div class="mt-20 grid md:grid-cols-3 gap-0">
+      {experiences.map((exp, i) => (
+        <Reveal delay={i * 120}>
+          <article class="group relative overflow-hidden aspect-[3/4] flex flex-col">
+            <!-- Imagem — 60% superior -->
+            <div class="relative flex-1 overflow-hidden">
+              <img src={exp.img} alt="" class="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-[1.04] transition-all duration-[1400ms]"/>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/80"></div>
+            </div>
+
+            <!-- Painel dourado de texto — 40% inferior -->
+            <div class="relative bg-ink px-8 py-8">
+              <span class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent"></span>
+              <span class="text-[0.58rem] tracking-label uppercase text-gold">0{i + 1}</span>
+              <h3 class="mt-3 font-display font-light text-[1.6rem] text-pearl tracking-[-0.01em] group-hover:text-gold transition-colors duration-700">{exp.t}</h3>
+              <p class="mt-3 text-sm text-pearl/80 leading-[1.7] max-w-xs">{exp.b}</p>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  </section>
+
+  <!-- Formulário de aplicação -->
+  <section id="aplicar" class="relative pt-16 pb-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <Reveal>
+        <div class="text-center">
+          <span class="label-luxury">Candidatar-se</span>
+          <h2 class="mt-8 font-display font-light text-4xl md:text-5xl lg:text-[3.4rem] text-pearl tracking-[-0.015em] leading-[1.1]">
+            Um convite <em class="text-gold not-italic">pessoal</em>.
+          </h2>
+          <p class="mt-8 text-[var(--pearl-muted)]">A adesão é por análise. Respondemos todas as cartas em até 10 dias.</p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={150}>
+        <form id="club-form" class="mt-24 grid gap-14">
+          <div class="grid md:grid-cols-2 gap-14">
+            <div class="club-field">
+              <input required type="text" id="f-nome" class="club-input" placeholder=" "/>
+              <label for="f-nome" class="club-label">Nome</label>
+              <span class="club-line"></span>
+            </div>
+            <div class="club-field">
+              <input required type="text" id="f-sobrenome" class="club-input" placeholder=" "/>
+              <label for="f-sobrenome" class="club-label">Sobrenome</label>
+              <span class="club-line"></span>
+            </div>
+          </div>
+
+          <div class="club-field">
+            <input required type="email" id="f-email" class="club-input" placeholder=" "/>
+            <label for="f-email" class="club-label">Email</label>
+            <span class="club-line"></span>
+          </div>
+
+          <div>
+            <span class="text-[0.58rem] tracking-[0.22em] uppercase text-pearl/50">Círculo desejado</span>
+            <div class="mt-5 flex flex-wrap gap-3">
+              {tiers.map((t) => (
+                <label class="club-chip">
+                  <input type="radio" name="circulo" value={t.name} required class="sr-only peer"/>
+                  <span class="club-chip-inner">{t.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div class="club-field club-field-textarea">
+            <textarea required rows="4" id="f-motivo" class="club-input club-textarea" placeholder=" "></textarea>
+            <label for="f-motivo" class="club-label">Por que deseja entrar?</label>
+          </div>
+
+          <div class="mt-6 flex items-center justify-between flex-wrap gap-8">
+            <p class="text-[0.72rem] text-pearl/45 max-w-[320px] leading-[1.7] italic">
+              Os seus dados são guardados com o mesmo cuidado das nossas safras. Nunca partilhados.
+            </p>
+            <Button type="submit" variant="primary">Enviar Carta</Button>
+          </div>
+        </form>
+
+        <div id="club-success" class="hidden mt-10 relative p-14 text-center">
+          <span class="absolute top-0 left-0 w-6 h-6 border-t border-l border-gold"></span>
+          <span class="absolute top-0 right-0 w-6 h-6 border-t border-r border-gold"></span>
+          <span class="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-gold"></span>
+          <span class="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-gold"></span>
+          <p class="text-[0.62rem] tracking-[0.3em] uppercase text-gold">Merci</p>
+          <p class="mt-6 font-display font-light text-2xl text-pearl tracking-[-0.01em]">A sua candidatura foi recebida.</p>
+          <p class="mt-3 text-sm text-pearl/55">A casa responderá em até 10 dias.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <style>
+    /* Floating label — minimalista */
+    .club-field {
+      position: relative;
+    }
+    .club-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 1.5rem 0 0.65rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--pearl);
+      letter-spacing: 0.005em;
+      outline: none;
+      border-bottom: 1px solid var(--line);
+      transition: border-color 0.4s var(--ease-silk);
+    }
+    .club-input::placeholder { color: transparent; }
+    .club-label {
+      position: absolute;
+      left: 0;
+      top: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--pearl-faint);
+      letter-spacing: 0.01em;
+      pointer-events: none;
+      transition: top 0.4s var(--ease-silk), font-size 0.4s var(--ease-silk), letter-spacing 0.4s var(--ease-silk), text-transform 0.4s, color 0.4s var(--ease-silk);
+    }
+    .club-input:focus ~ .club-label,
+    .club-input:not(:placeholder-shown) ~ .club-label {
+      top: 0;
+      font-size: 0.56rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .club-line {
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.55s var(--ease-silk), left 0.55s var(--ease-silk);
+    }
+    .club-input:focus ~ .club-line {
+      width: 100%;
+      left: 0;
+    }
+
+    /* Textarea */
+    .club-field-textarea {
+      padding-top: 0.5rem;
+    }
+    .club-textarea {
+      resize: none;
+      min-height: 5rem;
+      line-height: 1.7;
+    }
+    .club-textarea:focus { border-bottom-color: var(--gold); }
+
+    /* Chips (Círculo desejado) */
+    .club-chip {
+      cursor: pointer;
+    }
+    .club-chip-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border: 1px solid var(--line-strong);
+      color: var(--pearl-muted);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: border-color 0.45s var(--ease-silk), color 0.45s var(--ease-silk), background 0.45s var(--ease-silk);
+    }
+    .club-chip-inner::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      border: 1px solid var(--pearl-faint);
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .club-chip:hover .club-chip-inner {
+      color: var(--pearl);
+      border-color: var(--pearl-faint);
+    }
+    .club-chip .peer:checked ~ .club-chip-inner,
+    .club-chip :checked + .club-chip-inner {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(191, 155, 93, 0.06);
+    }
+    .club-chip :checked + .club-chip-inner::before {
+      background: var(--gold);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(191, 155, 93, 0.15);
+    }
+  </style>
+
+  <script>
+    const form = document.getElementById('club-form') as HTMLFormElement | null;
+    const success = document.getElementById('club-success');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) return form.reportValidity();
+      form.classList.add('hidden');
+      success?.classList.remove('hidden');
+      success?.classList.add('block');
+      success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</BaseLayout>

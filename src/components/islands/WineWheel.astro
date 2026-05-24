@@ -1,0 +1,365 @@
+---
+import type { Wine } from '~/data/wines';
+
+interface Props {
+  wines: Wine[];
+  eyebrow?: string;
+  title?: string;
+}
+
+const { wines, eyebrow = 'Coleção em rotação', title = 'A roda das <em class="text-gold-gradient not-italic">vozes</em>' } = Astro.props;
+const id = `wheel-${Math.random().toString(36).slice(2, 8)}`;
+
+const typeTint: Record<string, string> = {
+  tinto: '#722f37',
+  branco: '#e8dcc4',
+  rose: '#c98b8b',
+  espumante: '#e9c176',
+};
+
+// Imagem única de garrafa para todos os vinhos
+const bottleImages = ['/vinho6.png'];
+---
+
+<section class="relative overflow-hidden py-16 md:py-20 lg:py-24" data-wheel-id={id}>
+  <div class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="flex items-center gap-4 justify-center">
+        <span class="divider-gold"></span>
+        <span class="label-luxury">{eyebrow}</span>
+        <span class="divider-gold"></span>
+      </div>
+      <h2 class="mt-6 sm:mt-8 font-display font-light text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[3.6rem] text-pearl leading-[1.1] md:leading-[1.05] tracking-[-0.015em]" set:html={title}/>
+    </div>
+
+    <div class="mt-12 md:mt-16 lg:mt-20 grid lg:grid-cols-[1.05fr_1fr] gap-12 md:gap-16 lg:gap-20 items-center">
+      <!-- Roda — esquerda no desktop, no topo no mobile -->
+      <div class="relative aspect-square max-w-[420px] sm:max-w-[500px] lg:max-w-[560px] mx-auto w-full lg:order-1 lg:mx-0 lg:mr-auto">
+        <!-- Logo central -->
+        <div class="absolute inset-0 grid place-items-center pointer-events-none z-10">
+          <div class="text-center">
+            <div class="font-display font-light text-2xl sm:text-3xl md:text-4xl text-pearl leading-none tracking-[-0.015em]">Aurea Vox</div>
+            <div class="mt-3 sm:mt-5 w-8 sm:w-10 h-px bg-gold/60 mx-auto"></div>
+            <div class="mt-3 sm:mt-5 text-[0.54rem] sm:text-[0.58rem] tracking-label uppercase text-pearl/45">MCMXLVII</div>
+          </div>
+        </div>
+
+        <!-- Linha orbital (única, sutil, pontilhada) -->
+        <svg class="absolute inset-[6%] w-[88%] h-[88%] pointer-events-none" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="#d4af37" stroke-width="0.15" stroke-dasharray="0.4 1.2" opacity="0.4"/>
+        </svg>
+
+        <!-- Orbit ring rotating -->
+        <div data-wheel-ring class="wheel-ring absolute inset-0">
+          {wines.map((w, i) => {
+            const img = bottleImages[i % bottleImages.length];
+            return (
+              <button
+                data-wheel-item={i}
+                data-index={i}
+                class="wheel-item absolute top-1/2 left-1/2 group"
+                style="transform: translate(-50%, -50%);"
+                aria-label={w.name}
+              >
+                <span class="wheel-item-inner relative block">
+                  <img
+                    src={img}
+                    alt={w.name}
+                    loading="lazy"
+                    class="wheel-bottle-img relative z-10 w-[42px] md:w-[48px] h-auto transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_10px_18px_rgba(0,0,0,0.55)]"
+                  />
+                  <!-- Glow -->
+                  <span class="wheel-glow absolute inset-0 rounded-full bg-gold/10 blur-2xl scale-75 opacity-0 transition-opacity duration-500"></span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+      </div>
+
+      <!-- Detalhe + Filmstrip empilhados, à direita no desktop -->
+      <div class="flex flex-col gap-14 lg:gap-16 w-full lg:order-2 max-w-xl lg:max-w-none lg:ml-auto">
+        <!-- Detalhe ativo — editorial, sem bordas douradas brilhantes -->
+        <div data-wheel-detail class="relative">
+          <span data-wheel-collection class="text-[0.6rem] md:text-[0.62rem] tracking-label uppercase text-gold"></span>
+          <h3 data-wheel-name class="mt-3 md:mt-4 font-display font-light text-[1.75rem] sm:text-[2.2rem] md:text-[2.6rem] text-pearl leading-[1.15] md:leading-[1.1] tracking-[-0.015em]"></h3>
+          <div data-wheel-meta class="mt-2 md:mt-3 text-[0.66rem] md:text-[0.7rem] tracking-luxury text-pearl/55 uppercase"></div>
+
+          <div class="mt-7 md:mt-10 flex items-end gap-6 md:gap-8 pb-5 md:pb-6 border-b border-[var(--line)]">
+            <div data-wheel-vintage class="font-display font-light text-[2.6rem] md:text-[3.4rem] text-gold leading-none"></div>
+            <div data-wheel-score class="pb-1.5 md:pb-2 text-[0.58rem] md:text-[0.62rem] tracking-label uppercase text-pearl/55"></div>
+          </div>
+
+          <p data-wheel-desc class="mt-6 md:mt-8 text-[0.85rem] md:text-sm text-[var(--pearl-muted)] leading-[1.7] md:leading-[1.75] max-w-md"></p>
+
+          <div data-wheel-notes class="mt-5 md:mt-6 flex flex-wrap gap-x-4 md:gap-x-5 gap-y-2"></div>
+
+          <div class="mt-8 md:mt-10 pt-5 md:pt-6 border-t border-[var(--line)] flex items-center justify-between gap-4">
+            <div>
+              <div class="text-[0.56rem] md:text-[0.58rem] tracking-label uppercase text-pearl/45">Garrafa</div>
+              <div data-wheel-price class="mt-1 font-display font-light text-lg md:text-xl text-pearl"></div>
+            </div>
+            <a data-wheel-link href="#" class="inline-flex items-center gap-2 text-[0.62rem] md:text-[0.66rem] tracking-label uppercase text-gold hover:text-pearl transition-colors duration-500 group">
+              <span>Conhecer</span>
+              <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.2" class="transition-transform duration-500 group-hover:translate-x-1"><path d="M1 8h22M16 1l7 7-7 7" stroke-linecap="square"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Filmstrip vertical: timeline de safras com preview grande do ativo -->
+        <div class="wheel-strip relative">
+          <!-- Header -->
+          <div class="flex items-baseline justify-between pb-5 mb-8 border-b border-[var(--line-strong)]">
+            <span class="text-[0.58rem] tracking-label uppercase text-pearl/55">Navegar safras</span>
+            <span class="text-[0.58rem] tracking-label uppercase text-gold">{String(wines.length).padStart(2, '0')}</span>
+          </div>
+
+          <!-- Timeline vertical -->
+          <div class="relative pl-6">
+            <!-- Linha vertical de fundo -->
+            <span class="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--line-strong)]" aria-hidden="true"></span>
+            <!-- Linha de progresso dourada -->
+            <span class="strip-progress absolute left-[5px] top-2 w-px bg-gold transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]" style="height: 0%;" aria-hidden="true"></span>
+
+            <ul class="flex flex-col gap-1">
+              {wines.map((w, i) => (
+                <li>
+                  <button
+                    data-wheel-list={i}
+                    class="strip-item w-full grid grid-cols-[1fr_auto] items-center gap-5 py-4 text-left transition-all duration-500 group relative"
+                  >
+                    <!-- Bullet na timeline -->
+                    <span class="strip-bullet absolute -left-6 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full bg-ink border border-[var(--line-strong)] transition-all duration-500" aria-hidden="true"></span>
+
+                    <!-- Info linha principal -->
+                    <div class="flex items-baseline gap-4 min-w-0">
+                      <span class="strip-vintage font-display font-light text-[1.6rem] text-pearl/55 leading-none transition-all duration-500">{w.vintage}</span>
+                      <span class="strip-name text-[0.82rem] font-light text-pearl/70 truncate transition-all duration-500">{w.name}</span>
+                    </div>
+
+                    <span class="strip-type text-[0.55rem] tracking-label uppercase text-pearl/35 transition-colors duration-500">{w.type}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Card preview da ativa — fica embaixo do strip -->
+          <div class="mt-10 pt-8 border-t border-[var(--line)]">
+            <div class="flex items-baseline justify-between mb-3">
+              <span class="text-[0.55rem] tracking-label uppercase text-pearl/45">Em degustação</span>
+              <span class="strip-position text-[0.55rem] tracking-label uppercase text-gold">01 / {String(wines.length).padStart(2, '0')}</span>
+            </div>
+            <div class="h-px w-full bg-[var(--line)]"></div>
+            <div class="mt-5 flex items-center gap-4">
+              <span class="strip-preview-dot w-2 h-2 rounded-full bg-gold shadow-[0_0_12px_rgba(191,155,93,0.7)]"></span>
+              <span class="strip-preview-text text-[0.72rem] tracking-luxury uppercase text-pearl/70"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wheel-item {
+    will-change: transform;
+  }
+
+  .wheel-item-inner {
+    display: block;
+    will-change: transform;
+    transition: filter 0.5s var(--ease-silk);
+  }
+
+  .wheel-item.active .wheel-item-inner {
+    filter: drop-shadow(0 8px 18px rgba(191, 155, 93, 0.2));
+  }
+  .wheel-bottle-img {
+    transition: transform 0.6s var(--ease-silk);
+  }
+  .wheel-item.active .wheel-bottle-img {
+    transform: scale(1.12);
+  }
+  .wheel-item.active .wheel-glow {
+    opacity: 0.35;
+    transform: scale(1.2);
+  }
+
+  /* Filmstrip — hover e estado ativo */
+  .strip-item:hover .strip-name { color: var(--pearl); }
+  .strip-item:hover .strip-vintage { color: var(--pearl); }
+  .strip-item:hover .strip-bullet {
+    border-color: var(--gold);
+    background: var(--gold);
+  }
+
+  .strip-item.active .strip-vintage {
+    color: var(--gold);
+    font-size: 1.9rem;
+  }
+  .strip-item.active .strip-name {
+    color: var(--pearl);
+    letter-spacing: 0.01em;
+  }
+  .strip-item.active .strip-type {
+    color: var(--gold);
+  }
+  .strip-item.active .strip-bullet {
+    background: var(--gold);
+    border-color: var(--gold);
+    width: 13px;
+    height: 13px;
+    box-shadow: 0 0 0 3px rgba(191, 155, 93, 0.15), 0 0 14px rgba(191, 155, 93, 0.5);
+  }
+
+  .strip-vintage, .strip-bullet, .strip-name {
+    will-change: transform, color, font-size;
+  }
+
+  /* (classes legado para compat caso existam em cache de estilo) */
+  .wheel-list-item.active {
+    background: linear-gradient(90deg, rgba(191, 155, 93, 0.06), transparent 60%);
+    border-bottom-color: var(--gold);
+  }
+  .wheel-list-item.active .wheel-list-name {
+    color: var(--gold);
+    transform: translateX(12px);
+  }
+  .wheel-list-item.active .wheel-list-num {
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .wheel-list-item.active .wheel-list-meta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .wheel-list-item.active .wheel-list-vintage {
+    color: var(--gold);
+  }
+  .wheel-list-name,
+  .wheel-list-num {
+    will-change: transform, color;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wheel-ring, .wheel-item-inner { animation: none; }
+  }
+</style>
+
+<script type="application/json" data-wheel-data={id} set:html={JSON.stringify(wines)}/>
+
+<script define:vars={{ id }}>
+  const root = document.querySelector(`[data-wheel-id="${id}"]`);
+  const dataEl = document.querySelector(`[data-wheel-data="${id}"]`);
+  if (root && dataEl) {
+    const wines = JSON.parse(dataEl.textContent || '[]');
+    const ring = root.querySelector('[data-wheel-ring]');
+    const items = Array.from(root.querySelectorAll('.wheel-item'));
+    const listItems = Array.from(root.querySelectorAll('.strip-item'));
+    const stripProgress = root.querySelector('.strip-progress');
+    const stripPosition = root.querySelector('.strip-position');
+    const stripPreviewText = root.querySelector('.strip-preview-text');
+    const count = items.length;
+
+    const selectors = {
+      collection: root.querySelector('[data-wheel-collection]'),
+      name: root.querySelector('[data-wheel-name]'),
+      meta: root.querySelector('[data-wheel-meta]'),
+      vintage: root.querySelector('[data-wheel-vintage]'),
+      score: root.querySelector('[data-wheel-score]'),
+      desc: root.querySelector('[data-wheel-desc]'),
+      notes: root.querySelector('[data-wheel-notes]'),
+      price: root.querySelector('[data-wheel-price]'),
+      link: root.querySelector('[data-wheel-link]'),
+    };
+
+    let current = 0;
+    let rotation = 0;
+    let radius = 0;
+    let paused = false;
+    const speed = 0.12; // deg per frame (~50s per revolution)
+
+    const computeRadius = () => {
+      const rect = ring.getBoundingClientRect();
+      // radius = 42% of the smaller dimension — leaves room for the center logo
+      radius = Math.min(rect.width, rect.height) * 0.42;
+      layout();
+    };
+
+    const layout = () => {
+      for (let i = 0; i < count; i++) {
+        const angle = (360 / count) * i + rotation;
+        const rad = (angle - 90) * (Math.PI / 180); // -90 so index 0 starts at top
+        const x = Math.cos(rad) * radius;
+        const y = Math.sin(rad) * radius;
+        const item = items[i];
+        // Position the item: translate to center, then shift by x,y
+        item.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        // Counter-rotate the inner so the bottle stays upright (here we don't rotate bottle, so no counter needed)
+      }
+    };
+
+    const tick = () => {
+      if (!paused) {
+        rotation = (rotation + speed) % 360;
+        layout();
+      }
+      requestAnimationFrame(tick);
+    };
+
+    const render = (i) => {
+      current = ((i % count) + count) % count;
+      items.forEach((el, idx) => el.classList.toggle('active', idx === current));
+      listItems.forEach((el, idx) => el.classList.toggle('active', idx === current));
+
+      const wine = wines[current];
+      if (!wine) return;
+      selectors.collection.textContent = wine.collection;
+      selectors.name.textContent = wine.name;
+      selectors.meta.textContent = `${wine.region} · ${wine.grapes.slice(0, 2).join(' · ')}`;
+      selectors.vintage.textContent = wine.vintage;
+      selectors.score.textContent = wine.score ? `${wine.score}/100` : '';
+      selectors.desc.textContent = wine.tasting.palate;
+      selectors.notes.innerHTML = wine.tasting.nose
+        .slice(0, 5)
+        .map((n) => `<span class="text-[0.62rem] tracking-luxury uppercase text-pearl/70">${n}</span>`)
+        .join('<span class="text-pearl/20 text-[0.62rem]">·</span>');
+      selectors.price.textContent = `R$ ${wine.price.toLocaleString('pt-BR')}`;
+      selectors.link.setAttribute('href', `/vinhos/${wine.slug}`);
+
+      // Atualiza o filmstrip
+      const pad = String(current + 1).padStart(2, '0');
+      const total = String(count).padStart(2, '0');
+      if (stripPosition) stripPosition.textContent = `${pad} / ${total}`;
+      if (stripProgress) {
+        const pct = count > 1 ? (current / (count - 1)) * 100 : 0;
+        stripProgress.style.height = `${pct}%`;
+      }
+      if (stripPreviewText) stripPreviewText.textContent = `${wine.vintage} · ${wine.name}`;
+    };
+
+    items.forEach((el, i) => {
+      el.addEventListener('click', () => render(i));
+      el.addEventListener('mouseenter', () => { paused = true; render(i); });
+      el.addEventListener('mouseleave', () => { paused = false; });
+    });
+    listItems.forEach((el, i) => {
+      el.addEventListener('click', () => render(i));
+      el.addEventListener('mouseenter', () => { paused = true; render(i); });
+      el.addEventListener('mouseleave', () => { paused = false; });
+    });
+
+    // Auto-advance selection
+    window.setInterval(() => { if (!paused) render(current + 1); }, 4500);
+
+    // Boot
+    const ro = new ResizeObserver(computeRadius);
+    ro.observe(ring);
+    computeRadius();
+    requestAnimationFrame(tick);
+    render(0);
+  }
+</script>

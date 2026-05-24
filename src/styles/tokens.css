@@ -1,0 +1,57 @@
+:root {
+  /* Base — apenas 2 tons de preto, quente */
+  --ink: #0a0908;
+  --ink-raised: #141210;
+
+  /* Dourado — um único tom, discreto (não ostentação) */
+  --gold: #bf9b5d;
+  --gold-soft: #8a6f3e;
+
+  /* Texto — um único off-white */
+  --pearl: #ede6d6;
+  --pearl-muted: rgba(237, 230, 214, 0.62);
+  --pearl-faint: rgba(237, 230, 214, 0.38);
+
+  /* Hairlines */
+  --line: rgba(191, 155, 93, 0.18);
+  --line-strong: rgba(191, 155, 93, 0.32);
+
+  /* Compatibilidade — mantém classes Tailwind existentes mapeadas ao novo sistema */
+  --nero-profundo: var(--ink);
+  --gunmetal: var(--ink-raised);
+  --antracite: var(--ink-raised);
+  --dourado-rico: var(--gold);
+  --dourado-quente: var(--gold);
+  --bronze-escovado: var(--gold-soft);
+  --cobre-oxidado: var(--gold-soft);
+  --ambar-caramelo: var(--gold);
+  --borgonha: var(--ink-raised);
+  --rubi-profundo: var(--ink-raised);
+  --creme-texturizado: var(--pearl);
+  --nogueira: var(--ink-raised);
+  --cinza-rochoso: var(--ink-raised);
+  --verde-tropical: var(--ink-raised);
+
+  /* Tipografia */
+  --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-body: 'Manrope', 'Montserrat', system-ui, sans-serif;
+
+  /* Tracking — mais contido, menos 2010s */
+  --tracking-luxury: 0.18em;
+  --tracking-label: 0.24em;
+
+  /* Motion */
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-drama: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,2032 @@
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUREA VOX | The Echo of Time</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#7e261e",
+                    "inverse-primary": "#5f5e5e",
+                    "surface": "#131313",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-tint": "#c9c6c5",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "surface-container": "#20201f",
+                    "secondary-fixed": "#ffdea5",
+                    "primary-fixed": "#e5e2e1",
+                    "outline-variant": "#4d4635",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#802820",
+                    "on-primary-container": "#464545",
+                    "on-primary": "#313030",
+                    "secondary": "#e9c176",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-tertiary": "#61110c",
+                    "on-secondary-container": "#dab36a",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-dim": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "inverse-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "surface-variant": "#353535",
+                    "on-secondary": "#412d00",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#ff9688",
+                    "on-surface-variant": "#d0c5af",
+                    "on-error": "#690005",
+                    "surface-container-high": "#2a2a2a",
+                    "outline": "#99907c",
+                    "tertiary": "#ffbfb6",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#b5b2b2",
+                    "surface-bright": "#393939",
+                    "on-primary-fixed-variant": "#474646",
+                    "primary": "#d1cecd",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-tertiary-fixed": "#410001",
+                    "surface-container-highest": "#353535",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#604403",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            transition: background-color 0.5s ease;
+        }
+        .no-line-rule {
+            border: none !important;
+        }
+        .letter-spacing-tight { letter-spacing: -0.02em; }
+        .letter-spacing-luxury { letter-spacing: 0.1em; }
+        .bg-nero-profundo { background-color: #0e0e0e; }
+        .mask-gradient {
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1c1b1b]/60 backdrop-blur-xl shadow-2xl shadow-black/50 no-line-rule tonal-transition">
+<div class="flex justify-between items-center px-12 py-6 w-full max-w-full">
+<div class="text-2xl font-['Noto_Serif'] tracking-widest text-[#D4AF37] uppercase cursor-pointer opacity-90 hover:opacity-100">
+                AUREA VOX
+            </div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">Wines</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">History</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">Terroir</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">Experience</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">Club</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500 ease-in-out font-['Noto_Serif'] tracking-tight cursor-pointer opacity-90 hover:opacity-100" href="#">Shop</a>
+</div>
+<div class="flex gap-6 items-center">
+<span class="material-symbols-outlined text-[#D4AF37] cursor-pointer opacity-90 hover:opacity-100" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined text-[#D4AF37] cursor-pointer opacity-90 hover:opacity-100" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen w-full flex items-center overflow-hidden bg-nero-profundo">
+<div class="absolute inset-0 z-0">
+<img alt="Aurea Vox Cellar" class="w-full h-full object-cover opacity-50 brightness-50" data-alt="dramatic low-key shot of a single luxury wine bottle in a dark stone cellar with warm amber spotlighting highlighting the label texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZjVDUtJNxQz3ARUoqR7pZJbvPnFjYs0VUEUjh0KBhbcSZQe0aKsc7a4YGsOd6S62IIuacdVLYkvG9rx1tv-7oNafSVLDciL2UrJBLC_b5fnpNpeefdTeACzJBFPPnOMOtJfEnuCztE6yHeMjWxl5PVLZbv7_4fIk_u9vBcvmgpb348bl6GVm553tV9QJL6cOGn7UUHSpofUav-4wdDbs6ISfM-pqlOMcoZiKmIZJNvWV50sUis7W-tgSKGN5gxDgJ0-T1ozY8GUze"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90"></div>
+</div>
+<div class="container mx-auto px-12 relative z-10">
+<div class="max-w-4xl space-y-8">
+<div class="flex items-center gap-4">
+<div class="h-[1px] w-12 bg-secondary/40"></div>
+<span class="font-label text-secondary tracking-[0.2em] uppercase text-xs">Since 1894</span>
+</div>
+<h1 class="font-headline text-7xl md:text-9xl text-on-background letter-spacing-tight leading-none">
+                    O Eco do Tempo <br/>
+<span class="italic text-secondary/90">e da Terra</span>
+</h1>
+<p class="font-body text-on-background/70 text-lg md:text-xl max-w-xl leading-relaxed">
+                    Nascido no silêncio das adegas centenárias, Aurea Vox é o testemunho líquido da harmonia perfeita entre o solo granítico e o sopro dos séculos.
+                </p>
+<div class="pt-8 flex gap-8 items-center">
+<button class="bg-secondary text-on-secondary px-10 py-4 font-label text-xs tracking-widest uppercase rounded-sm hover:bg-secondary/90 transition-colors shadow-lg shadow-secondary/10">
+                        Discover the Collection
+                    </button>
+<button class="text-secondary border-b border-outline-variant/40 hover:border-secondary pb-1 font-label text-xs tracking-widest uppercase transition-all">
+                        Our Legacy
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Storytelling Section: Golden Voice -->
+<section class="py-32 bg-surface">
+<div class="container mx-auto px-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+<div class="md:col-span-5 relative">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+<img alt="Vineyard Texture" class="w-full h-[600px] object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl" data-alt="extreme close-up of gnarled ancient grapevine bark and tendrils in soft morning mist with moody directional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnW-yncUdnaxn4Wb7cAfQ97BVmjOr4e3zSebqJ1OuIDy8jK4lSVGE1KXVxvwQVj2-IIpHkzxlcS-6ayXgNCi8un003aZW3yY3P1JNsY0qFxp12m_dp5QYybEgKOQ-CDbVRjXuSizRJHl3WT4yW7UTBaiZMnwoxROAZXvUbfGRlF9dsVRzGN1WqwBCI-lgerEJRhLYqPUsxQOOeGaBSKi6FW7DYRSMPJRXv9QbTN8Y-hbPHIzhBVm91Vrm3Izt_3QkhzW8ARih58JKA"/>
+<div class="absolute -bottom-8 -right-8 p-12 bg-surface-container-low border border-outline-variant/20 hidden lg:block">
+<span class="font-headline text-4xl text-secondary block italic">130</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-background/40">Years of Silence</span>
+</div>
+</div>
+<div class="md:col-span-7 space-y-12 pl-0 md:pl-12">
+<div class="space-y-6">
+<h2 class="font-label text-secondary tracking-[0.3em] uppercase text-xs">The Philosophy</h2>
+<h3 class="font-headline text-5xl md:text-6xl text-on-background leading-tight">The Golden Voice of the Soil</h3>
+<p class="font-body text-on-background/60 text-lg leading-relaxed max-w-2xl">
+                            Aurea Vox (The Golden Voice) is not just a name; it is the manifestation of the vibration felt when the sun hits our terraced vineyards at dawn. It is the resonance of mineral-rich depths translated into complex aromas.
+                        </p>
+</div>
+<div class="grid grid-cols-2 gap-12 pt-8">
+<div class="space-y-4">
+<h4 class="font-headline text-xl text-secondary italic">Terroir</h4>
+<p class="font-body text-sm text-on-background/50 leading-relaxed">High-altitude schist slopes that capture the essence of the northern winds and the depth of the earth.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline text-xl text-secondary italic">Craft</h4>
+<p class="font-body text-sm text-on-background/50 leading-relaxed">Hand-harvested at midnight to preserve the delicate structural integrity of each berry.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Collection: Bento Grid Editorial -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="container mx-auto px-12">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div class="space-y-4">
+<h2 class="font-label text-secondary tracking-[0.3em] uppercase text-xs">The Vault</h2>
+<h3 class="font-headline text-5xl text-on-background">Curated Vintages</h3>
+</div>
+<p class="font-body text-on-background/40 text-sm max-w-xs uppercase tracking-widest leading-relaxed text-right">
+                    Limited production bottles, each carrying the unique signature of its year.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
+<!-- Item 1 -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-surface-container">
+<img alt="Red Wine Pour" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="slow-motion shot of dark red wine being poured into a crystal glass with dramatic backlighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBifCRv4nah9ts9BVza1DA4rFr6l2S4OSwNA4-gekyRkuK7sM433IioGo0v85IXqMeCPtnyxu4phFtMrGy8bfvpcWuZFP7e1lEP65ItRqBUUPanOcSysVghqNgOg8zGSTI2Lsmj1Fm7VJ5toOsr-hYWvzswUcr0q3XiAxK5cCNwDsdJlvZAJVJZqKuom0hX3x4SlDzpKGOC8TFIkYGmhZbCgbh30FX4yltDdcxqIgZ8i6Y4vnzwLO-MUmGQZTvctGHvqb2ihdJctc-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-nero-profundo to-transparent"></div>
+<div class="absolute bottom-0 p-12 w-full">
+<span class="font-label text-xs text-secondary mb-2 block tracking-widest uppercase">Iconic Series</span>
+<h4 class="font-headline text-3xl text-on-background mb-4">Gran Reserva 2014</h4>
+<button class="text-on-background font-label text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                            Explore Details <span class="material-symbols-outlined text-[16px]" data-icon="north_east">north_east</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container">
+<img alt="Barrel Room" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" data-alt="atmospheric view of oak barrels aging in a dim stone cellar with a soft golden glow from a distant lamp" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1fVNOAFZqmgOotvw8Bch_3TPTf57Ft0DOQag0ImQPzTunrZ2o1a90pow7Etq326xbrU8quhFKz86Yr7O_m8Zs1dvNf5TcA5BxDTimk9jyGR8Y96ayKjK9eP5qriGrzhUnYvAC2UjzzZYerwLbiI01Ir101bEs6KNFz2yyJ4AsCeqE1fXjf7q_DwLENn4AgqNlHFNIvNUeCAIsHndiFo9JwjyjviLoEbDaeIbLL-cqB-qJI4K692kpEziF79h9lgQlW_Lg494dFqGz"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center p-8 bg-surface-container/40 backdrop-blur-md border border-outline-variant/10">
+<h4 class="font-headline text-2xl text-on-background mb-2 italic">The Cellar Experience</h4>
+<p class="font-label text-[10px] tracking-[0.2em] text-secondary uppercase">Private Tastings Available</p>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group relative overflow-hidden bg-surface-container">
+<img alt="White Wine" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="close-up of a white wine glass with condensation and a golden liquid reflecting soft studio lights on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZIPnW0U_bwkq7UDVF6e8_1OaFxV8QviK_aOK3ezyBafzxMtcdY7Xln9SRRjTLPAn3aUwAtOsN8gMhG274XNKezN5gK04g_JiPhE0t_A2jflVqeubgrRbNVV7LhlHKUAmU2rmg0vk6baTwo5DWS6DI4brFAwYHXSJ_UnzAuSJhNAh8c45ardKeGA4p28ahI5HjfbkIJ1Xc9nTir2DJ9dpd8i968dMimYKPOu6u-x6E_RPAP3c3rCUhr2D73YlNRI_tSfPZlyCoI0ke"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-end">
+<h5 class="font-headline text-lg text-on-background">Chardonnay Blanc</h5>
+<p class="font-label text-[9px] text-on-background/40 tracking-widest uppercase">Limited Release</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group relative overflow-hidden bg-surface-container">
+<img alt="Wine Cork" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="texture shot of a branded wine cork resting on a piece of dark slate with macro details of the wood grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHkPWXPHou2cY7QJokeetaurtc-ouEDrborIOsF5SQz7LHM5dQtDdY90rPS8jj98N0x2L6tvXxF31pLq1QCJkakKq-SHGU7AaXm2Q1l2BGLLd163Rj6oJlO5j6gdB2enZC1rSKlJwCIfsfGTeQpAShDIG4Y_MQIBrYMdHy6pfJfp13qhLFLgs7VJELRdLxPakEbUs9in8qM_PozyuhGvgznY2tA2K2lHcR-tWUwzpxAeFNTLuYzDtQCxWl91EChLGojLh_o5LN1wse"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-end">
+<h5 class="font-headline text-lg text-on-background">Accessory Collection</h5>
+<p class="font-label text-[9px] text-on-background/40 tracking-widest uppercase">Curated by Aurea</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section -->
+<section class="relative h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Tasting Table" class="w-full h-full object-cover brightness-[0.2]" data-alt="long rustic wooden table set for a wine tasting with multiple crystal glasses and artisanal bread in a high-end minimalist dining room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYJ7-P3ty0igcwnIXuav20gANWJl6SDB_Q-FkraGWGkgNWmYAp6yuswZ1ySXom1XdD7EETXZICwMYv2L7mLuxR-HAq8XvY_qu9gtL5lHR2Rzu1WUZVVm3LUg9X02pZWQHdaJ6d0bJj8ZPvJsMCAaUDKhh-4QOdbPBOCzgpD6MJjk3ejeBHPfju1Wsyvn4I4qdHedAey5sBde11RAeIYkDba6lgCf-PJublInfB_5G5xrD9bfl_nVIIEQfr7f7DIwFROjBVGOBDfNjM"/>
+</div>
+<div class="container mx-auto px-12 relative z-10 text-center space-y-8">
+<h2 class="font-headline text-5xl md:text-7xl text-on-background max-w-4xl mx-auto italic">
+                "Wine is the only artwork that you can drink."
+            </h2>
+<div class="h-[1px] w-24 bg-secondary mx-auto"></div>
+<button class="bg-transparent border border-outline-variant/40 text-on-background px-12 py-5 font-label text-xs tracking-widest uppercase hover:bg-on-background hover:text-surface transition-all">
+                Join the Private Club
+            </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4d4635]/20 bg-[#0e0e0e]">
+<div class="flex flex-col items-center gap-12 py-20 px-8 w-full">
+<div class="text-xl font-['Noto_Serif'] text-[#D4AF37] tracking-[0.4em] uppercase">AUREA VOX</div>
+<div class="flex flex-wrap justify-center gap-10">
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Instagram</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Contact</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Terms</a>
+</div>
+<div class="max-w-xl text-center space-y-4">
+<p class="font-label text-[10px] tracking-[0.15em] text-on-background/30 uppercase leading-loose">
+                    Subscribe to our private list for allocation notices and exclusive invitations to the vineyard estates.
+                </p>
+<div class="flex border-b border-outline-variant/30 py-2 group focus-within:border-secondary transition-all">
+<input class="bg-transparent border-none focus:ring-0 w-full text-xs font-label uppercase tracking-widest text-on-background placeholder:text-on-background/20" placeholder="Your Email Address" type="email"/>
+<button class="text-secondary font-label text-[10px] tracking-widest uppercase px-4">Submit</button>
+</div>
+</div>
+<div class="pt-8 font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/60">
+                © 2024 AUREA VOX. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>
+
+<!-- Página Inicial - Aurea Vox -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUREA VOX - Terroir &amp; History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#7e261e",
+                      "inverse-primary": "#5f5e5e",
+                      "surface": "#131313",
+                      "tertiary-fixed-dim": "#ffb4a9",
+                      "surface-tint": "#c9c6c5",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "surface-container": "#20201f",
+                      "secondary-fixed": "#ffdea5",
+                      "primary-fixed": "#e5e2e1",
+                      "outline-variant": "#4d4635",
+                      "on-primary-fixed": "#1c1b1b",
+                      "on-tertiary-fixed-variant": "#802820",
+                      "on-primary-container": "#464545",
+                      "on-primary": "#313030",
+                      "secondary": "#e9c176",
+                      "on-secondary-fixed-variant": "#5d4201",
+                      "on-tertiary": "#61110c",
+                      "on-secondary-container": "#dab36a",
+                      "secondary-fixed-dim": "#e9c176",
+                      "surface-dim": "#131313",
+                      "on-error-container": "#ffdad6",
+                      "background": "#131313",
+                      "on-background": "#e5e2e1",
+                      "inverse-surface": "#e5e2e1",
+                      "error-container": "#93000a",
+                      "surface-variant": "#353535",
+                      "on-secondary": "#412d00",
+                      "surface-container-low": "#1c1b1b",
+                      "tertiary-container": "#ff9688",
+                      "on-surface-variant": "#d0c5af",
+                      "on-error": "#690005",
+                      "surface-container-high": "#2a2a2a",
+                      "outline": "#99907c",
+                      "tertiary": "#ffbfb6",
+                      "inverse-on-surface": "#313030",
+                      "primary-container": "#b5b2b2",
+                      "surface-bright": "#393939",
+                      "on-primary-fixed-variant": "#474646",
+                      "primary": "#d1cecd",
+                      "on-secondary-fixed": "#261900",
+                      "tertiary-fixed": "#ffdad5",
+                      "on-tertiary-fixed": "#410001",
+                      "surface-container-highest": "#353535",
+                      "error": "#ffb4ab",
+                      "secondary-container": "#604403",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Serif"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-line-rule { border: none !important; }
+        .tonal-transition { transition: background-color 0.5s ease; }
+        .negative-space-breathing-room { padding-top: 5rem; padding-bottom: 5rem; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1c1b1b]/60 backdrop-blur-xl shadow-2xl shadow-black/50 no-line-rule tonal-transition">
+<div class="flex justify-between items-center px-12 py-6 w-full max-w-full">
+<div class="text-2xl font-['Noto_Serif'] tracking-widest text-[#D4AF37] uppercase cursor-pointer opacity-90 hover:opacity-100 transition-all duration-500 ease-in-out">
+                AUREA VOX
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Noto_Serif'] tracking-tight">
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Wines</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">History</a>
+<a class="text-[#D4AF37] border-b border-[#D4AF37]/40 pb-1 cursor-pointer" href="#">Terroir</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Experience</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Club</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Shop</a>
+</div>
+<div class="flex items-center space-x-6 text-[#D4AF37]">
+<span class="material-symbols-outlined cursor-pointer opacity-90 hover:opacity-100 transition-all duration-500" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer opacity-90 hover:opacity-100 transition-all duration-500" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center px-12 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Vineyard Hero" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000" data-alt="Cinematic low-angle shot of a mist-covered vineyard at dawn with ancient stone walls and rich dark soil textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9LZiiS-LEdOkmIxBCXUuHwTWHQHI9zr-LYYGaZHBDiekt3EQCiDW43Gxw_2Gshj60i6ZH1UVfcnRFTQvTKcdMBKr51PkBa2djr9T1P_GP91L3Gr2Fd66KS_0G24Vf1XLon02jSwZivCmDe2EtDebhTNDHoeUHziSEj6jn5eOkJqTErnlaZFqYEpUtrGco8OcfP4srXSXwxnK09ajynM8yHVO5X3yELRfmKZ0vHpL-9OkJ7ZO3U4pgDK2KSVNYfuiGvM7zlULpgwat"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-4xl">
+<span class="text-secondary font-label tracking-[0.2em] uppercase text-xs mb-4 block">Capítulo II: A Origem</span>
+<h1 class="font-headline text-6xl md:text-8xl text-on-background leading-none mb-8 -ml-1">
+                    The Sacred <br/>
+<span class="italic text-secondary">Terroir</span>
+</h1>
+<p class="font-body text-lg text-on-background/70 max-w-xl leading-relaxed">
+                    Onde o tempo se cristaliza em quartzo e xisto. Nossa história não começa na adega, mas nas profundezas silenciosas de uma geologia que respira há milênios.
+                </p>
+</div>
+</section>
+<!-- Geological Layers Section -->
+<section class="bg-surface-container-low py-32 px-12">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<div class="bg-surface-container-lowest p-12 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="text-outline-variant/30 font-headline text-9xl">01</span>
+</div>
+<h2 class="font-headline text-4xl text-on-background mb-6">Camadas do Tempo</h2>
+<div class="space-y-8 relative z-10">
+<div>
+<h3 class="text-secondary font-label uppercase tracking-widest text-sm mb-2">Superfície Silenciosa</h3>
+<p class="text-on-background/60 font-body text-sm leading-relaxed">Solo rico em sedimentos aluviais e seixos rolados, drenagem perfeita para a concentração de açúcares.</p>
+</div>
+<div class="pl-6 border-l border-outline-variant/20">
+<h3 class="text-on-background font-label uppercase tracking-widest text-sm mb-2">O Coração de Xisto</h3>
+<p class="text-on-background/60 font-body text-sm leading-relaxed">A rocha mãe que força as raízes a descerem vinte metros em busca de nutrientes essenciais.</p>
+</div>
+<div>
+<h3 class="text-secondary font-label uppercase tracking-widest text-sm mb-2">Memória Mineral</h3>
+<p class="text-on-background/60 font-body text-sm leading-relaxed">O frescor que define cada garrafa da Aurea Vox nasce desta profundidade inalcançável.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 order-1 md:order-2">
+<div class="relative aspect-[4/5] md:aspect-[16/9] bg-surface-container overflow-hidden">
+<img alt="Soil detail" class="w-full h-full object-cover mix-blend-luminosity opacity-80" data-alt="Extreme close-up of dark geological soil layers with crystalline minerals and cracked dry earth textures in dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3wVHffcXvnCzr-PlBhO7KvjSfPKa-NX35SER6WYSXZbfpeWJkR2fH7ete6hdNCm97957PX4460SgPJHcAvmTlDxCX-uGkF9TYNUnYeDXoWoQikzysRwXvTo7u9iDRPkAu5e3Upd_p3BAc77b6Fi5G1BiQwfgQ0wVgifbSWr8YiKHpr2j502GvrjAGQU91XnG2n5Myev2elIZ9fz07aZwrAdwWW6hVbCEr8G3PzNWiRa3IFa30gzF8ZX_8vD38bLxewZDpAEw1c4z4"/>
+<div class="absolute bottom-8 left-8 bg-surface/80 backdrop-blur-md p-6 max-w-xs">
+<p class="font-headline italic text-on-background">"A terra não é o que nos pertence, é o que nos sustenta."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Artisanal Process: Harvesting & Oak -->
+<section class="py-32 px-12 bg-background">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<h2 class="font-headline text-5xl md:text-7xl text-on-background max-w-2xl">
+                        The Hands that <br/> <span class="italic text-tertiary">Shape Silence</span>
+</h2>
+<div class="text-right">
+<span class="font-label text-secondary tracking-[0.3em] uppercase text-xs">Artesanato &amp; Vigília</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Harvest -->
+<div class="group relative aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="Harvesting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Artistic black and white photo of aged hands gently holding a bunch of dark grapes during harvest at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOjluoLF9mkPcHqsSYM1Ba9HNJmyraKKpZu3MuCxlSRE3IMxRepGn0ytWj4_lRYf9iwFe37UgfbWAmE4Yh44gwU37Np_HJ8KqLC30pp1SaDJLeFImjpu9xMvPsLmYxXvgHbs6nI7-9m2ER4K4sad1f8ozrbc1Ry_AdOvC8iPW8JHVGlfuYVv0vUbLVJQEdET4zrF7hqOt3_TGRgm-LyblqEyfwn_NnyW0f30FbcxdS1hN0vk3C4IrksSQldnglQZxCI1IuiDTyjqNa"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-90"></div>
+<div class="absolute bottom-0 p-8">
+<h4 class="font-headline text-2xl text-on-background mb-2">A Colheita</h4>
+<p class="text-on-background/50 text-sm font-body">Respeito ao ciclo lunar e maturação exata.</p>
+</div>
+</div>
+<!-- Oak Barrels -->
+<div class="md:mt-16 group relative aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="Oak Barrels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Dimly lit wine cellar with rows of French oak barrels and warm golden light reflecting off the wood grain textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGcoP51TzuJZtt9pX9r9cKMuvxKIXURAekHP3cK6y3tS_DzcRM4BUu-Io-fieUH14Uo0svNGNSGCGiZw-JIW-EIs-9Xjn0Iz0nsRGLqoQpnQ_HcIwyNWcvX7tjRs8XgHmOCbAR6kkBW-YNzhdsEqv3msXIcq7zLIoG1KKRjgtMpGyZliFDhh7V0rURMSkT1uM1KhB0X6TcXSpwl3Gb4icX2j2AxSUaecmuszGKSM72gbfFlMtkosAFE6d4tPrGAACeTdQGWM9vjo2i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-90"></div>
+<div class="absolute bottom-0 p-8">
+<h4 class="font-headline text-2xl text-on-background mb-2">O Repouso</h4>
+<p class="text-on-background/50 text-sm font-body">Carvalho francês de grão fino e tostagem lenta.</p>
+</div>
+</div>
+<!-- The Cellar -->
+<div class="group relative aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="Cellar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Intimate view of a sommelier's tasting room with heavy walnut furniture and stone gray walls in a luxury cellar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x9FtDFzmbb-o3V1tivHzyt9eCpWZovvINXOdcI6KaAo5YisbPZFKnteUHAzG1PkGb7RCmik0CZuQDu-w9__JslBj6LaVwQJY5Hd6KO0-DJ0rhya9mODeLTcP6K1Y3ONdhUTwuOr8d9emEQAShUpx2PyNmfnLttnoKGie7rNGM8dNoxQBH8RZWM55C2hjVPdAkkWn_rZc1yB96BUpWML0Tot1gfAirLvVOHuvRun1iCXA-lPE3hvbJ3KyS9iouKsFgiCGK5TrF3gR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-90"></div>
+<div class="absolute bottom-0 p-8">
+<h4 class="font-headline text-2xl text-on-background mb-2">A Evolução</h4>
+<p class="text-on-background/50 text-sm font-body">Ambiente termicamente controlado por rochas naturais.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Narrative: Guardiões da Tradição -->
+<section class="relative py-40 bg-surface-container-lowest overflow-hidden">
+<div class="absolute left-0 top-0 w-1/2 h-full opacity-5 pointer-events-none">
+<span class="font-headline text-[20rem] leading-none absolute -left-20 -top-20">VOX</span>
+</div>
+<div class="max-w-4xl mx-auto px-12 text-center relative z-10">
+<span class="text-secondary font-label uppercase tracking-widest text-xs mb-12 block">O Manifesto</span>
+<h2 class="font-headline text-4xl md:text-6xl text-on-background mb-12 leading-tight">
+                    Guardiões da <br/> <span class="italic">Tradição Secular</span>
+</h2>
+<div class="space-y-8 font-body text-lg text-on-background/70 leading-relaxed text-justify md:text-center">
+<p>
+                        Não somos apenas produtores; somos os zeladores de um legado que nos precede. Cada safra da Aurea Vox carrega consigo a responsabilidade de honrar os antepassados que primeiro identificaram o potencial destas encostas escarpadas.
+                    </p>
+<p>
+                        Através de métodos que desafiam a pressa do mundo moderno, mantemos o equilíbrio entre a inovação necessária e o respeito sagrado pela terra. O uso de madeira de nogueira rica em nossas instalações e o cinza profundo das pedras locais não são apenas escolhas estéticas, mas uma extensão do terroir que nos define.
+                    </p>
+</div>
+<div class="mt-20 flex flex-col items-center">
+<div class="w-px h-24 bg-gradient-to-b from-secondary to-transparent"></div>
+<button class="mt-12 group flex items-center gap-4 text-on-background font-label uppercase tracking-[0.2em] text-xs transition-all hover:text-secondary">
+                        Descubra a Coleção Privada
+                        <span class="material-symbols-outlined text-secondary text-sm transition-transform group-hover:translate-x-2" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Product Highlight Contextual -->
+<section class="py-32 px-12 bg-surface-container">
+<div class="max-w-7xl mx-auto bg-surface p-1 shadow-3xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+<div class="p-16 flex flex-col justify-center border-r border-outline-variant/10">
+<span class="text-tertiary-container font-label uppercase tracking-widest text-[10px] mb-4">Destaque de Terroir</span>
+<h3 class="font-headline text-4xl text-on-background mb-6">Reserva do Xisto 2019</h3>
+<p class="font-body text-on-background/60 mb-8 leading-relaxed">
+                            Uma expressão pura da geologia local. Notas minerais acentuadas, taninos firmes e um final de boca que remete à terra molhada após a primeira chuva de outono.
+                        </p>
+<div class="flex items-center gap-12 border-t border-outline-variant/20 pt-8">
+<div>
+<span class="block text-[10px] text-outline uppercase tracking-widest mb-1">Acidez</span>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+<div>
+<span class="block text-[10px] text-outline uppercase tracking-widest mb-1">Corpo</span>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative min-h-[500px]">
+<img alt="Wine Bottle" class="absolute inset-0 w-full h-full object-cover" data-alt="Luxury wine bottle resting on a dark walnut wood surface with soft spotlight hitting the elegant gold label" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Qv3G75rVwYUZNVKTpl_D22sCXcFKjX1QP6RN_FEmEiyw3hQhK74hvlPf-eEwMuy3JmXc2NkMEG8hK2rdl6eXvXs9YxQVrJ7V7U8GVAVhLhMwcxMMhunM9p3s-nGHACXL3H1PzwqfJ8yTPIZlKkaJ9kdA6znmgbiz6g-kV4ZcjL0dReApQunsYWQNwqYlFlfbmgAe7Pw_7ZA1hOWkezRwJCJKH2nPaTz90NX7TSWxc7cSE4CJHLx6NTvxKhRDnpJMn1nQDOxRAFX_"/>
+<div class="absolute inset-0 bg-background/20 hover:bg-transparent transition-colors duration-700"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4d4635]/20 bg-[#0e0e0e]">
+<div class="flex flex-col items-center gap-12 py-20 px-8 w-full">
+<div class="text-xl font-['Noto_Serif'] text-[#D4AF37]">AUREA VOX</div>
+<div class="flex gap-12 font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40">
+<a class="hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Instagram</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Privacy Policy</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Contact</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700 ease-in-out" href="#">Terms</a>
+</div>
+<div class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/60">
+                © 2024 AUREA VOX. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>
+
+<!-- Terroir & História - Aurea Vox -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#7e261e",
+                    "inverse-primary": "#5f5e5e",
+                    "surface": "#131313",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-tint": "#c9c6c5",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "surface-container": "#20201f",
+                    "secondary-fixed": "#ffdea5",
+                    "primary-fixed": "#e5e2e1",
+                    "outline-variant": "#4d4635",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#802820",
+                    "on-primary-container": "#464545",
+                    "on-primary": "#313030",
+                    "secondary": "#e9c176",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-tertiary": "#61110c",
+                    "on-secondary-container": "#dab36a",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-dim": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "inverse-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "surface-variant": "#353535",
+                    "on-secondary": "#412d00",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#ff9688",
+                    "on-surface-variant": "#d0c5af",
+                    "on-error": "#690005",
+                    "surface-container-high": "#2a2a2a",
+                    "outline": "#99907c",
+                    "tertiary": "#ffbfb6",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#b5b2b2",
+                    "surface-bright": "#393939",
+                    "on-primary-fixed-variant": "#474646",
+                    "primary": "#d1cecd",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-tertiary-fixed": "#410001",
+                    "surface-container-highest": "#353535",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#604403",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 15px rgba(233, 193, 118, 0.3);
+        }
+        .glass-overlay {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, rgba(19, 19, 19, 0.9) 100%);
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, #131313, #1c1b1b);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353535; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1c1b1b]/60 backdrop-blur-xl shadow-2xl shadow-black/50 transition-all duration-500">
+<div class="flex justify-between items-center px-12 py-6 w-full max-w-full">
+<div class="text-2xl font-['Noto_Serif'] tracking-widest text-[#D4AF37] uppercase cursor-pointer opacity-90 hover:opacity-100">
+                AUREA VOX
+            </div>
+<div class="hidden md:flex items-center gap-10 font-['Noto_Serif'] tracking-tight">
+<a class="text-[#D4AF37] border-b border-[#D4AF37]/40 pb-1 cursor-pointer transition-all duration-500 ease-in-out" href="#">Wines</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">History</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Terroir</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Experience</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Club</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer" href="#">Shop</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-all duration-500" data-icon="person">person</button>
+</div>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-12 mb-24 grid grid-cols-12 gap-8 items-end">
+<div class="col-span-12 md:col-span-7">
+<h2 class="font-label text-secondary tracking-[0.2em] uppercase text-xs mb-6">The Curated Archive</h2>
+<h1 class="font-headline text-6xl md:text-8xl text-on-background leading-tight tracking-tighter italic">
+                    The Library of <br/> <span class="text-secondary not-italic font-bold">Liquid History</span>
+</h1>
+</div>
+<div class="col-span-12 md:col-span-5 pb-4">
+<p class="text-on-surface-variant font-light leading-relaxed max-w-sm">
+                    Each bottle represents a silent conversation between the mineral depths of our soil and the patient hand of time. Explore our private reserve.
+                </p>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="px-12 mb-16">
+<div class="flex flex-wrap items-center gap-12 py-8 border-y border-outline-variant/20">
+<div class="flex items-center gap-4">
+<span class="font-label uppercase tracking-widest text-[10px] text-on-surface-variant">Safra</span>
+<div class="flex gap-2">
+<button class="px-4 py-1 text-xs border border-secondary/40 text-secondary font-label uppercase tracking-tighter">All</button>
+<button class="px-4 py-1 text-xs text-on-background/60 hover:text-secondary transition-colors font-label uppercase tracking-tighter">2018</button>
+<button class="px-4 py-1 text-xs text-on-background/60 hover:text-secondary transition-colors font-label uppercase tracking-tighter">2020</button>
+<button class="px-4 py-1 text-xs text-on-background/60 hover:text-secondary transition-colors font-label uppercase tracking-tighter">2022</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label uppercase tracking-widest text-[10px] text-on-surface-variant">Castas</span>
+<div class="flex gap-2">
+<button class="px-4 py-1 text-xs bg-secondary-container text-secondary font-label uppercase tracking-tighter">Cabernet</button>
+<button class="px-4 py-1 text-xs text-on-background/60 hover:text-secondary transition-colors font-label uppercase tracking-tighter">Merlot</button>
+<button class="px-4 py-1 text-xs text-on-background/60 hover:text-secondary transition-colors font-label uppercase tracking-tighter">Touriga</button>
+</div>
+</div>
+<div class="ml-auto flex items-center gap-2 cursor-pointer group">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-background/60 group-hover:text-secondary transition-colors">Grid View</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="grid_view">grid_view</span>
+</div>
+</div>
+</section>
+<!-- Wine Gallery (Asymmetric Grid) -->
+<section class="px-12 pb-32">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+<!-- Wine 1 -->
+<div class="group relative">
+<div class="relative overflow-hidden aspect-[3/4] bg-surface-container-low mb-8 transition-all duration-700">
+<img alt="Luxury wine bottle" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale-[40%] group-hover:grayscale-0" data-alt="Close-up of a premium wine bottle with dark textured label and gold foil details sitting in dramatic low-key cellar lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIh_EvNq625Pby8kEaqC02UYZeGnUFvOOID6rN2Nk_s1praoLj592q2sVn4tRmStAWsEJ6ATQVlIaLW7FqDJqtWQuULz5vuMch8sVTAJ-j10znTgxdGULAPy3nJWrwMdVHtiO53Gfnli7v3FTdWVvHp2k_Am4XNi9ZgbfY0Mwc82FAqrwokuYX-uU3SyXgkXg_LPoSYeXySBRzOI9Scb_gu1D_Tvsx7YmOiJgfkZzuTSLwJ73yc25ZBOKZ-1buggZ_XyRPdVOKc6ax"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6">
+<span class="font-label text-[10px] tracking-widest text-secondary uppercase bg-surface/80 px-3 py-1 backdrop-blur-sm">Rare Selection</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline text-3xl italic tracking-tight">Reserva da Terra</h3>
+<span class="font-body text-secondary text-lg">€145</span>
+</div>
+<p class="font-body font-light text-on-surface-variant text-sm leading-relaxed">
+                            A profound symphony of damp earth, black truffle, and sun-warmed granite. Characterized by a resilient tannin structure that whispers of age and volcanic strength.
+                        </p>
+<div class="pt-4 flex items-center gap-6">
+<button class="text-secondary font-label uppercase text-[10px] tracking-widest border-b border-secondary/0 hover:border-secondary transition-all">Details</button>
+<button class="flex items-center gap-2 text-on-background/40 hover:text-on-background transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+<span class="font-label uppercase text-[10px] tracking-widest">Add to Cellar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Wine 2 (Offset) -->
+<div class="group relative lg:mt-24">
+<div class="relative overflow-hidden aspect-[3/4] bg-surface-container-low mb-8 transition-all duration-700">
+<img alt="Red wine being poured" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale-[40%] group-hover:grayscale-0" data-alt="Elegant slow motion pour of deep red wine into a crystal glass against a dark noir background with golden highlights on the liquid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt2uEHzxOz6sON8dbp5rHVJdJ5nLmncRAPer69sNrZA1noBrDaVAkzAtj1SzreB4zkqGrsES_RYL5VuQbTOy2xXhofJun09DOp26OrLwQ43Z2HotiXOQUdG3A-q8UNbSMPMVochry63psFXXhMMgufcQZcCaVVWz_DAVMZmpVetUu9esp34yUAtbB6m6yOVPv4j1P-CO62ZgKdZeJ9u7b5N24RGdSmoJRCURlRHh9iMSNMxqkg4rMSc8xYXISHUZaYqqzh5BZ-sSgb"/>
+<div class="absolute inset-0 glass-overlay opacity-40"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline text-3xl italic tracking-tight">Eco do Tempo</h3>
+<span class="font-body text-secondary text-lg">€210</span>
+</div>
+<p class="font-body font-light text-on-surface-variant text-sm leading-relaxed">
+                            Layers of dried figs, aged leather, and a lingering echo of roasted coffee beans. This vintage captures the very silence of our deepest aging caves.
+                        </p>
+<div class="pt-4 flex items-center gap-6">
+<button class="text-secondary font-label uppercase text-[10px] tracking-widest border-b border-secondary/0 hover:border-secondary transition-all">Details</button>
+<button class="flex items-center gap-2 text-on-background/40 hover:text-on-background transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+<span class="font-label uppercase text-[10px] tracking-widest">Add to Cellar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Wine 3 -->
+<div class="group relative">
+<div class="relative overflow-hidden aspect-[3/4] bg-surface-container-low mb-8 transition-all duration-700">
+<img alt="Luxury wine presentation" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale-[40%] group-hover:grayscale-0" data-alt="A single wine bottle standing elegantly on a rough stone surface, surrounded by deep shadows and golden rim lighting highlighting the silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjE5qBMQ55FdlYFG8dYY9KR9MlHoH2nfIZMrRtfGz7FnZW4kzDab10_MuFNkgGDHWw6gTSPpfk0o4fRViBHi4ICGOYtOKa06CuYg_Vj8EbFlYdQsuP-hSRsMISuRK63ZCQcVzSM8_O07i2tjuflWipIqDwSuh9PH-DLpib_FC6eLaqIanzUwTJNB-_hBwn0-xhTuDzSqcNr3UYKhNEgZOqZMolvBwiEtAUBYjq_GgrWKJJM1FLBXKiVVsQmN0txG12oDZqQWayNSva"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-transparent"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline text-3xl italic tracking-tight">Sussurro d'Ouro</h3>
+<span class="font-body text-secondary text-lg">€185</span>
+</div>
+<p class="font-body font-light text-on-surface-variant text-sm leading-relaxed">
+                            A crystalline expression of mountain air and white blossom. Vibrant, sharp acidity balanced by the velvety texture of late-harvest apricot.
+                        </p>
+<div class="pt-4 flex items-center gap-6">
+<button class="text-secondary font-label uppercase text-[10px] tracking-widest border-b border-secondary/0 hover:border-secondary transition-all">Details</button>
+<button class="flex items-center gap-2 text-on-background/40 hover:text-on-background transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+<span class="font-label uppercase text-[10px] tracking-widest">Add to Cellar</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Sensory Quote -->
+<section class="py-32 bg-surface-container-lowest overflow-hidden relative">
+<div class="absolute -right-20 top-0 text-[20rem] font-headline italic text-surface-variant opacity-[0.03] select-none">Terroir</div>
+<div class="max-w-4xl mx-auto px-12 text-center relative z-10">
+<span class="material-symbols-outlined text-secondary text-4xl mb-8" data-icon="format_quote">format_quote</span>
+<p class="font-headline text-4xl md:text-5xl italic leading-tight text-on-background mb-12">
+                    "A bottle of wine contains more philosophy than all the books in the world."
+                </p>
+<div class="w-12 h-[1px] bg-secondary mx-auto mb-6"></div>
+<span class="font-label uppercase tracking-[0.3em] text-xs text-on-surface-variant">Louis Pasteur</span>
+</div>
+</section>
+<!-- Vintage Archives Table (Material Style) -->
+<section class="px-12 py-32">
+<div class="mb-12">
+<h2 class="font-headline text-4xl italic mb-4">Cellar Inventory</h2>
+<p class="text-on-surface-variant font-light">Comprehensive data for our active collection.</p>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-highest border-b border-outline-variant/10">
+<th class="text-left py-6 px-8 font-label uppercase text-[10px] tracking-widest text-secondary">Vintage</th>
+<th class="text-left py-6 px-8 font-label uppercase text-[10px] tracking-widest text-secondary">Name</th>
+<th class="text-left py-6 px-8 font-label uppercase text-[10px] tracking-widest text-secondary">Terroir</th>
+<th class="text-left py-6 px-8 font-label uppercase text-[10px] tracking-widest text-secondary">Acidity</th>
+<th class="text-right py-6 px-8 font-label uppercase text-[10px] tracking-widest text-secondary">Status</th>
+</tr>
+</thead>
+<tbody class="font-body text-sm">
+<tr class="bg-surface-dim hover:bg-surface-container transition-colors border-b border-outline-variant/5">
+<td class="py-6 px-8 text-on-background/60">2014</td>
+<td class="py-6 px-8 font-headline italic text-lg">Reserva da Terra</td>
+<td class="py-6 px-8 text-on-background/60">Schist, North Slope</td>
+<td class="py-6 px-8 text-on-background/60">6.4 g/L</td>
+<td class="py-6 px-8 text-right"><span class="bg-on-tertiary-container/20 text-on-tertiary-container px-3 py-1 rounded-sm text-[10px] uppercase font-bold tracking-tighter">Sold Out</span></td>
+</tr>
+<tr class="bg-surface-dim hover:bg-surface-container transition-colors border-b border-outline-variant/5">
+<td class="py-6 px-8 text-on-background/60">2018</td>
+<td class="py-6 px-8 font-headline italic text-lg">Eco do Tempo</td>
+<td class="py-6 px-8 text-on-background/60">Granite, High Alt</td>
+<td class="py-6 px-8 text-on-background/60">5.8 g/L</td>
+<td class="py-6 px-8 text-right"><span class="bg-secondary/10 text-secondary px-3 py-1 rounded-sm text-[10px] uppercase font-bold tracking-tighter">Available</span></td>
+</tr>
+<tr class="bg-surface-dim hover:bg-surface-container transition-colors border-b border-outline-variant/5">
+<td class="py-6 px-8 text-on-background/60">2020</td>
+<td class="py-6 px-8 font-headline italic text-lg">Sussurro d'Ouro</td>
+<td class="py-6 px-8 text-on-background/60">Limestone Basin</td>
+<td class="py-6 px-8 text-on-background/60">7.1 g/L</td>
+<td class="py-6 px-8 text-right"><span class="bg-secondary/10 text-secondary px-3 py-1 rounded-sm text-[10px] uppercase font-bold tracking-tighter">Available</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4d4635]/20 bg-[#0e0e0e]">
+<div class="flex flex-col items-center gap-12 py-20 px-8 w-full">
+<div class="text-xl font-['Noto_Serif'] text-[#D4AF37]">AUREA VOX</div>
+<div class="flex gap-10">
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700" href="#">Instagram</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700" href="#">Contact</a>
+<a class="font-['Manrope'] tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40 hover:text-[#D4AF37] transition-colors duration-700" href="#">Terms</a>
+</div>
+<div class="text-[10px] font-['Manrope'] tracking-[0.2em] text-[#e5e2e1]/30">
+                © 2024 AUREA VOX. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>
+
+<!-- Coleção de Vinhos - Aurea Vox -->
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-PT"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#7e261e",
+                        "inverse-primary": "#5f5e5e",
+                        "surface": "#131313",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "surface-tint": "#c9c6c5",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "surface-container": "#20201f",
+                        "secondary-fixed": "#ffdea5",
+                        "primary-fixed": "#e5e2e1",
+                        "outline-variant": "#4d4635",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#802820",
+                        "on-primary-container": "#464545",
+                        "on-primary": "#313030",
+                        "secondary": "#e9c176",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-tertiary": "#61110c",
+                        "on-secondary-container": "#dab36a",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-dim": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313",
+                        "on-background": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353535",
+                        "on-secondary": "#412d00",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-container": "#ff9688",
+                        "on-surface-variant": "#d0c5af",
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2a",
+                        "outline": "#99907c",
+                        "tertiary": "#ffbfb6",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#b5b2b2",
+                        "surface-bright": "#393939",
+                        "on-primary-fixed-variant": "#474646",
+                        "primary": "#d1cecd",
+                        "on-secondary-fixed": "#261900",
+                        "tertiary-fixed": "#ffdad5",
+                        "on-tertiary-fixed": "#410001",
+                        "surface-container-highest": "#353535",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#604403",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, rgba(28,27,27,0.8) 0%, rgba(19,19,19,0) 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(233, 193, 118, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#1c1b1b]/60 backdrop-blur-xl shadow-2xl shadow-black/50 transition-all duration-500">
+<div class="flex justify-between items-center px-12 py-6 w-full max-w-full">
+<div class="text-2xl font-headline tracking-widest text-[#D4AF37] uppercase">AUREA VOX</div>
+<div class="hidden md:flex items-center gap-10 font-headline tracking-tight text-on-background">
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500" href="#">Wines</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500" href="#">History</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500" href="#">Terroir</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500" href="#">Experience</a>
+<a class="text-[#D4AF37] border-b border-[#D4AF37]/40 pb-1" href="#">Club</a>
+<a class="text-[#e5e2e1]/80 hover:text-[#D4AF37] transition-colors duration-500" href="#">Shop</a>
+</div>
+<div class="flex items-center gap-6 text-[#D4AF37]">
+<span class="material-symbols-outlined cursor-pointer opacity-90 hover:opacity-100 transition-all duration-500" data-icon="shopping_bag">shopping_bag</span>
+<span class="material-symbols-outlined cursor-pointer opacity-90 hover:opacity-100 transition-all duration-500" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Moody dark wine cellar with dust motes dancing in a single beam of light hitting a dusty vintage bottle on a wooden rack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOsJsF8Rfh5K1jZOPt43E6P2AgI5SGVUd-Ld5KaSqtlG38uCWJBg4hIT9-rUO35de5_w7KeheIw2RkanWysXcY2MU9txl5q_88OPvDYfkCl0JdpKZqvUQWHOJM33ut6NikswPxfg3Tgumcd5lwRiRQp8PrGd0s21S_TvgIiZEpK8uVQtZHXLu7Qy6AVUEPgkvu9igYsKxL5IAvPrGHPdM0-Nyu-rWsYYssEvOlhkG1mbKnqgTnmUuvuKy6a_Epun-oZk_YItakRU-M"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background"></div>
+</div>
+<div class="relative z-10 text-center px-6 max-w-4xl">
+<h2 class="font-label text-secondary tracking-[0.3em] uppercase text-xs mb-6 opacity-80">The Sovereign Circle</h2>
+<h1 class="font-headline text-6xl md:text-8xl text-on-background mb-8 leading-tight tracking-tighter">
+                Um privilégio reservado para os <span class="italic text-secondary text-glow">conhecedores</span>.
+            </h1>
+<p class="font-body text-lg md:text-xl text-on-background/70 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Enter a world where time slows down. Aurea Vox invites you to an odyssey of taste, legacy, and absolute exclusivity.
+            </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-8">
+<button class="bg-secondary text-on-secondary px-10 py-4 font-label uppercase tracking-widest text-xs font-bold rounded-sm hover:brightness-110 transition-all">
+                    Request Invitation
+                </button>
+<a class="text-secondary font-label uppercase tracking-widest text-xs flex items-center gap-2 group" href="#benefits">
+                    Explore Benefits 
+                    <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Benefits Bento Grid -->
+<section class="py-32 px-6 md:px-12 bg-surface" id="benefits">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Large Feature Card -->
+<div class="md:col-span-8 bg-surface-container-low p-12 relative overflow-hidden flex flex-col justify-end min-h-[500px]">
+<div class="absolute top-0 right-0 w-full h-full opacity-30 z-0">
+<img class="w-full h-full object-cover" data-alt="Deep red wine being poured into a crystal glass in a dark room with soft golden reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA37Zw60b25lnCM8ysCWiNtFAAtXUOOyhk9OY2ZhKgIEgIUoxlLnqQWafEVKBOVPgHZ3kRC6vBWa3HKdJnzKPrufRBGQZyqikT0h5YSbMYE2Cq-SWMW8z__llEImc8xd0nS2gTDG40r-i2eSBMGmEnHW_9JRb_We0211dI6GARuNsKcFqiNS-7xglSu-XMxSDZiRHrYfbKynP9nda1WHqhVj8RkmSznKJYOLGDeR1yggwzuMMqlUObJwaqlVfAQ6EQyQF6du7AWTNHq"/>
+</div>
+<div class="relative z-10">
+<span class="font-label text-secondary text-xs tracking-[0.2em] uppercase mb-4 block">Archive Access</span>
+<h3 class="font-headline text-4xl text-on-background mb-6">Limited Editions &amp; Library Vintages</h3>
+<p class="font-body text-on-background/60 max-w-md">Access our private vault of past vintages and limited-run experimental ferments never released to the public.</p>
+</div>
+</div>
+<!-- Small Feature Card 1 -->
+<div class="md:col-span-4 bg-surface-container-highest p-10 flex flex-col justify-between border-b border-on-tertiary-container/20">
+<span class="material-symbols-outlined text-secondary text-4xl mb-8" data-icon="event_seat">event_seat</span>
+<div>
+<h3 class="font-headline text-2xl text-on-background mb-4">Private Events</h3>
+<p class="font-body text-sm text-on-background/60 leading-relaxed">Monthly gala dinners and harvest celebrations under the stars of the Alentejo night sky.</p>
+</div>
+</div>
+<!-- Small Feature Card 2 -->
+<div class="md:col-span-4 bg-surface-container p-10 flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary text-4xl mb-8" data-icon="neurology">neurology</span>
+<div>
+<h3 class="font-headline text-2xl text-on-background mb-4">Sommelier Concierge</h3>
+<p class="font-body text-sm text-on-background/60 leading-relaxed">Direct 24/7 line to our head sommelier for pairing advice and cellar management.</p>
+</div>
+</div>
+<!-- Medium Feature Card -->
+<div class="md:col-span-8 bg-[#1c1b1b] flex flex-col md:flex-row overflow-hidden">
+<div class="w-full md:w-1/2 p-12 flex flex-col justify-center">
+<h3 class="font-headline text-3xl text-on-background mb-4">Global Priority</h3>
+<p class="font-body text-on-background/60">Preferred allocation on all new releases and complimentary shipping to over 40 countries.</p>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-auto">
+<img class="w-full h-full object-cover grayscale" data-alt="Handcrafted luxury wooden wine crate with golden hinges and velvet lining" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGBjWZDRwWlfvatCvxaptVhD4iYaAuESCaOJSAYp1CjCzIr971EFSMT7SbX84j5amLtTUeAletiGsKe1RDXuUBDwstdURewc9D6yP2rG7o2TpVAhJVTGmWdufep0KL1O5dvMrXRAxCgZ1Prhp-MhfnKOzS_grFboq-p3zvGeVFvIPLbyl5uFp8jWUaXLb1XxZ2yPLLALP4hqJyoqL3oQ1-znLha-QFMCTaMT4T_HOsUY2CqDBP8xIqkSDJfMAKSSP_yfp3hntLGLvz"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cellar Spa Experience -->
+<section class="py-32 bg-surface-container-lowest overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="flex flex-col lg:flex-row items-center gap-20">
+<div class="lg:w-1/2 relative">
+<div class="absolute -top-10 -left-10 w-64 h-64 bg-on-tertiary-container/10 blur-3xl rounded-full"></div>
+<img class="relative z-10 w-full h-[600px] object-cover rounded-sm" data-alt="Luxury spa interior with dark stone walls, soft candlelight, and a pool reflecting the warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC044MyaVReW90UWy9bQO7QNWa-jhyzYSXcKF0r2v7k3OoTKBPiF9NLplgh97mUas8AzV_N1ZHH9Hr8O6w_AE3cpjPuSP_LwizRCetYfcYzaCcZ871jrvKiriYaDIVQFqjF2CXUPjNGW6ySYyFl49gdvL87BzR6QniRGlGiO0IMK_YuLjRk_Sb9acd7a1570dBNPC2lZbldB8yUHcLGHcdepL956Rl20zxQ30DGl_enF8xZxCoDKZK90osbwwNTufW4j3e7gCLc--J7"/>
+<div class="absolute -bottom-6 -right-6 bg-secondary p-8 z-20 hidden md:block">
+<p class="font-headline text-2xl text-on-secondary italic text-center">"A sanctuary for the soul."</p>
+</div>
+</div>
+<div class="lg:w-1/2">
+<h2 class="font-label text-secondary text-xs tracking-[0.3em] uppercase mb-6">The Ritual</h2>
+<h3 class="font-headline text-5xl text-on-background mb-8">Cellar Spa &amp; Private Tastings</h3>
+<p class="font-body text-on-background/70 text-lg mb-10 leading-relaxed">
+                        Experience the convergence of viticulture and wellness. Our subterranean spa offers treatments infused with grape-seed extracts, followed by a private tasting in the heart of our barrel room.
+                    </p>
+<ul class="space-y-6 mb-12">
+<li class="flex items-center gap-4 text-on-background/80">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Vinotherapy massage sessions</span>
+</li>
+<li class="flex items-center gap-4 text-on-background/80">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Barrel-aged candlelit soak</span>
+</li>
+<li class="flex items-center gap-4 text-on-background/80">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+<span>Vertical tasting of iconic vintages</span>
+</li>
+</ul>
+<button class="border border-outline-variant/40 text-on-background px-10 py-4 font-label uppercase tracking-widest text-xs hover:bg-secondary hover:text-on-secondary transition-all">
+                        Book Experience
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership Form -->
+<section class="py-32 bg-surface">
+<div class="max-w-3xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="font-headline text-5xl mb-4">Request Membership</h2>
+<div class="w-24 h-px bg-secondary/40 mx-auto mb-6"></div>
+<p class="font-body text-on-background/60 italic uppercase tracking-widest text-xs">Selection is based on passion and appreciation for the craft.</p>
+</div>
+<form class="space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant/20 py-4 px-0 text-on-background focus:ring-0 focus:border-secondary transition-colors placeholder-transparent" id="name" placeholder=" " type="text"/>
+<label class="absolute left-0 top-4 text-on-background/40 font-label uppercase tracking-widest text-[10px] pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-secondary peer-[:not(:placeholder-shown)]:-top-4" for="name">Full Name</label>
+</div>
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant/20 py-4 px-0 text-on-background focus:ring-0 focus:border-secondary transition-colors placeholder-transparent" id="email" placeholder=" " type="email"/>
+<label class="absolute left-0 top-4 text-on-background/40 font-label uppercase tracking-widest text-[10px] pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-secondary peer-[:not(:placeholder-shown)]:-top-4" for="email">Email Address</label>
+</div>
+</div>
+<div class="relative group">
+<select class="peer w-full bg-transparent border-0 border-b border-outline-variant/20 py-4 px-0 text-on-background focus:ring-0 focus:border-secondary transition-colors appearance-none" id="interest">
+<option class="bg-surface text-on-background/40" disabled="" selected="" value="">PRIMARY INTEREST</option>
+<option class="bg-surface" value="collection">Rare Wine Collection</option>
+<option class="bg-surface" value="events">Exclusive Events</option>
+<option class="bg-surface" value="tasting">Tasting Experiences</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-4 text-on-background/40 pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+<div class="relative group">
+<textarea class="peer w-full bg-transparent border-0 border-b border-outline-variant/20 py-4 px-0 text-on-background focus:ring-0 focus:border-secondary transition-colors placeholder-transparent resize-none" id="message" placeholder=" " rows="4"></textarea>
+<label class="absolute left-0 top-4 text-on-background/40 font-label uppercase tracking-widest text-[10px] pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-secondary peer-[:not(:placeholder-shown)]:-top-4" for="message">Why do you wish to join Aurea Vox?</label>
+</div>
+<div class="flex items-start gap-4">
+<input class="mt-1 bg-transparent border-outline-variant/40 text-secondary rounded-sm focus:ring-secondary/20" id="terms" type="checkbox"/>
+<label class="text-[10px] uppercase tracking-widest text-on-background/50 leading-relaxed" for="terms">
+                        I acknowledge that membership is subject to availability and formal review by the board of trustees.
+                    </label>
+</div>
+<div class="pt-8 text-center">
+<button class="w-full md:w-auto bg-secondary text-on-secondary px-20 py-5 font-label uppercase tracking-widest text-xs font-extrabold rounded-sm shadow-xl shadow-secondary/10 hover:shadow-secondary/20 transition-all" type="submit">
+                        Submit Application
+                    </button>
+</div>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4d4635]/20 bg-[#0e0e0e]">
+<div class="flex flex-col items-center gap-12 py-20 px-8 w-full">
+<div class="text-xl font-headline text-[#D4AF37]">AUREA VOX</div>
+<div class="flex flex-wrap justify-center gap-12 font-label tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/60">
+<a class="hover:text-[#D4AF37] transition-colors duration-700" href="#">Instagram</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700" href="#">Privacy Policy</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700" href="#">Contact</a>
+<a class="hover:text-[#D4AF37] transition-colors duration-700" href="#">Terms</a>
+</div>
+<p class="font-label tracking-[0.1em] uppercase text-[10px] text-[#e5e2e1]/40">
+                © 2024 AUREA VOX. ALL RIGHTS RESERVED.
+            </p>
+</div>
+</footer>
+</body></html>
+
+<!-- Private Club & Experiências - Aurea Vox -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schist &amp; Silence | AUREA VOX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@200;300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#42484b",
+                    "on-secondary-fixed": "#171c1f",
+                    "surface-dim": "#131313",
+                    "on-surface": "#e5e2e1",
+                    "primary-fixed": "#ffe088",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed": "#241a00",
+                    "tertiary-fixed": "#ffdad4",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed-variant": "#7e2a1c",
+                    "primary": "#f2ca50",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#131313",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-variant": "#353534",
+                    "primary-container": "#d4af37",
+                    "secondary-fixed": "#dee3e7",
+                    "surface-container": "#201f1f",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#ffbfb4",
+                    "secondary-fixed-dim": "#c2c7cb",
+                    "tertiary-fixed-dim": "#ffb4a6",
+                    "secondary": "#c2c7cb",
+                    "on-error": "#690005",
+                    "surface-bright": "#3a3939",
+                    "on-tertiary": "#601408",
+                    "tertiary-container": "#ff9784",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "outline": "#99907c",
+                    "on-secondary-container": "#b0b6b9",
+                    "on-secondary": "#2b3134",
+                    "on-tertiary-container": "#7c291b",
+                    "on-tertiary-fixed": "#3f0300",
+                    "error": "#ffb4ab",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#42484b",
+                    "outline-variant": "#4d4635",
+                    "on-primary-fixed-variant": "#574500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0rem",
+                    "lg": "0rem",
+                    "xl": "0rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .schist-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-background selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-zinc-950/70 backdrop-blur-[24px] shadow-[0_40px_40px_-15px_rgba(0,0,0,0.7)]">
+<div class="font-['Noto_Serif'] text-2xl font-bold tracking-[0.15em] text-yellow-500 uppercase">AUREA VOX</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] font-['Manrope'] hover:text-yellow-400 transition-colors duration-500" href="#">Vineyards</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] font-['Manrope'] hover:text-yellow-400 transition-colors duration-500" href="#">Collections</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] font-['Manrope'] hover:text-yellow-400 transition-colors duration-500" href="#">The Vault</a>
+<a class="text-yellow-500 border-b-0 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-1/2 after:h-[1px] after:bg-yellow-500 uppercase tracking-widest text-[10px] font-['Manrope']" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-zinc-100 cursor-pointer active:opacity-80" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 parallax-bg" data-alt="Dark dramatic landscape of ancient schist rock formations in a vineyard under a moody charcoal sky with soft low-key lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4x_aP8OoDOfbG0_WMGFR_2VaiG1KRj76DADdL6fX3m_4odn-yZNHklhMpmB74s4vtzBfQ9NeTKR744TbDl9scavCLeLyFq5CZR3NkFVpPJP8aoajLVyX23e7NYLIUDjvOeDP-HS1qSX6Cl22UY_CxKSaBIr8U0AQxVerJEBkoOoTcRciUXwCn8hX78JyUFeJOUdpqwBASGkjDAZP3mDztxJBqZUaHqpfGawsAGqSqWWMPXYjtbDfpVXPH483hz7uyUXszS2Qn285i')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-10"></div>
+<div class="relative z-20 text-center max-w-4xl px-6">
+<p class="font-label text-primary tracking-[0.4em] uppercase text-xs mb-8">Part I: The Foundation</p>
+<h1 class="font-headline text-7xl md:text-9xl font-bold text-on-surface tracking-tighter leading-none editorial-shadow">Schist &amp; <br/><span class="italic font-light">Silence</span></h1>
+<div class="mt-12 mx-auto w-16 h-[1px] bg-primary/40"></div>
+</div>
+</header>
+<!-- Content: Asymmetric Intro -->
+<section class="relative py-32 px-6 md:px-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="absolute inset-0 schist-texture pointer-events-none"></div>
+<div class="md:col-span-7 z-10">
+<h2 class="font-headline text-4xl md:text-6xl text-on-surface mb-8 leading-tight">The earth does not speak; it <span class="text-primary italic">vibrates</span>.</h2>
+<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-xl leading-relaxed mb-8">
+                In the heart of the Aurea Vox estates, the ground is composed of vertical blue schist—metamorphic rock that forces vines to dig deep into the silence of the subterranean. This geological struggle produces wines of profound mineral tension and quiet power.
+            </p>
+<div class="flex items-center gap-4 group cursor-pointer">
+<span class="h-[1px] w-12 bg-primary group-hover:w-24 transition-all duration-700"></span>
+<span class="font-label text-primary uppercase tracking-widest text-[10px]">Read the Geology Report</span>
+</div>
+</div>
+<div class="md:col-span-5 relative mt-12 md:mt-0">
+<div class="aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-75 hover:scale-105 transition-transform duration-[2000ms]" data-alt="Close-up high-contrast black and white photography of jagged blue schist rock showing intricate layered geological textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChPXArKDMxsctKbK69hZq_8y-hZvWBG1Jpso-TVfFgHyGekDU-rt9LMQuPOhHCDwuRFezOl6n1KAbMM8O0zRyQBtKJuH7ePkXa_dTtre_8BNLWcWdBCIbNIuB3fIT6V6AEIfHNNL0rIY1Fma8sJkowFu0R2lmaizZpwOyTv5qyOkK_JKLkFogjvbDPUV3Bzk8CYi37y-ileoyRitjztQaRApognD-hb121lWR914G9K84WNMx4TegUa7NE3tGn_YxujvWFbUoGyd6p"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-surface-container-low p-8 hidden md:block">
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2 uppercase">Analysis 04.A</p>
+<p class="font-headline text-on-surface text-lg italic">"The verticality of the stone allows roots to travel 15 meters deep."</p>
+</div>
+</div>
+</section>
+<!-- Interactive: Layered Map Section -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<h3 class="font-headline text-5xl text-on-surface mb-4">The Terroir <span class="font-light italic text-surface-variant">Atlas</span></h3>
+<p class="font-body text-on-surface-variant max-w-md">A cartographic exploration of our three primary micro-parcels, defined by altitude and sun exposure.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-primary-container text-on-primary font-headline font-bold text-sm tracking-widest transition-all hover:bg-primary">3D TOPOGRAPHY</button>
+<button class="px-8 py-3 border border-outline-variant/40 text-on-surface font-headline font-bold text-sm tracking-widest transition-all hover:border-primary">SATELLITE VIEW</button>
+</div>
+</div>
+<!-- Bento Grid Map Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[700px]">
+<div class="md:col-span-2 bg-surface-container relative overflow-hidden group">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-[3000ms]" data-alt="Topographic aerial landscape of terraced vineyards on a steep mountain slope under dramatic late afternoon lighting" data-location="Douro Valley" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp-LvH8DSVoDu7ufYDkx9fr4KXeYJ_gmL7558ii6UmEaZxgW3B5eEhLzx-X2cwp8R-yd3KSNURrDlNmyj7W9ErYef8hYaTVD7SWwdbYePvbkZBOq4CM7a4st8y2hmWgDJ5WmNwdStqmjhHs8_us0MMX-xeLhreopwLcTnYnnvwD0h325mv9rZZXWzBrfcJuTXrsvj2I3kY4QMVsfAkq0qmA72JedDJ63ruEm-czcVEjMx9T5Hk9zwbHCdMtoPa1JoTqapJtGmDbUhS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<span class="font-label text-primary text-[10px] tracking-widest uppercase">Parcel 01</span>
+<h4 class="font-headline text-3xl text-on-surface">Vinha do Silêncio</h4>
+<p class="font-body text-zinc-400 text-sm mt-2">Altitude: 450m | Exposition: South-West</p>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="h-1/2 bg-surface-container-high relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Monochrome wide shot of misty valley with silhouette of old trees and stone walls in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3M3EjpcthQhm6ZxheTUVb09j5y7FJBfVZlcS76o-OOnBIeQ-tzN7drPRhiT-qO9ZgAsnehw5vaZxLm_kUJjA4VuB4seMRwmAcdlISvxQJiftn01lfon-0nso93iEicZEILPmOnKD19c1NaAebgaQ2OO1KvVmMFjZc6ZoIwhtGKDvZSVd4LvNV-qv9GDYwqbiGpTyH12BLb615S4rD0PhX8L7czl4tyAgssNtck-C8cmqBw9z1fzz5oplTXRNWmA8aPmjrIG1FS1em"/>
+<div class="absolute inset-0 flex flex-col justify-center px-10">
+<h4 class="font-headline text-2xl text-on-surface">The Northern Slope</h4>
+<p class="font-body text-zinc-500 text-xs mt-2 uppercase tracking-widest">Cooler climate for precision.</p>
+</div>
+</div>
+<div class="h-1/2 bg-primary-container relative p-10 flex flex-col justify-end">
+<span class="material-symbols-outlined text-on-primary-container text-4xl mb-6" data-icon="explore">explore</span>
+<h4 class="font-headline text-2xl text-on-primary-container leading-tight">Explore the <br/>Micro-Climates</h4>
+<div class="mt-4 h-[1px] w-full bg-on-primary-container/20"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Artisan Feature: High-Contrast Portraits -->
+<section class="py-32 bg-background">
+<div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="order-2 md:order-1">
+<div class="relative">
+<img class="w-full aspect-[4/5] object-cover grayscale contrast-125" data-alt="Cinematic black and white portrait of an elderly winemaker with weathered face and hands, backlit to emphasize detail and texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARHc9vbCQ8X2o6OwbEpCZFr23c_5SphOC8hfq95Ys_J6OQpLHFa0lM6CeYelajHiwvEkp7rUFFz-xCBLWB1CuD_bHRKPuS8XebB0ClFEUS-SoRVCEfgQ-BqTtgoT0aPyKu33mlPX10RuWKysFPmWnv9KbrGbeGwHstrbnBNXL_ZBsUHZX6ok8U4oT4gm-29CZeWtwfr6ARei_xppiLVB8JmYMp-qaRqc2IVegyvesVsCADcoq1C_3DqdUgEw9myKe8vsBFSQLX7JsB"/>
+<div class="absolute -top-12 -right-12 w-48 h-48 border border-primary/20 -z-10 hidden md:block"></div>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<p class="font-label text-primary tracking-[0.3em] uppercase text-xs mb-6">The Custodians</p>
+<h3 class="font-headline text-6xl text-on-surface mb-8 leading-tight">Hands that <br/>speak to <span class="italic font-light">stone</span>.</h3>
+<p class="font-body text-on-surface-variant text-xl leading-relaxed mb-12 italic">
+                    "We do not make the wine. We merely listen to the schist and provide the silence it needs to express itself."
+                </p>
+<div class="space-y-8">
+<div class="flex items-start gap-6">
+<span class="font-headline text-primary text-3xl">01</span>
+<div>
+<h5 class="font-headline text-on-surface text-xl">The Harvest of Selection</h5>
+<p class="font-body text-zinc-500 text-sm mt-1">Manual sorting berry by berry, ensuring only the divine make the vault.</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<span class="font-headline text-primary text-3xl">02</span>
+<div>
+<h5 class="font-headline text-on-surface text-xl">Minimal Intervention</h5>
+<p class="font-body text-zinc-500 text-sm mt-1">Gravity-fed cellars and native yeasts preserve the raw essence of the land.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline of Geology -->
+<section class="py-24 border-y border-outline-variant/10">
+<div class="container mx-auto px-6">
+<h3 class="font-label text-primary text-center uppercase tracking-[0.5em] text-xs mb-20">The Epochs of Aurea</h3>
+<div class="relative space-y-32 before:content-[''] before:absolute before:left-1/2 before:top-0 before:bottom-0 before:w-[0.5px] before:bg-primary/20 before:hidden md:before:block">
+<!-- Timeline Item 1 -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="md:text-right">
+<p class="font-headline text-primary text-3xl italic">350 Million Years Ago</p>
+<h4 class="font-headline text-2xl text-on-surface mt-2">The Hercynian Orogeny</h4>
+<p class="font-body text-zinc-500 mt-4 max-w-sm md:ml-auto">Metamorphism transforms clay into the layered blue schist that defines our terroir today.</p>
+</div>
+<div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full"></div>
+<div class="bg-surface-container h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-40 scale-150" data-alt="Extreme macro photography of layered metamorphic rock showing veins of silver and blue minerals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB71SELZXSaBus_DCdgyU9Nzuv-jLCS5peiFNWigoEyRTrZwRVbGoYPOAN1oz0biRKU-JfiUiXOpvkp3S2D9Dk5n_Lk7gh3sUj-_mhPkfTkEHwv2YIH_NoDzmG33PaQuWVNhtZaN8PYm6p61hnW8FpLYPO2VmdMZMe471BO6FDf5D9KkQ6FtrYvb59vzN2ll7GBnZW6gF2ry6M_y4Ge755Ual22jsWPSTOMOaO8KGDp5Wp0vwSU6foVTzOJ_s5X6F5DE2JIb7xev4fn"/>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="bg-surface-container h-48 w-full order-2 md:order-1 overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-40 scale-125" data-alt="Abstract atmospheric photography of dark water and misty mountains in high contrast monochrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoaV7OP2b7pCq-xhQ9tJavilCqBAkjCfH6_0I0nO4FdlBdjv4hdAIHkNSTsFUKqt4I1Ykydvu0jumLoOO8rkbPHvGsoGidHRiqXQEp1cF5MsjqUNr3o46EybTKucomh_I68cLwlo_RAaMIwnI0TR_7W_TAjoqkHrI1uek9EQ9dks5jJJbaqLb4dPKTsSetY4yaJviOP41Ym6GcDuHbNYaqBBI098LYpbQO5eS_Ui5uRSAqUE8pea4fdxrqwCF94Oikz3rfXhtA9l3"/>
+</div>
+<div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full"></div>
+<div class="md:text-left order-1 md:order-2">
+<p class="font-headline text-primary text-3xl italic">1756 AD</p>
+<h4 class="font-headline text-2xl text-on-surface mt-2">Demarcation</h4>
+<p class="font-body text-zinc-500 mt-4 max-w-sm">The world's first regulated wine region is established, protecting the sanctity of the Douro's schist slopes.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Alchemy of Aging Section -->
+<section class="py-32 bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 schist-texture"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="max-w-3xl mx-auto text-center mb-24">
+<p class="font-label text-primary tracking-[0.4em] uppercase text-xs mb-8">Part II: The Transformation</p>
+<h3 class="font-headline text-6xl text-on-surface">The Alchemy <br/>of <span class="italic font-light">Aging</span></h3>
+<div class="mt-8 mx-auto w-12 h-[1px] bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="p-12 bg-background border border-outline-variant/10 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" data-icon="acorn">owl</span>
+<h5 class="font-headline text-2xl text-on-surface mb-4">Oak Interaction</h5>
+<p class="font-body text-zinc-500 text-sm leading-relaxed">
+                        We utilize 500L French oak barrels with "blonde" toasting. This prevents the wood from masking the mineral precision of the schist, adding only a whisper of spice and structural breath.
+                    </p>
+</div>
+<div class="p-12 bg-background border border-outline-variant/10 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" data-icon="thermostat">thermostat</span>
+<h5 class="font-headline text-2xl text-on-surface mb-4">Static Gravity</h5>
+<p class="font-body text-zinc-500 text-sm leading-relaxed">
+                        Temperature is maintained at a constant 14°C within the natural granite walls of the cellar. The lack of vibration allows the phenolic compounds to weave together in absolute stillness.
+                    </p>
+</div>
+<div class="p-12 bg-background border border-outline-variant/10 hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl mb-8" data-icon="hourglass_empty">hourglass_empty</span>
+<h5 class="font-headline text-2xl text-on-surface mb-4">The Tertiary Bloom</h5>
+<p class="font-body text-zinc-500 text-sm leading-relaxed">
+                        After 24 months in wood, the wine rests for another year in the bottle. Here, the primary fruit undergoes molecular alchemy, emerging as notes of tobacco, graphite, and dried violets.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA / Image Spread -->
+<section class="h-[819px] relative flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-[0.2]" data-alt="Cinematic wide shot of a dimly lit luxury wine cellar with rows of barrels disappearing into the dark shadows and warm golden pin-lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_9-wKUSCqs1PZpmzort5WSqWOSYXqcH3BhMimjWocd8GXU4BvVweHTRKFnf49cDrUkxc_jv3oP_Bfld5q9KiiRMjVKGiHY9CETQxSFSPMApWAd6mkIiU5gVBpdlDDThuZ7-SmyDBBIZuaArQNt6RrF2KtmKm9yR7GGok6-tmqei2V_MKz-d4WCm7xTUKsoUbQJ1xhzzapRSJB-gJ2ijkJdwQNu-9wP6pjEfP5dut22LUf5ymDf6H6vy52DWTZazHuVUCq6zDlspB-"/>
+</div>
+<div class="relative z-10 text-center px-6">
+<h2 class="font-headline text-4xl md:text-7xl text-on-surface mb-10 tracking-tight">Experience the <span class="italic font-light">Vault</span>.</h2>
+<button class="bg-primary text-on-primary px-12 py-5 font-headline font-bold uppercase tracking-[0.2em] text-sm hover:scale-105 transition-transform duration-500">REQUEST ALLOCATION</button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full px-12 py-24 flex flex-col items-center gap-12 bg-zinc-950 border-t border-zinc-900">
+<div class="font-['Noto_Serif'] text-xl text-yellow-500 tracking-widest uppercase">AUREA VOX</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16">
+<a class="font-['Manrope'] text-zinc-600 hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Heritage</a>
+<a class="font-['Manrope'] text-zinc-600 hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Craftsmanship</a>
+<a class="font-['Manrope'] text-zinc-600 hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Sustainability</a>
+<a class="font-['Manrope'] text-zinc-600 hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Legal</a>
+</div>
+<div class="w-24 h-[1px] bg-zinc-800"></div>
+<p class="font-['Manrope'] text-zinc-500 font-light text-[10px] tracking-[0.2em]">© 2024 AUREA VOX. ESTATES &amp; VINTAGES.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-6 pb-safe bg-zinc-950/80 backdrop-blur-2xl border-t border-yellow-900/20 shadow-2xl shadow-black">
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="home_pin">home_pin</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="wine_bar">wine_bar</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Cellar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-yellow-500 scale-110 active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Curated</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Profile</span>
+</div>
+</nav>
+</body></html>
+
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUREA VOX | The Curated Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&amp;family=Manrope:wght@200;300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#42484b",
+                    "on-secondary-fixed": "#171c1f",
+                    "surface-dim": "#131313",
+                    "on-surface": "#e5e2e1",
+                    "primary-fixed": "#ffe088",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed": "#241a00",
+                    "tertiary-fixed": "#ffdad4",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed-variant": "#7e2a1c",
+                    "primary": "#f2ca50",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#131313",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-variant": "#353534",
+                    "primary-container": "#d4af37",
+                    "secondary-fixed": "#dee3e7",
+                    "surface-container": "#201f1f",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#ffbfb4",
+                    "secondary-fixed-dim": "#c2c7cb",
+                    "tertiary-fixed-dim": "#ffb4a6",
+                    "secondary": "#c2c7cb",
+                    "on-error": "#690005",
+                    "surface-bright": "#3a3939",
+                    "on-tertiary": "#601408",
+                    "tertiary-container": "#ff9784",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "outline": "#99907c",
+                    "on-secondary-container": "#b0b6b9",
+                    "on-secondary": "#2b3134",
+                    "on-tertiary-container": "#7c291b",
+                    "on-tertiary-fixed": "#3f0300",
+                    "error": "#ffb4ab",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#42484b",
+                    "outline-variant": "#4d4635",
+                    "on-primary-fixed-variant": "#574500"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24
+    }
+.schist-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDu6Z3BrPHHWEdyIP8oJOxqJqYRr1vnvNPv133Wh3WquubgR0Umc10SrhB9l-g20w0YVfqwxC1-7_itm1aRJscHu3cUmTGFE81uTrYceny8aYYf4Zudszuf7UXTIViJZUTsjqlk67EqHnwXySJuvUQYhF5LMCnRhFPdkiC4ZEIh7VH6zP4Q1nSSbp68YkGNeZv0rWA6W7XVUfyZBG-bxbYrg4CTNGmWNPppWLw3Tuh9rzmYlixIHvxlLnJzwjgDTxL6l_JeJ1_1Ey0i);
+    opacity: 0.05
+    }
+.gold-gradient {
+    background: linear-gradient(45deg, #f2ca50 0%, #d4af37 100%)
+    }
+.editorial-shadow {
+    box-shadow: 0 40px 40px -15px rgba(0, 0, 0, 0.7)
+    }</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Schist Texture Overlay -->
+<div class="fixed inset-0 schist-texture pointer-events-none z-0"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-zinc-950/70 backdrop-blur-[24px] bg-gradient-to-b from-zinc-900/50 to-transparent shadow-[0_40px_40px_-15px_rgba(0,0,0,0.7)]">
+<div class="font-['Noto_Serif'] text-2xl font-bold tracking-[0.15em] text-yellow-500 uppercase">AUREA VOX</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">Vineyards</a>
+<a class="text-yellow-500 border-b-0 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-1/2 after:h-[1px] after:bg-yellow-500 uppercase tracking-widest text-[10px] cursor-pointer" href="#">Collections</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">The Vault</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-zinc-100 material-symbols-outlined cursor-pointer hover:text-yellow-400 transition-colors">shopping_bag</button>
+<button class="md:hidden text-zinc-100 material-symbols-outlined">menu</button>
+</div>
+</nav>
+<main class="relative z-10 pt-32 pb-40">
+<!-- Hero Section -->
+<header class="px-12 mb-24 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-primary tracking-[0.4em] uppercase text-[10px] mb-4 block">Archive Series No. 12</span>
+<h1 class="font-headline text-7xl md:text-8xl font-extrabold tracking-tighter leading-none text-on-surface">The Curated Archive</h1>
+</div>
+<div class="w-full md:w-1/3 text-right">
+<p class="font-body text-zinc-500 font-light leading-relaxed italic border-r-2 border-primary/30 pr-6">
+                        A selection of rare vintages and terroir-driven artifacts, curated for the discerning palate. Each bottle is a testament to the intersection of geological history and artisanal mastery.
+                    </p>
+</div>
+</div>
+<!-- Jewelry Divider -->
+<div class="mt-16 h-[1px] w-40 gold-gradient"></div>
+</header>
+<!-- Advanced Filter Bar -->
+<section class="px-12 mb-24 max-w-7xl mx-auto">
+<div class="bg-surface-container-low/70 backdrop-blur-xl p-8 flex flex-wrap gap-12 items-center justify-between border-b border-outline-variant/10">
+<div class="flex gap-12">
+<div class="flex flex-col gap-2">
+<label class="font-label text-[9px] uppercase tracking-[0.2em] text-zinc-500">Vintages</label>
+<div class="flex gap-4">
+<span class="text-primary font-headline text-lg cursor-pointer border-b border-primary">2010—2018</span>
+<span class="material-symbols-outlined text-primary text-sm self-center">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-[9px] uppercase tracking-[0.2em] text-zinc-500">Terroirs</label>
+<div class="flex gap-4">
+<span class="text-on-surface font-headline text-lg cursor-pointer hover:text-primary transition-colors">Schist Highlands</span>
+<span class="material-symbols-outlined text-zinc-600 text-sm self-center">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label text-[9px] uppercase tracking-[0.2em] text-zinc-500">Showing 12 Artifacts</span>
+<div class="w-12 h-[1px] bg-outline-variant"></div>
+<button class="material-symbols-outlined text-on-surface p-2 hover:bg-surface-container-high transition-colors">grid_view</button>
+<button class="material-symbols-outlined text-zinc-600 p-2 hover:bg-surface-container-high transition-colors">list</button>
+</div>
+</div>
+</section>
+<!-- Collection Grid -->
+<section class="px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-32 gap-x-16">
+<!-- Item 01 -->
+<div class="group relative">
+<div class="relative mb-12 aspect-[2/3] overflow-hidden bg-surface-container-low shadow-2xl transition-transform duration-700 group-hover:-translate-y-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="dramatic vertical shot of a dark glass wine bottle on a jagged schist rock base with sharp directional gold lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr3XSrQ8YL5KzTnBXJHcYj-l62HL4AMRH5UmFQDtTi53aRAHYqB3ZKzgbVDadIxRFsZ3oROvLZyJQ_2TaCgSe5uiR4n5Muuw3PDa74Ss2VQJeuYIqu5AC-Uwjsyh6TkDJ8ZUNR7-rkfwCH5VsqWfI1d5GV1niSZ1lgr7jqMyhkMHcSdcqdU0VlKH29wLHkBVTDNySfLYQLoioDakLanr5RNm65q69Cyr8Yl8I8v4Ituf1LfOKABpRRRPRRhqxpZaWQMa7q0NmzXwfA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-8 right-0 -mr-4 transform rotate-90 origin-right">
+<span class="font-label text-[8px] uppercase tracking-[0.5em] text-primary/40 whitespace-nowrap">Proprietor's Private Selection</span>
+</div>
+</div>
+<div class="relative pl-4 border-l border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Vespera 2012</h3>
+<span class="font-headline text-xl text-primary-container">$480</span>
+</div>
+<p class="font-body text-sm text-zinc-400 font-light leading-relaxed mb-6">
+                        A monolithic expression of ancient slate. Notes of crushed violets, graphite, and dark bramble fruit. Firm, architectural tannins.
+                    </p>
+<div class="flex gap-8 items-center">
+<button class="font-label text-[10px] uppercase tracking-[0.2em] text-primary hover:text-white transition-colors flex items-center gap-2">
+                            View Dossier <span class="material-symbols-outlined text-[14px]">arrow_right_alt</span>
+</button>
+<div class="h-[1px] flex-grow gold-gradient opacity-20"></div>
+</div>
+</div>
+</div>
+<!-- Item 02 - Asymmetric Offset -->
+<div class="group relative lg:mt-24">
+<div class="relative mb-12 aspect-[2/3] overflow-hidden bg-surface-container-low shadow-2xl transition-transform duration-700 group-hover:-translate-y-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="atmospheric close up of wine aging in a dusty bottle in a dark stone cellar with subtle warm gold backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4x652VxsYnS_YdR_aeG21qmuyVWN_VwOhkabzg-F6XR8s8qbMbBunQMruRK677lD5031sJux3BsJr-eukoskLhaJsKlLRs66FSngUdAspv7H7Rkt7iPUKoyxrk5Ociz4t0ijd67K8YZDNtVzDgmAo7VOlNIpDTV2YdfPcXoJ-8yJQSJaOLxtqgPFY_pPG9Ja_BoV8Nlv_cfjCGF41zsL9aQvEhMqKAgeGko9ib8LeBFpeHh4xV48OqM9sJ2de2L4M0QF1N4j8DQxn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="relative pl-4 border-l border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Aurea Riserva</h3>
+<span class="font-headline text-xl text-primary-container">$720</span>
+</div>
+<p class="font-body text-sm text-zinc-400 font-light leading-relaxed mb-6">
+                        Golden hues born from riverbed quartz. Honeycomb, white truffle, and dried apricot. A symphony of acidity and volcanic mineral.
+                    </p>
+<div class="flex gap-8 items-center">
+<button class="font-label text-[10px] uppercase tracking-[0.2em] text-primary hover:text-white transition-colors flex items-center gap-2">
+                            View Dossier <span class="material-symbols-outlined text-[14px]">arrow_right_alt</span>
+</button>
+<div class="h-[1px] flex-grow gold-gradient opacity-20"></div>
+</div>
+</div>
+</div>
+<!-- Item 03 -->
+<div class="group relative">
+<div class="relative mb-12 aspect-[2/3] overflow-hidden bg-surface-container-low shadow-2xl transition-transform duration-700 group-hover:-translate-y-4">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="slow-motion pour of deep red wine into a crystal glass against a black background with dramatic lighting highlighting the liquid motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1s8CI2ABB8gHSQhs9x8uuiB4zgD0LshToXaUOaSf3sBeERRPRhHxOAJknvaVYIJ-VdqJWVksXZ30dwhQMqwEcw2V1wEFOOInkexClj-yEtbnI-lac3UMbPWwyRjzz43UdAmEkRKVC13dQczQTfWKPE19-osu4vrhV9H0XRu3_INsZhpJFHKq4rzHCkCQ-0i9lgXVXvC3t7-4Chty63t7O5eGEcwurity-IFhGcNC0gCVIS965yaW6M2y3n13Su112S8H1XonG0k53"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="relative pl-4 border-l border-primary/20">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline text-3xl font-bold tracking-tight text-on-surface">Nero d'Abisso</h3>
+<span class="font-headline text-xl text-primary-container">$550</span>
+</div>
+<p class="font-body text-sm text-zinc-400 font-light leading-relaxed mb-6">
+                        The essence of deep oak. Tobacco leaf, leather, and blood orange. A brooding, meditative wine for the quiet hours of night.
+                    </p>
+<div class="flex gap-8 items-center">
+<button class="font-label text-[10px] uppercase tracking-[0.2em] text-primary hover:text-white transition-colors flex items-center gap-2">
+                            View Dossier <span class="material-symbols-outlined text-[14px]">arrow_right_alt</span>
+</button>
+<div class="h-[1px] flex-grow gold-gradient opacity-20"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Private Sommelier Button (Floating) -->
+<button class="fixed bottom-32 right-12 z-40 group flex items-center gap-4 bg-zinc-950/80 backdrop-blur-xl border border-primary/20 px-6 py-4 transition-all duration-500 hover:border-primary/60">
+<div class="flex flex-col text-right">
+<span class="font-label text-[8px] uppercase tracking-[0.3em] text-primary/60">Concierge</span>
+<span class="font-headline text-xs text-on-surface tracking-wider uppercase">Private Sommelier</span>
+</div>
+<div class="w-10 h-10 gold-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]">chat_bubble</span>
+</div>
+</button>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 py-24 flex flex-col items-center gap-12 bg-zinc-950 border-t border-zinc-900 relative z-20">
+<div class="font-['Noto_Serif'] text-xl text-yellow-500 tracking-widest uppercase">AUREA VOX</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Heritage</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Craftsmanship</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Sustainability</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors uppercase tracking-widest text-[10px]" href="#">Legal</a>
+</div>
+<div class="mt-8 font-['Manrope'] text-zinc-500 font-light text-[10px] tracking-[0.2em] uppercase">
+            © 2024 AUREA VOX. ESTATES &amp; VINTAGES.
+        </div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-6 pb-safe bg-zinc-950/80 backdrop-blur-2xl border-t border-yellow-900/20 shadow-2xl shadow-black">
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined">home_pin</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined">wine_bar</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Cellar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-yellow-500 scale-110 active:scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Curated</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Profile</span>
+</div>
+</nav>
+</body></html>
+
+<!-- Aurea Vox - Alquimia e Terra (Nova Versão) -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#42484b",
+                    "on-secondary-fixed": "#171c1f",
+                    "surface-dim": "#131313",
+                    "on-surface": "#e5e2e1",
+                    "primary-fixed": "#ffe088",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed": "#241a00",
+                    "tertiary-fixed": "#ffdad4",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed-variant": "#7e2a1c",
+                    "primary": "#f2ca50",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#131313",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-variant": "#353534",
+                    "primary-container": "#d4af37",
+                    "secondary-fixed": "#dee3e7",
+                    "surface-container": "#201f1f",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#ffbfb4",
+                    "secondary-fixed-dim": "#c2c7cb",
+                    "tertiary-fixed-dim": "#ffb4a6",
+                    "secondary": "#c2c7cb",
+                    "on-error": "#690005",
+                    "surface-bright": "#3a3939",
+                    "on-tertiary": "#601408",
+                    "tertiary-container": "#ff9784",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-tint": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "outline": "#99907c",
+                    "on-secondary-container": "#b0b6b9",
+                    "on-secondary": "#2b3134",
+                    "on-tertiary-container": "#7c291b",
+                    "on-tertiary-fixed": "#3f0300",
+                    "error": "#ffb4ab",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#42484b",
+                    "outline-variant": "#4d4635",
+                    "on-primary-fixed-variant": "#574500"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .schist-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .gold-gradient {
+            background: linear-gradient(45deg, #f2ca50 0%, #d4af37 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-zinc-950/70 backdrop-blur-[24px] shadow-[0_40px_40px_-15px_rgba(0,0,0,0.7)]">
+<div class="font-['Noto_Serif'] text-2xl font-bold tracking-[0.15em] text-yellow-500 uppercase">AUREA VOX</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">Vineyards</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">Collections</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">The Vault</a>
+<a class="text-zinc-400 uppercase tracking-widest text-[10px] hover:text-yellow-400 transition-colors duration-500 ease-in-out cursor-pointer active:opacity-80" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-yellow-600 cursor-pointer active:opacity-80" data-icon="shopping_bag">shopping_bag</span>
+<button class="md:hidden material-symbols-outlined text-yellow-600" data-icon="menu">menu</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center px-12 md:px-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic vineyard landscape at dusk with deep purple shadows and a sliver of golden light on the horizon" class="w-full h-full object-cover brightness-50" data-alt="Cinematic vineyard landscape at dusk with deep purple shadows and a sliver of golden light on the horizon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhA6dhpO04CDe2HqM7pbMlkhiZQIbbhQq3KJfL2QFIUKBe348jK-Mx2fv_b7scgRrg43maHM8MW7D14uyB_v8Fp_cZBg4ihIWjbgXkIMibMbKYtAWBNhiS7LvIz0m7tylykSpkB14vTyEtS4IcZ_51tXjmkn4P42LOis9FsbxEgsPQrKwhcKlHzV25jsBjdZ2Prp1QxhxzBA5HhlpwGAlKbP9e79hl1fp-Wbzf6cwIc-kTZ6CXOYq853p4UxtsqVukncDG4PX0im0b"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-4xl">
+<p class="font-label text-primary tracking-[0.4em] uppercase text-xs mb-6">Established MCMIV</p>
+<h1 class="font-headline text-6xl md:text-9xl leading-none -ml-1 tracking-tighter mb-8">
+                    The Golden <br/> Voice of Earth
+                </h1>
+<div class="flex flex-col md:flex-row items-start md:items-center gap-12 mt-12">
+<button class="gold-gradient px-12 py-5 text-on-primary font-headline font-bold uppercase tracking-widest text-sm hover:brightness-110 transition-all duration-500 active:scale-95">
+                        Experience the Vintage
+                    </button>
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-[1px] bg-primary group-hover:w-24 transition-all duration-500"></div>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary">Discover the Terroir</span>
+</div>
+</div>
+</div>
+<!-- Asymmetric floating element -->
+<div class="hidden lg:block absolute right-[10%] top-[30%] w-[350px] aspect-[3/4] z-20 translate-y-12">
+<div class="relative w-full h-full shadow-[0_40px_80px_rgba(0,0,0,0.8)] border border-white/5 backdrop-blur-md p-2">
+<img alt="Extreme close-up of red wine being poured into a crystal glass with dramatic backlighting and captured fluid motion" class="w-full h-full object-cover" data-alt="Extreme close-up of red wine being poured into a crystal glass with dramatic backlighting and captured fluid motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNRs1GmMpw5saUwR1egqNeUvwYLLFhXugd7wEe1O1ONovh8e-r-ZFFgb4jR2RtvYTY9v3y3lgWYKXrLVWGaHKb6dbyWPoJqxgKLAcshj8h0EetqcQP_CZSJuAFUAAbEA9PyjDM02GcRakroEOmnVloEPN4QLt_J0GE-kFIIzOx-meApDwwN-gqPUan-2uGeXj_xUdGhqILTkrTP3faru6yVd0x1HbSK51fu09Ad0re9sDCkFbehOrW9ztmaO3RIotjg9ERM0N70M59"/>
+<div class="absolute -bottom-10 -left-10 bg-surface-container-high p-8 shadow-2xl">
+<span class="font-label text-[9px] uppercase tracking-widest text-zinc-500 block mb-2">Featured Release</span>
+<h3 class="font-headline text-xl text-primary">Cabernet Mythos</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- The Legacy Section -->
+<section class="py-32 px-12 md:px-24 bg-surface relative overflow-hidden">
+<div class="schist-overlay absolute inset-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-24 items-center">
+<div class="md:col-span-5 relative">
+<div class="absolute -top-12 -left-12 w-32 h-32 border-t border-l border-primary/30"></div>
+<h2 class="font-headline text-5xl md:text-7xl mb-12 relative z-10">The Legacy</h2>
+<p class="font-body text-zinc-400 text-lg leading-relaxed mb-8 max-w-md">
+                        Beneath the schist-rich soils of the Aurea Vox estates lies a silent dialogue between deep earth and ancient vines. Our craft is not merely winemaking; it is an excavation of history.
+                    </p>
+<p class="font-body text-zinc-500 text-md leading-relaxed max-w-md italic border-l-2 border-primary/20 pl-8">
+                        "We listen to the vibrations of the mountain, translating the mineral silence into the golden voice of every vintage."
+                    </p>
+<div class="mt-16 h-[1px] w-2/5 bg-primary/40"></div>
+</div>
+<div class="md:col-span-7 flex flex-col items-end">
+<div class="w-full h-[600px] bg-surface-container-low shadow-2xl relative overflow-hidden group">
+<img alt="Detail shot of weathered oak barrels in a dark limestone cellar with dust motes dancing in a single shaft of light" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100" data-alt="Detail shot of weathered oak barrels in a dark limestone cellar with dust motes dancing in a single shaft of light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIsnXYvg3eHuCu9QHM8AtL5lTjIvyL0EOY5oZaRB5vdMpMLjVoFAl7T9UqQPnIoZjDGhpiBcWl6JGj6GmYT3bK9Ku-yN8eiLzqDdMw_WHWvaitfmmTc3hKiRfwagYiKDCxKLjrDOnBnw6xcHzBQTEX5c_Blvc0FA7oqgh3ixeIYSMeeFWKq_pVX2ZSGStKk-dan5nOdO8fI_IASJ8R0zi5lufIhZBxXn1OMUvIdIDwxRO2OCV8OjE1yy4-oanFbIlXNe8N20z7pdBb"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Showcase (Bento Grid Style) -->
+<section class="py-32 px-12 md:px-24 bg-surface-container-lowest">
+<div class="flex justify-between items-end mb-24">
+<div>
+<span class="font-label text-primary tracking-[0.3em] uppercase text-[10px]">Curated Selection</span>
+<h2 class="font-headline text-5xl mt-4">The Collections</h2>
+</div>
+<div class="hidden md:block w-1/3 h-[1px] bg-white/5 mb-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface p-12 flex flex-col justify-between group cursor-pointer hover:bg-surface-container-low transition-colors duration-500 min-h-[500px] shadow-2xl">
+<div>
+<h3 class="font-headline text-3xl mb-4 group-hover:text-primary transition-colors">Aurea Prime</h3>
+<p class="font-label text-xs uppercase tracking-widest text-zinc-500">The First Pressing</p>
+</div>
+<div class="relative overflow-hidden h-64 mt-12">
+<img alt="Luxury wine bottle with gold leaf label standing on a dark volcanic rock base" class="w-full h-full object-cover" data-alt="Luxury wine bottle with gold leaf label standing on a dark volcanic rock base" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOI4_h_AZOMGWhuVAd7TO7GwGTEBQKWpoSRxnPsnsXN7atO85PhT7z0NyyDraWk1bKM9gcffT1z4AwaMSFr0Q7Fsw58wehI5XT7QaePxBPcE4v3rn7cs4zhVlm6P8Eg3TpagrMeBVpJ_gYWPOpcG0RpYLMEH00RLrCNjceEJYW0BKjLHH8pKwvIpc342DE-69TuHmkXjrGBqOoAvoDGtR2L7UTAo7qlD_DkraHbAf3Xf8uUNhwZAqKDLCu7fKFdyYy9F3qrAX_7e-f"/>
+</div>
+<div class="flex justify-between items-center mt-12">
+<span class="font-headline text-lg">$420</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 (Asymmetric Span) -->
+<div class="bg-surface p-12 flex flex-col justify-between group cursor-pointer hover:bg-surface-container-low transition-colors duration-500 min-h-[500px] shadow-2xl md:translate-y-12">
+<div>
+<h3 class="font-headline text-3xl mb-4 group-hover:text-primary transition-colors">Vox Umbra</h3>
+<p class="font-label text-xs uppercase tracking-widest text-zinc-500">Night Harvest</p>
+</div>
+<div class="relative overflow-hidden h-64 mt-12">
+<img alt="Dark matte wine bottle with subtle embossed lettering in a pool of golden amber liquid" class="w-full h-full object-cover" data-alt="Dark matte wine bottle with subtle embossed lettering in a pool of golden amber liquid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGgPjyt0l_2vE-CGH9lWQfvgXac_ZJMsApG9nxqVIdftdmgpQU9ZzXgW_ozjYaHltYKZh-MxZ5L4SofymFYxeLhkyUYU7RmJPhiK3OgZQYBHgePurQtk0CEmi3rjfCADTWmcPh7OGt_eyKLYQ68JMffdaP414JSnwTsQznRGV5nDp8RxVvVrGHG_EHFCf2aBIjg23rVbtETTESk6Qcfqt__OjVemosTsR_4pxDBnSyipOJjjDDMOj6p4oTxVbFuEg1W-sipSOiY6sf"/>
+</div>
+<div class="flex justify-between items-center mt-12">
+<span class="font-headline text-lg">$580</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface p-12 flex flex-col justify-between group cursor-pointer hover:bg-surface-container-low transition-colors duration-500 min-h-[500px] shadow-2xl">
+<div>
+<h3 class="font-headline text-3xl mb-4 group-hover:text-primary transition-colors">Chronos VII</h3>
+<p class="font-label text-xs uppercase tracking-widest text-zinc-500">Ancient Vines</p>
+</div>
+<div class="relative overflow-hidden h-64 mt-12">
+<img alt="Deep ruby wine in a crystal decanter with gold dust reflecting light on its surface" class="w-full h-full object-cover" data-alt="Deep ruby wine in a crystal decanter with gold dust reflecting light on its surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASwbD-SXT_ZXkbwH35ZeAEpxqDnvF27Ae3k9vGSm-e-4BK2iThkxGFcbXq6Uf9BqkTBykwrd87ecojJbGFQucX_GKLCp0ozvZwQPl7gxOkWRbFuUcnZbejxZtXAW51WBfuHvLX-Hw1NCP-Y4BkkIpKQhg78wiNH3cBdlUmgkBPhyExV6HEj1SprZunQf7zSF1-LtnKNPPQBw_7nL7-58jXPu4n0Kx57TCBa0XxHAfbScXlWRejEIObR6qBq3VnRlwNOs5hQjF-zIsI"/>
+</div>
+<div class="flex justify-between items-center mt-12">
+<span class="font-headline text-lg">$1,200</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-500" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section: Join the Vault -->
+<section class="py-48 px-12 md:px-24 relative overflow-hidden bg-background">
+<div class="absolute inset-0 z-0">
+<img alt="Blurred atmospheric background of a private wine cellar with soft warm glow from hidden lamps" class="w-full h-full object-cover opacity-20 grayscale" data-alt="Blurred atmospheric background of a private wine cellar with soft warm glow from hidden lamps" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk8yOy67GDmyjeHDYRrMq2EFxFW3gVOegiejxZPJDv-vXMHdrLFZaMUe4KgaEi_vGXRFmucK6t0t-9TCjUgPcuan5j20Dni_4PTZx1vFWbueeFn3j7Ft31rqjZ3kGl9Wc-k89-0aVGHIEb0MMBbeESGh55Nmrer7jY9vuSjwwzAQiP3Jf_lpY4lbvOSJXHMPmK91HYURCXUHGZ_uvDme6yyDc_pJBUzFvuS06vQDlwu4uaivNOREaWvfmJfS66--rGhxvZvaOw2trN"/>
+</div>
+<div class="relative z-10 text-center max-w-4xl mx-auto">
+<h2 class="font-headline text-6xl md:text-8xl mb-12">Join the Vault</h2>
+<p class="font-body text-zinc-400 text-xl leading-relaxed mb-16 mx-auto max-w-2xl">
+                    Exclusive allocations, early vintage access, and invitations to the estate's private cellar ceremonies. Membership is by invitation or application only.
+                </p>
+<div class="flex flex-col md:flex-row justify-center gap-8">
+<button class="gold-gradient px-16 py-6 text-on-primary font-headline font-bold uppercase tracking-[0.3em] text-xs transition-all duration-500 hover:tracking-[0.4em] active:scale-95 shadow-[0_20px_50px_rgba(242,202,80,0.2)]">
+                        Apply for Membership
+                    </button>
+<button class="px-16 py-6 border border-primary/40 text-primary font-headline font-bold uppercase tracking-[0.3em] text-xs transition-all duration-500 hover:bg-primary/10 active:scale-95">
+                        Inquire
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-12 py-24 flex flex-col items-center gap-12 bg-zinc-950 border-t border-zinc-900">
+<div class="font-['Noto_Serif'] text-xl text-yellow-500 tracking-widest uppercase">AUREA VOX</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors" href="#">Heritage</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors" href="#">Craftsmanship</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors" href="#">Sustainability</a>
+<a class="font-['Manrope'] text-zinc-600 font-light hover:text-zinc-200 underline underline-offset-8 decoration-yellow-800 transition-colors" href="#">Legal</a>
+</div>
+<div class="w-full max-w-screen-xl flex flex-col md:flex-row justify-between items-center mt-12 gap-8 pt-12 border-t border-zinc-900/50">
+<p class="font-['Manrope'] text-zinc-500 font-light text-[10px] uppercase tracking-widest">© 2024 AUREA VOX. ESTATES &amp; VINTAGES.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-zinc-600 text-lg cursor-pointer hover:text-primary transition-colors" data-icon="public">public</span>
+<span class="material-symbols-outlined text-zinc-600 text-lg cursor-pointer hover:text-primary transition-colors" data-icon="social_distance">social_distance</span>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-6 pb-safe bg-zinc-950/80 backdrop-blur-2xl border-t border-yellow-900/20 shadow-2xl shadow-black">
+<div class="flex flex-col items-center justify-center text-yellow-500 scale-110 active:scale-90 transition-all duration-300 ease-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home_pin" style="font-variation-settings: 'FILL' 1;">home_pin</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out cursor-pointer hover:text-yellow-200">
+<span class="material-symbols-outlined" data-icon="wine_bar">wine_bar</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Cellar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out cursor-pointer hover:text-yellow-200">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Curated</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-600 active:scale-90 transition-all duration-300 ease-out cursor-pointer hover:text-yellow-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[9px] uppercase tracking-[0.2em] mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

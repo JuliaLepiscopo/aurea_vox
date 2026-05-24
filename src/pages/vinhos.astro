@@ -1,0 +1,98 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import WineCatalog from '~/components/islands/WineCatalog.astro';
+import PairingTool from '~/components/islands/PairingTool.astro';
+import Reveal from '~/components/Reveal.astro';
+import SectionHeader from '~/components/SectionHeader.astro';
+import Button from '~/components/Button.astro';
+import { wines } from '~/data/wines';
+
+const archive = wines.filter((w) => w.vintage < 2019).sort((a, b) => a.vintage - b.vintage).slice(0, 4);
+---
+
+<BaseLayout current="vinhos" title="Coleção · Aurea Vox">
+  <!-- Hero — editorial, sem folhas -->
+  <section class="relative min-h-screen overflow-hidden bg-ink">
+    <!-- Imagem com muita transparência -->
+    <div class="absolute inset-0 pointer-events-none opacity-[0.12]">
+      <img src="/Captura de tela 2026-04-21 172724.png" alt="" class="w-full h-full object-cover grayscale-[0.45]" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink"></div>
+    <div class="absolute inset-0 bg-ink/20"></div>
+
+    <div class="relative max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 pt-32 sm:pt-36 md:pt-40 pb-20 md:pb-24 min-h-screen flex items-center">
+      <div class="relative z-20 max-w-2xl">
+        <div class="flex items-center gap-4">
+          <span class="divider-gold"></span>
+          <span class="label-luxury">Coleção</span>
+        </div>
+        <h1 class="mt-8 md:mt-10 font-display font-light text-[2.7rem] sm:text-5xl md:text-7xl lg:text-[5.2rem] text-pearl leading-[1.02] md:leading-[0.98] tracking-[-0.02em]" data-split>
+          Cada rótulo,<br/>uma <span class="text-gold">sentença</span>.
+        </h1>
+        <p class="mt-8 md:mt-10 text-[0.95rem] md:text-[1.05rem] text-[var(--pearl-muted)] leading-[1.7] md:leading-[1.75] max-w-md">
+          Explore a coleção por tipo, vinhedo ou pelas notas sensoriais que o chamam.
+        </p>
+        <div class="mt-10 md:mt-14 flex items-center gap-4 md:gap-6 flex-wrap">
+          <Button href="#catalog" variant="primary">Explorar Coleção</Button>
+          <Button href="#archive" variant="ghost" icon="none">Arquivo de Vindimas</Button>
+        </div>
+      </div>
+    </div>
+
+    <a href="#catalog" aria-label="Rolar" class="absolute bottom-[12vh] left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-4 text-pearl/65 hover:text-gold transition-colors z-20">
+      <span class="w-px h-14 bg-gradient-to-b from-transparent to-gold/80"></span>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="scroll-hint-arrow">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
+  </section>
+
+  <div id="catalog"></div>
+
+  <WineCatalog />
+
+  <!-- Archive de safras — lista editorial, não cards SaaS -->
+  <section id="archive" class="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10 py-14 md:py-20">
+    <Reveal>
+      <SectionHeader
+        eyebrow="Arquivo de Vindimas"
+        title="Memórias <em class='text-gold not-italic'>líquidas</em>."
+        lead="Safras históricas preservadas sob custódia. Liberadas apenas para membros do Clube Aurea ou sob pedido especial."
+        align="center"
+      />
+    </Reveal>
+
+    <div class="mt-14 md:mt-16">
+      <!-- Cabeçalho tabela -->
+      <div class="hidden md:grid md:grid-cols-[100px_1fr_120px_140px_100px] gap-8 pb-5 text-[0.6rem] tracking-label uppercase text-pearl/45">
+        <span>Safra</span>
+        <span>Rótulo</span>
+        <span>Pontuação</span>
+        <span>Alocação</span>
+        <span class="text-right">Ação</span>
+      </div>
+      <div class="border-t border-[var(--line-strong)]"></div>
+
+      {archive.map((w, i) => (
+        <Reveal delay={i * 60}>
+          <a
+            href={`/vinhos/${w.slug}`}
+            class="group grid md:grid-cols-[100px_1fr_120px_140px_100px] gap-4 md:gap-8 items-baseline py-7 border-b border-[var(--line)] transition-colors duration-500 hover:bg-ink-raised/40"
+          >
+            <span class="font-display font-light text-[2.2rem] text-gold leading-none">{w.vintage}</span>
+            <div>
+              <div class="text-[0.58rem] tracking-label uppercase text-pearl/50">{w.collection}</div>
+              <div class="mt-1 font-display font-light text-[1.3rem] text-pearl tracking-[-0.01em] group-hover:text-gold transition-colors duration-500">{w.name}</div>
+              <div class="mt-1 text-xs text-pearl/55">{w.region.split(' · ')[0]}</div>
+            </div>
+            <span class="text-sm text-pearl/75">{w.score ? `${w.score}/100` : '—'}</span>
+            <span class="text-sm text-pearl/75">{w.allocation ? `${w.allocation} garrafas` : 'Sob consulta'}</span>
+            <span class="text-right text-[0.65rem] tracking-label uppercase text-gold group-hover:text-pearl transition-colors duration-500">Reservar →</span>
+          </a>
+        </Reveal>
+      ))}
+    </div>
+  </section>
+
+  <PairingTool />
+</BaseLayout>

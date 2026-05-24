@@ -1,0 +1,45 @@
+---
+const items = [
+  { label: 'Início', href: '/' },
+  { label: 'Origem', href: '/terroir' },
+  { label: 'Coleção', href: '/vinhos' },
+  { label: 'Clube Privado', href: '/clube' },
+];
+---
+
+<aside
+  id="mobile-drawer"
+  class="fixed inset-y-0 right-0 w-[85%] max-w-sm translate-x-full transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] bg-ink/98 backdrop-blur-xl border-l border-[var(--line)] z-[60] lg:hidden"
+>
+  <div class="h-full flex flex-col p-10">
+    <div class="flex items-center justify-between">
+      <span class="font-display text-xl tracking-[-0.015em] text-pearl">Aurea Vox</span>
+      <button aria-label="Fechar" class="w-10 h-10 grid place-items-center text-pearl/85 hover:text-gold transition-colors" id="mobile-close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <ul class="mt-16 flex-1 flex flex-col gap-7">
+      {items.map((item) => (
+        <li>
+          <a href={item.href} class="font-display text-3xl text-pearl hover:text-gold transition-colors duration-500">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="pt-8 border-t border-[var(--line)]">
+      <a href="/clube" class="btn-primary w-full justify-center">
+        <span>Reservar Degustação</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const drawer = document.getElementById('mobile-drawer');
+  document.getElementById('mobile-close')?.addEventListener('click', () => {
+    drawer?.classList.add('translate-x-full');
+  });
+</script>

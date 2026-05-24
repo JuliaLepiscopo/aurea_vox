@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  align?: 'left' | 'center';
+  accent?: string;
+}
+
+const { eyebrow, title, lead, align = 'left' } = Astro.props;
+---
+
+<header class:list={['max-w-3xl', align === 'center' && 'mx-auto text-center']}>
+  {eyebrow && (
+    <div class:list={['flex items-center gap-4', align === 'center' && 'justify-center']}>
+      <span class="divider-gold"></span>
+      <span class="label-luxury">{eyebrow}</span>
+      {align === 'center' && <span class="divider-gold"></span>}
+    </div>
+  )}
+  <h2 class="mt-6 sm:mt-8 font-display font-light text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[3.6rem] text-pearl leading-[1.1] md:leading-[1.05] tracking-[-0.015em]" set:html={title} />
+  {lead && (
+    <p class:list={['mt-6 sm:mt-8 text-[0.95rem] md:text-[1.05rem] leading-[1.75] text-[var(--pearl-muted)] max-w-xl', align === 'center' && 'mx-auto']}>{lead}</p>
+  )}
+</header>

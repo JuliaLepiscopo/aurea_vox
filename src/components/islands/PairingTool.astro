@@ -1,0 +1,488 @@
+---
+import { dishes } from '~/data/pairings';
+---
+
+<section id="harmonizacao" class="relative pt-6 pb-12 md:pt-8 md:pb-20">
+  <div class="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto">
+      <div class="flex items-center justify-center gap-4">
+        <span class="divider-gold"></span>
+        <span class="label-luxury">Ritual de Mesa</span>
+        <span class="divider-gold"></span>
+      </div>
+      <h2 class="mt-4 font-display font-light text-[1.4rem] sm:text-2xl md:text-4xl lg:text-5xl text-pearl leading-[1.15] md:leading-[1.05] tracking-[-0.015em] px-2 sm:px-0">O que vai servir esta noite?</h2>
+      <p class="mt-3 text-[0.85rem] sm:text-[0.9rem] text-[var(--pearl-muted)] max-w-lg mx-auto">Selecione um prato e deixe a casa revelar o par ideal do seu banquete.</p>
+    </div>
+
+    <div class="mt-12 md:mt-16 lg:mt-24 grid lg:grid-cols-[1fr_1fr] gap-12 md:gap-16 lg:gap-24 items-start">
+      <div>
+        <!-- Moldura editorial: prato dentro de frame hairline, textos ao redor -->
+        <div class="dish-frame relative mx-auto max-w-[360px]">
+          <!-- Cantos da moldura (L-shapes) -->
+          <span class="dish-corner dish-corner-tl"></span>
+          <span class="dish-corner dish-corner-tr"></span>
+          <span class="dish-corner dish-corner-bl"></span>
+          <span class="dish-corner dish-corner-br"></span>
+
+          <!-- Numeração canto superior esquerdo — ACIMA da linha -->
+          <div class="absolute bottom-full mb-3 left-10 flex items-baseline gap-2 z-20">
+            <span id="dish-index-current" class="font-display font-light text-[0.95rem] text-gold">01</span>
+            <span class="text-[0.58rem] tracking-label uppercase text-pearl/35 whitespace-nowrap">/ {String(dishes.length).padStart(2, '0')}</span>
+          </div>
+
+          <!-- Selo canto superior direito — ACIMA da linha -->
+          <div class="absolute bottom-full mb-3 right-10 z-20">
+            <span class="text-[0.55rem] tracking-label uppercase text-pearl/45 whitespace-nowrap">Aurea Vox · Pairing</span>
+          </div>
+
+          <!-- Nome do prato vertical — FORA da linha lateral esquerda -->
+          <div class="hidden md:flex absolute right-full mr-3 top-1/2 -translate-y-1/2 z-20">
+            <span id="stage-dish-vertical" class="text-[0.58rem] tracking-label uppercase text-gold [writing-mode:vertical-rl] rotate-180 whitespace-nowrap"></span>
+          </div>
+
+          <!-- Categoria vertical — FORA da linha lateral direita -->
+          <div class="hidden md:flex absolute left-full ml-3 top-1/2 -translate-y-1/2 z-20">
+            <span id="stage-category-vertical" class="text-[0.55rem] tracking-label uppercase text-pearl/45 [writing-mode:vertical-rl] whitespace-nowrap"></span>
+          </div>
+
+          <!-- Imagem do prato -->
+          <div id="bottle-stage" class="relative aspect-square grid place-items-center overflow-visible px-10 md:px-12">
+            <div id="bottle-host" class="bottle-anim w-full h-full grid place-items-center overflow-visible"></div>
+          </div>
+
+          <!-- Legenda inferior — ABAIXO da linha -->
+          <div class="absolute top-full mt-3 left-10 right-10 flex items-center justify-between gap-6 z-20">
+            <span id="stage-category" class="text-[0.58rem] tracking-label uppercase text-gold whitespace-nowrap"></span>
+            <span class="text-[0.55rem] tracking-label uppercase text-pearl/35 whitespace-nowrap">harmonização da casa</span>
+          </div>
+        </div>
+
+        <!-- Nome grande — legenda de livro -->
+        <div class="text-center mt-20 relative z-20 max-w-xl mx-auto">
+          <h3 id="stage-dish" class="font-display font-light text-[2rem] md:text-[2.4rem] text-pearl leading-[1.1] tracking-[-0.015em]"></h3>
+          <div class="mt-5 w-10 h-px bg-gold/60 mx-auto"></div>
+        </div>
+
+        <!-- Setas + paginador -->
+        <div class="mt-10 flex items-center justify-center gap-8">
+          <button type="button" id="dish-prev" aria-label="Prato anterior" class="group inline-flex items-center gap-3 text-[0.62rem] tracking-label uppercase text-pearl/55 hover:text-gold transition-colors duration-500">
+            <svg width="18" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.3" class="transition-transform duration-500 group-hover:-translate-x-1"><path d="M23 8H1M8 1 1 8l7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Anterior</span>
+          </button>
+
+          <div class="flex items-center gap-2">
+            {dishes.map((_, i) => (
+              <button data-dish-dot={i} aria-label={`Ir para prato ${i + 1}`} class="dish-dot w-6 h-px bg-gold/20 transition-all duration-500"></button>
+            ))}
+          </div>
+
+          <button type="button" id="dish-next" aria-label="Próximo prato" class="group inline-flex items-center gap-3 text-[0.62rem] tracking-label uppercase text-gold hover:text-pearl transition-colors duration-500">
+            <span>Próximo</span>
+            <svg width="18" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.3" class="transition-transform duration-500 group-hover:translate-x-1"><path d="M1 8h22M16 1l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:pt-4">
+        <div class="flex items-center justify-between gap-6">
+          <span id="pairing-label" class="label-luxury hidden">Vinhos sugeridos</span>
+          <button id="pairing-back" type="button" class="hidden group inline-flex items-center gap-3 text-[0.62rem] tracking-label uppercase text-pearl/55 hover:text-gold transition-colors duration-500">
+            <svg width="18" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.3" class="transition-transform duration-500 group-hover:-translate-x-1"><path d="M23 8H1M8 1 1 8l7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Voltar</span>
+          </button>
+        </div>
+        <div id="pairing-results" class="mt-8">
+          <div id="pairing-intro" class="py-8">
+            <p id="stage-desc" class="text-[0.95rem] text-[var(--pearl-muted)] leading-[1.9] max-w-lg"></p>
+            <button id="dish-confirm" type="button" class="btn-primary mt-10">
+              <span>Harmonizar</span>
+              <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 8h22M16 1l7 7-7 7" stroke-linecap="square"/></svg>
+            </button>
+          </div>
+          <div id="pairing-list" class="hidden flex flex-col"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { wines } from '~/data/wines';
+  import { dishes } from '~/data/pairings';
+
+  const intro = document.getElementById('pairing-intro')!;
+  const list = document.getElementById('pairing-list')!;
+  const pairingLabel = document.getElementById('pairing-label')!;
+  const pairingBack = document.getElementById('pairing-back')!;
+
+  const wineColors: Record<string, string> = {
+    tinto: '#6a1a24',
+    branco: '#e8d47a',
+    rose: '#d67a8e',
+    espumante: '#f0dd8a',
+  };
+
+  const dishImages: Record<string, string> = {
+    'risoto-trufas': '/risoto de Trufas Negras.png',
+    'ostras-frescas': '/ostra.png',
+    'queijos-curados': '/queijos.png',
+    'sushi-premium': '/sushi.png',
+    'chocolate-amargo': '/chocolate.png',
+  };
+
+  // Ajustes individuais por prato — alguns PNGs vêm em outro enquadramento
+  const dishStyles: Record<string, { padding: string; rotate: string; offsetY: string }> = {
+    'queijos-curados':   { padding: '10%', rotate: '0deg', offsetY: '0%' },
+    'chocolate-amargo':  { padding: '16%', rotate: '0deg', offsetY: '0%' },
+    'risoto-trufas':     { padding: '0',   rotate: '0deg', offsetY: '-18%' },
+    'ostras-frescas':    { padding: '0',   rotate: '0deg', offsetY: '-12%' },
+  };
+
+  const buildDishSvg = (slug: string, wineType: string) => {
+    const img = dishImages[slug];
+    const wine = wineColors[wineType] ?? wineColors.tinto;
+    const isBubbly = wineType === 'espumante';
+    const bubbles = isBubbly ? `
+      <circle cx="70" cy="55" r="2" fill="#ffffff" opacity="0.7">
+        <animate attributeName="cy" values="90;30" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.7;0" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="78" cy="65" r="1.5" fill="#ffffff" opacity="0.6">
+        <animate attributeName="cy" values="95;35" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.6;0" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="62" cy="72" r="1.2" fill="#ffffff" opacity="0.6">
+        <animate attributeName="cy" values="100;40" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+    ` : '';
+    const glassShape = isBubbly
+      ? `<path d="M 55 20 L 58 110 L 82 110 L 85 20 Z" fill="rgba(191, 155, 93, 0.08)" stroke="#bf9b5d" stroke-width="1" stroke-opacity="0.7"/>
+         <path d="M 58 65 L 60 110 L 80 110 L 82 65 Z" fill="${wine}" opacity="0.85"/>`
+      : `<path d="M 35 25 Q 32 85, 70 112 Q 108 85, 105 25 Z" fill="rgba(191, 155, 93, 0.06)" stroke="#bf9b5d" stroke-width="1" stroke-opacity="0.7"/>
+         <path d="M 42 60 Q 40 88, 70 108 Q 100 88, 98 60 Z" fill="${wine}" opacity="0.85"/>
+         <path d="M 46 50 Q 46 75, 55 95" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.3" fill="none"/>`;
+
+    const wineGlassSvg = `
+      <svg viewBox="0 0 140 200" fill="none" class="w-full h-full" aria-hidden="true">
+        <ellipse cx="70" cy="192" rx="32" ry="3" fill="#000" opacity="0.5"/>
+        <ellipse cx="70" cy="186" rx="32" ry="4" fill="#1a1410" stroke="#bf9b5d" stroke-width="0.8" stroke-opacity="0.7"/>
+        <rect x="67" y="112" width="6" height="76" fill="#2a1e15"/>
+        <rect x="67" y="112" width="1.5" height="76" fill="#bf9b5d" opacity="0.4"/>
+        ${glassShape}
+        ${bubbles}
+      </svg>
+    `;
+
+    if (!img) return wineGlassSvg;
+
+    return `
+      <div class="relative flex items-center justify-center gap-4 w-full">
+        <div class="relative flex-1 max-w-[320px]">
+          <div class="absolute inset-0 rounded-full bg-dourado-quente/15 blur-3xl"></div>
+          <img src="${img}" alt="" loading="lazy" class="relative w-full h-auto object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]"/>
+        </div>
+        <div class="w-24 md:w-28 h-40 md:h-48 flex-shrink-0">
+          ${wineGlassSvg}
+        </div>
+      </div>
+    `;
+  };
+
+  // ======= Novo palco central: garrafa + prato + close-zoom =======
+  const bottleHost = document.getElementById('bottle-host')!;
+  const stageCategory = document.getElementById('stage-category')!;
+  const stageCategoryVertical = document.getElementById('stage-category-vertical')!;
+  const stageDish = document.getElementById('stage-dish')!;
+  const stageDishVertical = document.getElementById('stage-dish-vertical')!;
+  const dishIndexCurrent = document.getElementById('dish-index-current')!;
+  const stageDesc = document.getElementById('stage-desc')!;
+  const prevBtn = document.getElementById('dish-prev')!;
+  const nextBtn = document.getElementById('dish-next')!;
+  const confirmBtn = document.getElementById('dish-confirm')!;
+  const dishDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-dish-dot]'));
+
+  // Paleta das 3 garrafas — alinhada com o novo sistema (único dourado)
+  const bottlePalette = {
+    tinto:     { top: '#2a0c10', mid: '#180608', bottom: '#080303', capsule: '#14080a', foil: '#bf9b5d' },
+    branco:    { top: '#2e4228', mid: '#1a2a18', bottom: '#0c140d', capsule: '#16201a', foil: '#bf9b5d' },
+    rose:      { top: '#d6c4b4', mid: '#a8786a', bottom: '#6a3a38', capsule: '#2a1218', foil: '#bf9b5d' },
+    espumante: { top: '#233220', mid: '#101a0e', bottom: '#070f08', capsule: '#bf9b5d', foil: '#bf9b5d' },
+  };
+
+  const esc = (s: any) => String(s ?? '').replace(/[<>&"']/g, (c) => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c] as string));
+
+  // Garrafa 1 — Bordeaux (tinto)
+  const bottleBordeaux = (w: any, p: any) => `
+    <svg viewBox="0 0 140 380" class="w-full h-full drop-shadow-[0_12px_20px_rgba(0,0,0,0.4)]" aria-hidden="true">
+      <defs>
+        <linearGradient id="bb-body-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${p.top}"/>
+          <stop offset="0.45" stop-color="${p.mid}"/>
+          <stop offset="1" stop-color="${p.bottom}"/>
+        </linearGradient>
+        <linearGradient id="bb-shine-${w.slug}" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset="0.2" stop-color="#ffffff" stop-opacity="0.22"/>
+          <stop offset="0.4" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="bb-label-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d1ae70"/>
+          <stop offset="0.5" stop-color="#bf9b5d"/>
+          <stop offset="1" stop-color="#8a6f3e"/>
+        </linearGradient>
+      </defs>
+      <rect x="54" y="8" width="32" height="10" fill="${p.foil}"/>
+      <path d="M 52 18 L 88 18 L 86 60 L 54 60 Z" fill="${p.capsule}"/>
+      <rect x="53" y="58" width="34" height="3" fill="${p.foil}" opacity="0.6"/>
+      <rect x="58" y="60" width="24" height="40" fill="url(#bb-body-${w.slug})"/>
+      <path d="M 58 100 Q 30 110, 28 150 L 28 350 Q 28 360, 40 360 L 100 360 Q 112 360, 112 350 L 112 150 Q 110 110, 82 100 Z" fill="url(#bb-body-${w.slug})"/>
+      <rect x="38" y="130" width="8" height="200" fill="url(#bb-shine-${w.slug})"/>
+      <rect x="38" y="200" width="64" height="90" fill="url(#bb-label-${w.slug})"/>
+      <rect x="38" y="200" width="64" height="90" fill="none" stroke="#0a0604" stroke-width="0.6" opacity="0.4"/>
+      <text x="70" y="218" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="9" font-weight="700" fill="#0a0604" letter-spacing="0.8">AUREA</text>
+      <text x="70" y="230" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="7" fill="#0a0604" letter-spacing="0.5">VOX</text>
+      <line x1="46" y1="238" x2="94" y2="238" stroke="#0a0604" stroke-width="0.5"/>
+      <text x="70" y="262" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="17" font-weight="700" fill="#0a0604">${esc(w.vintage)}</text>
+      <line x1="46" y1="270" x2="94" y2="270" stroke="#0a0604" stroke-width="0.4" opacity="0.6"/>
+      <text x="70" y="282" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="4.5" font-weight="600" fill="#0a0604" letter-spacing="0.8">${esc(w.collection.toUpperCase())}</text>
+      <ellipse cx="70" cy="371" rx="52" ry="4" fill="#000" opacity="0.5"/>
+    </svg>
+  `;
+
+  // Garrafa 2 — Burgundy (branco / rosé)
+  const bottleBurgundy = (w: any, p: any) => `
+    <svg viewBox="0 0 140 380" class="w-full h-full drop-shadow-[0_12px_20px_rgba(0,0,0,0.4)]" aria-hidden="true">
+      <defs>
+        <linearGradient id="bu-body-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${p.top}"/>
+          <stop offset="0.5" stop-color="${p.mid}"/>
+          <stop offset="1" stop-color="${p.bottom}"/>
+        </linearGradient>
+        <linearGradient id="bu-shine-${w.slug}" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset="0.2" stop-color="#ffffff" stop-opacity="0.25"/>
+          <stop offset="0.4" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="bu-label-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d1ae70"/>
+          <stop offset="0.5" stop-color="#bf9b5d"/>
+          <stop offset="1" stop-color="#8a6f3e"/>
+        </linearGradient>
+      </defs>
+      <rect x="58" y="10" width="24" height="8" fill="${p.foil}"/>
+      <path d="M 56 18 L 84 18 L 82 48 L 58 48 Z" fill="${p.capsule}"/>
+      <rect x="58" y="48" width="24" height="42" fill="url(#bu-body-${w.slug})"/>
+      <path d="M 58 90 Q 38 110, 28 170 L 28 350 Q 28 360, 40 360 L 100 360 Q 112 360, 112 350 L 112 170 Q 102 110, 82 90 Z" fill="url(#bu-body-${w.slug})"/>
+      <rect x="38" y="140" width="8" height="200" fill="url(#bu-shine-${w.slug})"/>
+      <rect x="36" y="218" width="68" height="80" fill="url(#bu-label-${w.slug})"/>
+      <rect x="36" y="218" width="68" height="80" fill="none" stroke="#0a0604" stroke-width="0.6" opacity="0.4"/>
+      <text x="70" y="234" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8.5" font-weight="700" fill="#0a0604" letter-spacing="0.7">AUREA</text>
+      <text x="70" y="245" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="6.5" fill="#0a0604" letter-spacing="0.5">VOX</text>
+      <line x1="44" y1="252" x2="96" y2="252" stroke="#0a0604" stroke-width="0.5"/>
+      <text x="70" y="275" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="16" font-weight="700" fill="#0a0604">${esc(w.vintage)}</text>
+      <text x="70" y="290" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="4.2" font-weight="600" fill="#0a0604" letter-spacing="0.8">${esc(w.collection.toUpperCase())}</text>
+      <ellipse cx="70" cy="371" rx="52" ry="4" fill="#000" opacity="0.5"/>
+    </svg>
+  `;
+
+  // Garrafa 3 — Champagne (espumante)
+  const bottleChampagne = (w: any, p: any) => `
+    <svg viewBox="0 0 140 380" class="w-full h-full drop-shadow-[0_12px_20px_rgba(0,0,0,0.4)]" aria-hidden="true">
+      <defs>
+        <linearGradient id="ch-body-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${p.top}"/>
+          <stop offset="0.55" stop-color="${p.mid}"/>
+          <stop offset="1" stop-color="${p.bottom}"/>
+        </linearGradient>
+        <linearGradient id="ch-shine-${w.slug}" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset="0.2" stop-color="#ffffff" stop-opacity="0.3"/>
+          <stop offset="0.4" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="ch-label-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d1ae70"/>
+          <stop offset="0.5" stop-color="#bf9b5d"/>
+          <stop offset="1" stop-color="#8a6f3e"/>
+        </linearGradient>
+        <linearGradient id="ch-cork-${w.slug}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f0dbab"/>
+          <stop offset="1" stop-color="#a68236"/>
+        </linearGradient>
+      </defs>
+      <path d="M 52 2 Q 70 -4, 88 2 L 90 22 Q 70 28, 50 22 Z" fill="url(#ch-cork-${w.slug})" stroke="#4a3010" stroke-width="0.5"/>
+      <rect x="55" y="22" width="30" height="10" fill="${p.foil}"/>
+      <path d="M 55 26 L 85 26 M 70 22 L 70 32" stroke="#0a0604" stroke-width="0.5" opacity="0.6"/>
+      <path d="M 54 32 L 86 32 L 84 64 L 56 64 Z" fill="${p.capsule}"/>
+      <rect x="58" y="64" width="24" height="58" fill="url(#ch-body-${w.slug})"/>
+      <path d="M 58 122 Q 34 146, 30 200 L 30 350 Q 30 362, 42 362 L 98 362 Q 110 362, 110 350 L 110 200 Q 106 146, 82 122 Z" fill="url(#ch-body-${w.slug})"/>
+      <rect x="40" y="160" width="8" height="180" fill="url(#ch-shine-${w.slug})"/>
+      <rect x="40" y="220" width="60" height="100" fill="url(#ch-label-${w.slug})"/>
+      <rect x="40" y="220" width="60" height="100" fill="none" stroke="#0a0604" stroke-width="0.6" opacity="0.4"/>
+      <text x="70" y="238" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="8" font-weight="700" fill="#0a0604" letter-spacing="0.6">AUREA</text>
+      <text x="70" y="250" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="6.5" fill="#0a0604" letter-spacing="0.5">VOX</text>
+      <line x1="48" y1="258" x2="92" y2="258" stroke="#0a0604" stroke-width="0.4"/>
+      <text x="70" y="280" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="700" fill="#0a0604">${esc(w.vintage)}</text>
+      <line x1="50" y1="288" x2="90" y2="288" stroke="#0a0604" stroke-width="0.3" opacity="0.6"/>
+      <text x="70" y="302" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="4" font-weight="600" fill="#0a0604" letter-spacing="0.8">BRUT · ${esc(w.collection.toUpperCase())}</text>
+      <ellipse cx="70" cy="373" rx="54" ry="4" fill="#000" opacity="0.5"/>
+    </svg>
+  `;
+
+  const pickBottle = (w: any) => {
+    const p = (bottlePalette as any)[w.type] ?? bottlePalette.tinto;
+    if (w.type === 'espumante') return bottleChampagne(w, p);
+    if (w.type === 'branco' || w.type === 'rose') return bottleBurgundy(w, p);
+    return bottleBordeaux(w, p);
+  };
+
+  let dishIndex = 0;
+
+  const updateDots = () => {
+    dishDots.forEach((d, i) => {
+      d.style.width = i === dishIndex ? '2.25rem' : '1rem';
+      d.style.background = i === dishIndex ? 'var(--gold)' : 'rgba(191,155,93,0.2)';
+    });
+  };
+
+  const renderDish = (i: number) => {
+    dishIndex = ((i % dishes.length) + dishes.length) % dishes.length;
+    const dish = dishes[dishIndex];
+    if (!dish) return;
+
+    intro.classList.remove('hidden');
+    pairingLabel.classList.add('hidden');
+    pairingBack.classList.add('hidden');
+    list.classList.add('hidden');
+    list.innerHTML = '';
+
+    const img = dishImages[dish.slug];
+
+    // Crossfade sutil + leve scale
+    bottleHost.classList.add('bottle-exit-anim');
+
+    window.setTimeout(() => {
+      const styleOverride = dishStyles[dish.slug];
+      const padding = styleOverride?.padding ?? '0';
+      const rotate = styleOverride?.rotate ?? '0deg';
+      const offsetY = styleOverride?.offsetY ?? '0%';
+      bottleHost.innerHTML = img
+        ? `<div class="w-full h-full flex items-center justify-center" style="padding:${padding};"><img src="${img}" alt="${esc(dish.name)}" style="transform:translateY(${offsetY}) rotate(${rotate});max-width:100%;max-height:100%;width:auto;height:auto;" class="block object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.55)]"/></div>`
+        : '';
+      bottleHost.classList.remove('bottle-exit-anim');
+      bottleHost.classList.add('bottle-enter-anim');
+      void bottleHost.offsetWidth;
+      bottleHost.classList.remove('bottle-enter-anim');
+
+      stageCategory.textContent = dish.category;
+      stageCategoryVertical.textContent = dish.category;
+      stageDish.textContent = dish.name;
+      stageDishVertical.textContent = dish.name;
+      dishIndexCurrent.textContent = String(dishIndex + 1).padStart(2, '0');
+      stageDesc.textContent = dish.description;
+    }, 450);
+
+    updateDots();
+  };
+
+  const showPairings = () => {
+    const dish = dishes[dishIndex];
+    if (!dish) return;
+    const matched = dish.matches
+      .map((s) => wines.find((w) => w.slug === s))
+      .filter((w): w is typeof wines[number] => Boolean(w));
+
+    intro.classList.add('hidden');
+    pairingLabel.classList.remove('hidden');
+    pairingBack.classList.remove('hidden');
+    list.classList.remove('hidden');
+
+    const bottleVariantsByType: Record<string, string[]> = {
+      tinto: ['/vinho1.svg', '/vinho2.svg'],
+      branco: ['/vinho3.svg', '/vinho5.svg'],
+      rose: ['/vinho4.svg'],
+      espumante: ['/vinho5.svg', '/vinho3.svg'],
+    };
+    const typeCounter: Record<string, number> = {};
+    const bottleFor = (type: string) => {
+      const pool = bottleVariantsByType[type] ?? ['/vinho2.svg', '/vinho1.svg'];
+      const idx = typeCounter[type] ?? 0;
+      typeCounter[type] = idx + 1;
+      return pool[idx % pool.length];
+    };
+
+    list.innerHTML = matched
+      .map((w, i) => `
+        <a href="/vinhos/${w.slug}" class="group grid grid-cols-[auto_1fr_auto] gap-6 items-center py-6 border-b border-[var(--line)] transition-colors duration-500 hover:bg-[var(--ink-raised)]/40 px-4" style="animation: slideIn 0.6s ${i * 80}ms cubic-bezier(.22,1,.36,1) both;">
+          <div class="w-6 h-10 flex-shrink-0 grid place-items-center">
+            <img src="${bottleFor(w.type)}" alt="${esc(w.name)}" loading="lazy" class="max-h-full w-auto object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,0.55)] transition-transform duration-500 group-hover:-translate-y-1"/>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-3">
+              <span class="font-display font-light text-[2rem] text-[var(--gold)] leading-none">${w.vintage}</span>
+              <span class="text-[0.6rem] tracking-label uppercase text-[var(--pearl-muted)]">${w.collection}</span>
+            </div>
+            <div class="mt-2 font-display font-light text-lg text-[var(--pearl)] tracking-[-0.01em] group-hover:text-[var(--gold)] transition-colors">${w.name}</div>
+            <div class="mt-1 text-xs text-[var(--pearl-muted)]">${w.region}</div>
+          </div>
+          <div class="text-[0.65rem] tracking-label uppercase text-[var(--gold)] hidden sm:block">Ver →</div>
+        </a>
+      `).join('');
+  };
+
+  const showIntro = () => {
+    intro.classList.remove('hidden');
+    pairingLabel.classList.add('hidden');
+    pairingBack.classList.add('hidden');
+    list.classList.add('hidden');
+    list.innerHTML = '';
+  };
+
+  prevBtn.addEventListener('click', () => { renderDish(dishIndex - 1); });
+  nextBtn.addEventListener('click', () => { renderDish(dishIndex + 1); });
+  confirmBtn.addEventListener('click', () => { showPairings(); });
+  pairingBack.addEventListener('click', () => { showIntro(); });
+  dishDots.forEach((d, i) => d.addEventListener('click', () => { renderDish(i); }));
+
+  renderDish(0);
+</script>
+
+<style>
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Moldura editorial — borda hairline em todos os lados com cantos reforçados */
+  .dish-frame {
+    position: relative;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+  }
+  .dish-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+  .dish-corner-tl { top: -1px; left: -1px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .dish-corner-tr { top: -1px; right: -1px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .dish-corner-bl { bottom: -1px; left: -1px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .dish-corner-br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+  .bottle-anim {
+    transform-origin: center center;
+    transition: opacity 0.45s ease, transform 0.55s cubic-bezier(.22,1,.36,1);
+    will-change: transform, opacity;
+  }
+  .bottle-exit-anim  { opacity: 0; transform: scale(0.94); }
+  .bottle-enter-anim { opacity: 0; transform: scale(1.04); }
+
+  #stage-bg-title.is-changing { opacity: 0; transform: scale(0.92); }
+
+  .dish-dot { transition: width 0.4s var(--ease-silk), background-color 0.4s var(--ease-silk); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bottle-anim { transition: none; }
+  }
+</style>
