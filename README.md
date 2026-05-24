@@ -94,4 +94,4 @@ npm run preview    # serve o build localmente
 
 ## Histórico
 
-O projeto começou como um único arquivo HTML monolítico (`teste.html`, ~2000 linhas, 7 páginas concatenadas, Tailwind via CDN, zero JS funcional) e foi reestruturado em Astro conforme o plano descrito em [PLANO-REESTRUTURACAO.md](PLANO-REESTRUTURACAO.md).
+O projeto começou como um único arquivo HTML monolítico ([reference/teste.html](reference/teste.html), ~2000 linhas, 7 páginas concatenadas, Tailwind via CDN, zero JS funcional) e foi reestruturado em Astro conforme o plano descrito em [PLANO-REESTRUTURACAO.md](PLANO-REESTRUTURACAO.md). O arquivo original ficou na pasta `reference/` como histórico.
