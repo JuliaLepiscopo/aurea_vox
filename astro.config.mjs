@@ -7,5 +7,5 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
-  site: 'https://aureavox.example',
+  site: 'https://aurea-vox.vercel.app',
 });
